@@ -1,10 +1,62 @@
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MainImg from "/main-img.webp";
 import { Github, Linkedin, Location } from "../components/icons";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Home = () => {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (textRef.current) {
+      gsap.fromTo(
+        textRef.current,
+        { autoAlpha: 0, x: -80 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+    if (imgRef.current) {
+      gsap.fromTo(
+        imgRef.current,
+        { autoAlpha: 0, x: 80 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
+
   return (
-    <section className="flex w-full flex-col items-center gap-20 py-10 pt-20 md:flex-row-reverse md:py-24">
-      <div className="flex items-center justify-center md:w-1/3">
+    <section
+      ref={sectionRef}
+      className="flex w-full flex-col items-center gap-20 py-10 pt-20 md:flex-row-reverse md:py-24"
+    >
+      <div ref={imgRef} className="flex items-center justify-center md:w-1/3">
         <div className="w-3/6 md:h-2/5 md:w-3/5">
           <img
             id="main-img"
@@ -20,7 +72,10 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-12 px-10 md:w-2/3 md:pl-24">
+      <div
+        ref={textRef}
+        className="flex flex-col gap-12 px-10 md:w-2/3 md:pl-24"
+      >
         <div className="flex flex-col gap-5">
           <h1 className="text-4xl font-bold dark:text-gray-50 md:text-6xl">
             Hi, I&apos;m Corentin
