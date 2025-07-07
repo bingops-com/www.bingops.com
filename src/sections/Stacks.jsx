@@ -22,7 +22,7 @@ function Stacks() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 20%",
+          start: "top 15%",
           toggleActions: "play none none none",
         },
       }
