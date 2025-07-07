@@ -21,7 +21,7 @@ function Footer() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: footerRef.current,
-            start: "top 8%",
+            start: "top 15%",
             toggleActions: "play none none none",
           },
         }
