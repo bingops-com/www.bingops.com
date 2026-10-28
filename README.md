@@ -45,8 +45,8 @@ outside the viewport and becomes a static overview when reduced motion is reques
 video controls and fullscreen support. No video is mounted on the main page.
 
 A large inline skills line types only names: Terraform, Kubernetes, Communication,
-Argo CD, Agile, Go, Teamwork, Python and Problem solving. Technology colours are
-distinct, including purple for Terraform and blue for Kubernetes. There is no
+Argo CD, Agile, Go, Teamwork and Python. The line uses JetBrains Mono Bold,
+with dark purple for Terraform and blue for Kubernetes and Python. There is no
 terminal box, prompt or typing control. Reduced motion shows a complete static
 skill. The portrait has a simple frame and responds subtly on hover.
 The opening composition takes inspiration from the
