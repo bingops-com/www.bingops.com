@@ -19,8 +19,8 @@
       "Applications synced from Git with Argo CD, Helm and Kustomize.",
       "Prometheus and Grafana for observability, Bitwarden for secrets, and PostgreSQL backups on R2."
     ],
-    "imageURL": "/projects/labops-editorial-v1.webp",
-    "imageAlt": "Editorial illustration of modular servers and networking hardware in the LabOps cobalt, navy and mint palette."
+    "imageURL": "/projects/labops-platform-v2.webp",
+    "imageAlt": "Conceptual LabOps platform illustration: Git and Argo CD deliver applications to a Kubernetes cluster on Terraform and Talos infrastructure, with observability."
   },
   {
     "title": "Portal",

@@ -28,7 +28,7 @@ self-hosted with their OFL licences.
 
 The [EinCode Digital Lab reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
 informs the personal digital lab concept. The current layout uses typography,
-project descriptions, an editorial LabOps illustration and an actual Portal screenshot. The header scrolls with
+project descriptions, a LabOps platform illustration and an actual Portal screenshot. The header scrolls with
 the page; footer section links and “Back to top” provide return navigation.
 The mobile menu expands within the page. A short entrance animation and
 interaction transitions respect `prefers-reduced-motion`.
@@ -61,11 +61,13 @@ copy and controls are in English.
 
 ### LabOps illustration
 
-`public/projects/labops-editorial-v1.webp` is an editorial hardware illustration
-generated with the built-in OpenAI image tool. It is a conceptual visual, not
-a photograph or a literal diagram of the deployed lab. The original PNG is in
-`output/imagegen/labops-editorial-v1.png`; the prompt is recorded alongside it.
-The WebP preserves the composition and dimensions with a smaller transfer size.
+`public/projects/labops-platform-v2.webp` illustrates the software platform:
+Terraform/Talos infrastructure, Kubernetes application workloads, GitOps delivery
+with Git and Argo CD, and observability. It was generated with the built-in OpenAI
+image tool. It is a conceptual illustration rather than an exact deployment diagram.
+The original PNG and complete prompt are preserved in `output/imagegen/` under
+`labops-platform-v2`. The served WebP preserves the composition and dimensions.
+The earlier hardware illustration is retained there as an unused draft.
 
 ### Portal screenshot
 
