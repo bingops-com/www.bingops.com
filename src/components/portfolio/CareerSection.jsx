@@ -1,6 +1,7 @@
 import { FiArrowUpRight, FiCornerDownRight } from 'react-icons/fi';
 import profile from '../../portfolio.json';
 import BrandLogo from './BrandLogo';
+import CompassRose from './CompassRose';
 
 export default function CareerSection() {
   return (
@@ -11,7 +12,7 @@ export default function CareerSection() {
       </div>
       <div className="experience-layout">
         <div className="experience-intro">
-          <span className="career-flower" aria-hidden="true">✳</span>
+          <span className="career-compass" aria-hidden="true"><CompassRose /></span>
           <p>Le cloud et la cybersécurité comme fil conducteur.</p>
           <span>En entreprise comme dans mon lab : comprendre les systèmes, expérimenter, et faire avancer les idées.</span>
           <a className="career-note" href="#stacks">Voir ma boîte à outils <FiCornerDownRight aria-hidden="true" /></a>

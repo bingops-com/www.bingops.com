@@ -11,6 +11,7 @@ import {
   FiArrowUpRight, FiLinkedin,
   FiLayers, FiGitBranch, FiActivity, FiShield,
 } from "react-icons/fi";
+import LabMascot from "./components/portfolio/LabMascot";
 import "./portfolio.css";
 
 const skillIcons = [FiLayers, FiGitBranch, FiActivity, FiShield];
@@ -65,7 +66,7 @@ function App() {
       </main>
       <footer className="portfolio-footer page-width">
         <a className="brand" href="#top" aria-label="BingOps, retour en haut">bing<span>ops</span><span className="brand-dot">.</span></a>
-        <p>© {new Date().getFullYear()} {profile.name}</p>
+        <p className="footer-signature"><LabMascot /><span>© {new Date().getFullYear()} {profile.name}</span></p>
         <nav aria-label="Liens externes"><a href={profile.github} target="_blank" rel="noreferrer">GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={profile.blog} target="_blank" rel="noreferrer">Blog</a><a href="https://app.hackthebox.com/users/189144" target="_blank" rel="noreferrer">Hack The Box</a><a href="https://tryhackme.com/p/Bingops" target="_blank" rel="noreferrer">TryHackMe</a></nav>
       </footer>
     </div>

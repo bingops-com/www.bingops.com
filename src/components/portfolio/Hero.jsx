@@ -1,4 +1,4 @@
-import { FiArrowDown, FiArrowUpRight, FiGithub, FiMapPin } from 'react-icons/fi';
+import { FiArrowDown, FiArrowUpRight, FiGithub, FiMapPin, FiCompass } from 'react-icons/fi';
 import profile from '../../portfolio.json';
 import BrandLogo from './BrandLogo';
 import LabScene from './LabScene';
@@ -8,7 +8,7 @@ export default function Hero() {
     <section className="hero-stage" aria-labelledby="hero-title">
       <div className="hero page-width">
         <div className="hero-copy">
-          <p className="intro-name"><span className="intro-spark" aria-hidden="true">✳</span> Bonjour, moi c’est Corentin.</p>
+          <p className="intro-name"><FiCompass className="intro-spark" aria-hidden="true" /> Bonjour, moi c’est Corentin.</p>
           <h1 id="hero-title">DevOps &amp;<br />cybersécurité.</h1>
           <p className="hero-description">Je construis les outils qui font tourner mon lab. De l’infrastructure au code, j’aime automatiser, comprendre et partager.</p>
           <div className="hero-actions">

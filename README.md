@@ -22,12 +22,25 @@ Les aperçus utilisent la session Coder et l’accès privé existant.
 
 ## Direction visuelle
 
-Palette prune, corail, lilas et safran ; titres en Bricolage Grotesque et texte en
-DM Sans. Les deux polices sont hébergées localement, avec leurs licences OFL.
-L’accueil combine une entrée animée GSAP et une scène GitOps interactive : les
-boutons Git, Argo CD et Kubernetes changent la commande et son explication.
-Les animations d’ambiance, de dialogue, de survol et la barre de lecture
-respectent `prefers-reduced-motion`. La scène n’affiche aucune fausse télémétrie.
+L’identité suit LabOps/Portal : cobalt `#1443D6`, encre marine `#0A1B44`,
+menthe `#8AF2BF`, fond `#EEF2FB` et surfaces blanches. Les variantes sombres
+reprennent également les tokens de Portal. Titres en Bricolage Grotesque et texte
+en Onest, hébergés localement avec leurs licences OFL.
+
+La trame de carte marine, la rose des vents et le chat à cache-œil reprennent
+l’univers graphique de [LabOps Portal](https://github.com/bingops-com/portal).
+Le composant du chat et son animation proviennent de `web/src/App.tsx` et
+`web/src/styles.css` de Portal. Les surfaces, bordures et contrastes s’appuient
+sur les mêmes couleurs ; aucun service de production n’est modifié pour cela.
+
+La référence [EinCode Digital Lab](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
+inspire la composition en laboratoire numérique, le terminal à lettres pixels et
+le prompt animé. Le dessin et le contenu sont propres à BingOps ; la palette
+et la typographie restent celles de LabOps. L’accueil conserve l’entrée animée
+GSAP et la scène GitOps interactive. Les
+boutons Git, Argo CD et Kubernetes changent la commande et son explication ;
+aucune fausse télémétrie n’est affichée. Les mouvements d’ambiance, de dialogue,
+de survol et la barre de lecture respectent `prefers-reduced-motion`.
 
 Les logos de SII, Thales, Radio France et IPSSI restent dans leurs couleurs
 originales. Les fichiers sont locaux ; leurs sources et empreintes figurent dans

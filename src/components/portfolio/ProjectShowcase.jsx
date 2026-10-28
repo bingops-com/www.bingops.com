@@ -33,7 +33,7 @@ export default function ProjectShowcase() {
 
   return (
     <section id="projects" className="projects-section page-width section-space" aria-labelledby="projects-title">
-      <div className="section-heading"><div><p className="section-context">Open source, au quotidien</p><h2 id="projects-title">Ce que je construis.</h2></div><a className="text-link" href={profile.organization} target="_blank" rel="noreferrer">Les dépôts BingOps <FiGithub aria-hidden="true" /></a></div>
+      <div className="section-heading"><div><p className="section-context">Le workbench</p><h2 id="projects-title">Ce que je construis.</h2></div><a className="text-link" href={profile.organization} target="_blank" rel="noreferrer">Les dépôts BingOps <FiGithub aria-hidden="true" /></a></div>
       <div className="project-toolbar">
         <div className="project-filters" role="group" aria-label="Filtrer les projets">{categories.map((item) => <button type="button" key={item} className={category === item ? "filter-button is-active" : "filter-button"} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}</div>
         <p className="project-count" role="status">{visible.length} projet{visible.length > 1 ? "s" : ""}</p>

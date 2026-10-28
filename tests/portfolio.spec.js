@@ -122,6 +122,7 @@ test("les préférences d’accessibilité et un stockage bloqué laissent le co
 
 
 test("le workflow est interactif et les logos du parcours sont chargés", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   const workflow = page.getByRole("group", { name: "Explorer les étapes du workflow" });
   const argo = workflow.getByRole("button", { name: /Argo CD/ });
@@ -140,7 +141,8 @@ test("le workflow est interactif et les logos du parcours sont chargés", async 
     await expect(logo).toBeVisible();
     await expect.poll(() => logo.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
   }
+  expect(await page.locator(".terminal-scan").evaluate((element) => getComputedStyle(element).animationName)).toBe("terminal-scan");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  expect(await page.locator(".wire-flow").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+  expect(await page.locator(".terminal-scan").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
   expect(await page.locator(".scene-terminal").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
 });
