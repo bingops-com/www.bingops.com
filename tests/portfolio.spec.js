@@ -119,3 +119,28 @@ test("les préférences d’accessibilité et un stockage bloqué laissent le co
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
 });
+
+
+test("le workflow est interactif et les logos du parcours sont chargés", async ({ page }) => {
+  await page.goto("/");
+  const workflow = page.getByRole("group", { name: "Explorer les étapes du workflow" });
+  const argo = workflow.getByRole("button", { name: /Argo CD/ });
+  await argo.click();
+  await expect(argo).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".terminal-command")).toContainText("argocd app list");
+  await expect(page.locator(".terminal-detail")).toContainText("converger");
+  const kubernetes = workflow.getByRole("button", { name: /Kubernetes/ });
+  await kubernetes.focus();
+  await page.keyboard.press("Enter");
+  await expect(kubernetes).toHaveAttribute("aria-pressed", "true");
+  await expect(argo).toHaveAttribute("aria-pressed", "false");
+  await expect(page.locator(".terminal-command")).toContainText("kubectl get pods -A");
+  for (const name of ["SII", "Thales", "Radio France", "IPSSI"]) {
+    const logo = page.getByRole("img", { name: "Logo " + name, exact: true }).first();
+    await expect(logo).toBeVisible();
+    await expect.poll(() => logo.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+  }
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  expect(await page.locator(".wire-flow").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+  expect(await page.locator(".scene-terminal").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+});

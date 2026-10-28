@@ -20,6 +20,20 @@ les noms `5173.dev.lab.bingo` et `5173--main--lab--bingops.dev.lab.bingo`
 Pour un autre serveur, saisir son port dans « Ouvrir un port » du dashboard.
 Les aperçus utilisent la session Coder et l’accès privé existant.
 
+## Direction visuelle
+
+Palette prune, corail, lilas et safran ; titres en Bricolage Grotesque et texte en
+DM Sans. Les deux polices sont hébergées localement, avec leurs licences OFL.
+L’accueil combine une entrée animée GSAP et une scène GitOps interactive : les
+boutons Git, Argo CD et Kubernetes changent la commande et son explication.
+Les animations d’ambiance, de dialogue, de survol et la barre de lecture
+respectent `prefers-reduced-motion`. La scène n’affiche aucune fausse télémétrie.
+
+Les logos de SII, Thales, Radio France et IPSSI restent dans leurs couleurs
+originales. Les fichiers sont locaux ; leurs sources et empreintes figurent dans
+`public/brands/sources.json`. Le parcours distingue l’employeur SII, le client
+Thales et la formation IPSSI.
+
 ## Contenu
 
 - `src/portfolio.json` : profil, expériences, formation, compétences et liens.

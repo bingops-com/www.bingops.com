@@ -1,11 +1,14 @@
 import PortfolioNav from "./components/portfolio/PortfolioNav";
-import InfrastructureMap from "./components/portfolio/InfrastructureMap";
+import { useRef } from "react";
+import Hero from "./components/portfolio/Hero";
+import CareerSection from "./components/portfolio/CareerSection";
+import usePortfolioMotion from "./components/portfolio/usePortfolioMotion";
 import ProjectShowcase from "./components/portfolio/ProjectShowcase";
 import ContactForm from "./components/ContactForm";
 import profile from "./portfolio.json";
 import articles from "./articles.json";
 import {
-  FiArrowDown, FiArrowUpRight, FiGithub, FiLinkedin, FiMapPin,
+  FiArrowUpRight, FiLinkedin,
   FiLayers, FiGitBranch, FiActivity, FiShield,
 } from "react-icons/fi";
 import "./portfolio.css";
@@ -13,29 +16,15 @@ import "./portfolio.css";
 const skillIcons = [FiLayers, FiGitBranch, FiActivity, FiShield];
 
 function App() {
+  const rootRef = useRef(null);
+  usePortfolioMotion(rootRef);
   return (
-    <div className="portfolio" id="top">
+    <div className="portfolio" id="top" ref={rootRef}>
+      <div className="reading-progress" aria-hidden="true" />
       <a className="skip-link" href="#main">Aller au contenu</a>
       <PortfolioNav />
       <main id="main">
-        <section className="hero page-width" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="intro-name">Bonjour, moi c’est Corentin.</p>
-            <h1 id="hero-title">DevOps &amp;<br />cybersécurité.</h1>
-            <p className="hero-description">
-              Je construis les outils qui font tourner mon lab.
-              De l’infrastructure au code, j’aime automatiser,
-              comprendre et partager.
-            </p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#projects">Explorer mes projets <FiArrowDown aria-hidden="true" /></a>
-              <a className="text-link" href={profile.github} target="_blank" rel="noreferrer">Mon GitHub <FiGithub aria-hidden="true" /></a>
-            </div>
-            <p className="hero-location"><FiMapPin aria-hidden="true" /> {profile.location}</p>
-            <p className="hero-employment"><span className="employment-dot" aria-hidden="true" /><span>{profile.employment.status}</span></p>
-          </div>
-          <InfrastructureMap />
-        </section>
+        <Hero />
 
         <div className="specialties" aria-label="Mes domaines de travail">
           <div className="page-width">
@@ -45,35 +34,7 @@ function App() {
 
         <ProjectShowcase />
 
-        <section id="experience" className="experience-section page-width section-space" aria-labelledby="experience-title">
-          <div className="section-heading">
-            <div><p className="section-context">Le parcours</p><h2 id="experience-title">La technique, sur le terrain.</h2></div>
-            <a className="text-link" href={profile.linkedin} target="_blank" rel="noreferrer">Parcours complet sur LinkedIn <FiArrowUpRight aria-hidden="true" /></a>
-          </div>
-          <div className="experience-layout">
-            <div className="experience-intro">
-              <p>Le cloud et la cybersécurité comme fil conducteur.</p>
-              <span>Mes projets open source prolongent cette envie d’expérimenter et de comprendre les systèmes.</span>
-            </div>
-            <div className="experience-list">
-              {profile.experiences.map((experience) => (
-                <article className="experience-entry" key={experience.company + experience.role}>
-                  <span className="experience-mark" aria-hidden="true">{experience.company.split(/\s+/).map((word) => word[0]).join("").slice(0, 2).toLowerCase()}.</span>
-                  <div><p className="entry-type">Expérience professionnelle</p><h3>{experience.role || experience.company}</h3><p className="entry-company">{experience.contract || (experience.role ? experience.company : experience.location)}</p>
-                    {experience.period && <p className="entry-period">{experience.period}</p>}
-                    {experience.description && <p className="entry-description">{experience.description}</p>}
-                    {experience.technologies.length > 0 && <ul className="tag-list">{experience.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul>}
-                  </div>
-                </article>
-              ))}
-              {profile.education.map((education) => (
-                <article className="education-entry" key={education.title}>
-                  <FiShield aria-hidden="true" /><div><p className="entry-type">Formation · {education.qualification}</p><h3>{education.title}</h3>{education.school && <p className="entry-company">{education.school}</p>}{education.period && <p className="entry-period">{education.period}</p>}</div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <CareerSection />
 
         <section id="stacks" className="skills-section section-space" aria-labelledby="skills-title">
           <div className="page-width">

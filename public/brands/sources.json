@@ -1,0 +1,23 @@
+{
+  "sii.png": {
+    "source": "https://sii-group.com/themes/custom/sii_theme/images/logo.png",
+    "retrieved": "2026-10-28",
+    "sha256": "8f8c6f0b912baa5d72469555553f7152fa4036ba49fcadb99e86f989b6df73ac"
+  },
+  "radio-france.svg": {
+    "source": "https://www.radiofrance.com/themes/custom/radiofrance/images/radio-france.svg",
+    "retrieved": "2026-10-28",
+    "sha256": "b985f1adc88d1ab5325e9317525367f06e1f0a31dcd67694586286f436624d29"
+  },
+  "ipssi.png": {
+    "source": "https://ecole-ipssi.com/wp-content/uploads/2025/03/ipssi-logo-2025.png",
+    "retrieved": "2026-10-28",
+    "sha256": "edcf25c87881a91616658765fbb79179e25f969ebc3b28f4d7e45c19c0d5a8e7"
+  },
+  "thales.svg": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/2/21/Thales_Logo.svg",
+    "attribution": "Thales S.A.; vectorisation VulcanSphere, Wikimedia Commons",
+    "retrieved": "2026-10-28",
+    "sha256": "ab460e6e31dc22caace7bc2766e78cc900e3efa2370d13b85b62d36cb7a02da2"
+  }
+}
