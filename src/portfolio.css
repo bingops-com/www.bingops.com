@@ -16,9 +16,10 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .portfolio { min-height: 100vh; font: 16px/1.65 'Onest', sans-serif; overflow: clip; }
 .portfolio *, .portfolio *::before, .portfolio *::after { box-sizing: border-box; }
 .portfolio h1, .portfolio h2, .portfolio h3, .portfolio p, .portfolio figure { margin: 0; }
-.portfolio h1, .portfolio h2, .portfolio h3, .brand { font-family: 'Bricolage Grotesque', sans-serif; }
-.portfolio h2 { font-size: clamp(2.2rem, 4vw, 3.7rem); font-weight: 650; line-height: 1.08; letter-spacing: -.045em; text-wrap: balance; }
-.portfolio h3 { font-size: 1.4rem; font-weight: 650; line-height: 1.2; letter-spacing: -.025em; }
+.portfolio h1, .portfolio h2, .portfolio h3 { font-family: 'Onest', sans-serif; }
+.brand { font-family: 'Bricolage Grotesque', sans-serif; }
+.portfolio h2 { font-size: clamp(2.1rem, 3.5vw, 3.1rem); font-weight: 500; line-height: 1.18; letter-spacing: -.025em; text-wrap: balance; }
+.portfolio h3 { font-size: 1.4rem; font-weight: 550; line-height: 1.25; letter-spacing: -.015em; }
 .portfolio a { color: inherit; text-decoration: none; }
 .portfolio button, .portfolio input, .portfolio textarea { font: inherit; }
 .portfolio button { cursor: pointer; }
@@ -52,7 +53,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .hero { display: grid; grid-template-columns: 1.3fr .85fr; gap: 85px; align-items: center; padding-block: 65px 55px; }
 .hero-copy { animation: enter .6s ease-out both; }
 .intro-name { color: var(--muted); font-size: 1rem; margin-bottom: 12px !important; }
-.portfolio h1 { font-size: clamp(4.8rem, 8.3vw, 7.5rem); line-height: .9; letter-spacing: -.065em; font-weight: 650; }
+.portfolio h1 { font-size: clamp(4.2rem, 7.5vw, 6.7rem); line-height: 1.03; letter-spacing: -.035em; font-weight: 500; }
 .hero-role { margin-top: 27px !important; font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 500; color: var(--accent); }
 .hero-description { margin-top: 19px !important; max-width: 480px; color: var(--muted); font-size: .95rem; line-height: 1.85; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 27px; }
@@ -87,7 +88,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .experience-section .text-link:hover { color: #b7ccf5; }
 .experience-section :focus-visible { outline-color: #b7ccf5; }
 .experience-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
-.experience-intro > p { max-width: 340px; font: 500 1.7rem/1.25 'Bricolage Grotesque', sans-serif; letter-spacing: -.03em; }
+.experience-intro > p { max-width: 340px; font: 400 1.5rem/1.4 'Onest', sans-serif; letter-spacing: -.015em; }
 .experience-intro > span { display: block; max-width: 340px; color: var(--career-muted); font-size: .9rem; margin-top: 20px; }
 .experience-intro .text-link { margin-top: 30px; }
 .experience-list { border-left: 1px solid var(--career-line); padding-left: 30px; }
@@ -178,7 +179,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .contact-section { background: var(--contact-bg); color: var(--contact-ink); }
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
 .contact-copy .section-context { color: #fff; }
-.contact-copy h2 { font-size: clamp(3rem, 6vw, 5.5rem); }
+.contact-copy h2 { font-size: clamp(3rem, 5vw, 4.3rem); }
 .contact-copy > p:not(.section-context) { max-width: 370px; font-size: .95rem; margin-block: 25px; }
 .contact-copy .text-link:hover { color: #fff; text-decoration: underline; }
 .contact-section .contact-copy :focus-visible { outline-color: #fff; }
@@ -247,7 +248,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .header-contact { display: none; }
   .brand { font-size: 1.75rem; }
   .hero { grid-template-columns: 1fr; padding-block: 37px 35px; gap: 35px; }
-  .portfolio h1 { font-size: clamp(4.3rem, 18vw, 6rem); }
+  .portfolio h1 { font-size: clamp(3.3rem, 16vw, 5.25rem); }
   .hero-role { font-size: 1.25rem; }
   .hero-actions { gap: 20px; }
   .hero-actions .button { padding: 13px 16px; }

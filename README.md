@@ -30,8 +30,9 @@ It has a narrow rectangular frame. Provenance is recorded in
 
 The palette combines graphite `#202124`, pearl `#F2F3F1`, and dark blue `#0A1B44`,
 with separate dark theme tokens. The header, hero and contact section all respond
-to the selected theme. The non-sticky header scrolls with the page. Bricolage
-Grotesque and Onest are self-hosted with their OFL licences.
+to the selected theme. The non-sticky header scrolls with the page. Onest is used for body copy and
+headings, with moderate weights and spacing. Bricolage Grotesque is reserved for
+wordmarks. Both fonts are self-hosted with their OFL licences.
 
 Section structures vary: a portrait introduction, a professional timeline on
 graphite, aligned project previews, a compact security case study, open skill
