@@ -43,30 +43,10 @@
       "Rearrangeable pages and widgets, a command palette and a kiosk mode.",
       "Editing access protected by OpenID Connect with PKCE."
     ],
-    "imageURL": "/projects/portal.jpg",
-    "imageAlt": "Screenshot of Portal showing cluster status, incidents and resource metrics. The application is shown in its original French interface."
-  },
-  {
-    "title": "Monitoring provisioning",
-    "category": "Infrastructure",
-    "kind": "monitoring",
-    "content": "Automated observability infrastructure on Proxmox, covering machine provisioning, metrics collection, centralised logs and visualisation.",
-    "stacks": [
-      "Terraform",
-      "Ansible",
-      "Prometheus",
-      "Grafana",
-      "Elastic"
-    ],
-    "link": "https://github.com/bingops-com/monitoring-provisioning",
-    "features": [
-      "Automated provisioning and configuration with Terraform and Ansible.",
-      "Metrics and alerting with Prometheus and Alertmanager.",
-      "Visualisation and analysis with Grafana and the Elastic stack."
-    ],
-    "imageURL": "/projects/monitoring-platform-v1.webp",
-    "imageAlt": "Conceptual observability illustration: Terraform and Ansible provision services that send metrics and logs to Prometheus, Grafana and Elastic.",
-    "imageType": "illustration"
+    "imageURL": "/projects/portal-demo-poster.jpg",
+    "imageAlt": "Portal dashboard showing the lab map, incidents and resource metrics in its original French interface.",
+    "videoURL": "/projects/portal-demo.mp4",
+    "gifURL": "/projects/portal-demo.gif"
   },
   {
     "title": "CVE-2025-1974",

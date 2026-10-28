@@ -5,7 +5,7 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("DevOps");
-  await expect(page.locator(".project-card")).toHaveCount(4);
+  await expect(page.locator(".project-card")).toHaveCount(3);
   await expect(page.locator(".project-card h3")).toContainText(["LabOps", "Portal"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "SII", exact: true })).toBeVisible();
@@ -15,9 +15,8 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.locator("main")).not.toContainText("22-year-old");
   await page.evaluate(() => document.fonts.ready);
   await page.locator("img").evaluateAll((images) => Promise.all(images.map((image) => { image.loading = "eager"; return image.decode().catch(() => {}); })));
-  const portalImage = page.locator(".project-portal img");
-  await expect(portalImage).toHaveAttribute("src", "/projects/portal.jpg");
-  await expect.poll(() => portalImage.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator(".project-portal video")).toHaveAttribute("poster", "/projects/portal-demo-poster.jpg");
+  await expect(page.getByRole("heading", { name: "Monitoring provisioning", exact: true })).toHaveCount(0);
   for (const theme of ["light", "dark"]) {
     await page.evaluate((value) => {
       document.documentElement.dataset.theme = value;
@@ -43,7 +42,7 @@ test("project filters and accessible details restore focus on Escape", async ({ 
   await expect(dialog).not.toBeVisible();
   await expect(page.getByRole("button", { name: "Explore Portal", exact: true })).toBeFocused();
   await page.getByRole("button", { name: "All", exact: true }).click();
-  await expect(page.locator(".project-card")).toHaveCount(4);
+  await expect(page.locator(".project-card")).toHaveCount(3);
 });
 
 test("theme persists and tolerates an invalid legacy preference", async ({ page }) => {
@@ -125,7 +124,7 @@ test("normal-flow header leaves the viewport and footer navigation returns to th
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("DevOps &cybersecurity.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("DevOps in practice.Built in my lab.");
   await page.locator("#experience").scrollIntoViewIfNeeded();
   expect(await page.locator(".portfolio-header").evaluate((header) => header.getBoundingClientRect().bottom)).toBeLessThan(0);
   await page.getByRole("link", { name: "Back to top ↑", exact: true }).click();
@@ -135,4 +134,48 @@ test("normal-flow header leaves the viewport and footer navigation returns to th
     const logo = page.getByRole("img", { name: name + " logo", exact: true }).first();
     await expect.poll(() => logo.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
   }
+});
+
+
+test("Portal demo respects reduced motion and supports manual play and pause", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const demo = page.locator(".hero-workbench");
+  const video = demo.locator("video");
+  await video.scrollIntoViewIfNeeded();
+  await expect(video).not.toHaveAttribute("src");
+  expect(await video.evaluate((el) => el.paused)).toBe(true);
+  await demo.getByRole("button", { name: "Play Portal demo" }).click();
+  await expect.poll(() => video.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
+  await demo.getByRole("button", { name: "Pause Portal demo" }).click();
+  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
+  const gif = demo.getByRole("link", { name: "Download GIF" });
+  await expect(gif).toHaveAttribute("href", "/projects/portal-demo.gif");
+  await expect(gif).toHaveAttribute("download", "");
+  expect((await page.request.head("/projects/portal-demo.gif")).status()).toBe(200);
+});
+
+test("Portal navigation plays when visible and pauses outside the viewport", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const heroVideo = page.locator(".hero-workbench video");
+  await heroVideo.scrollIntoViewIfNeeded();
+  await expect.poll(() => heroVideo.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
+  const cardVideo = page.locator(".project-portal video");
+  await cardVideo.scrollIntoViewIfNeeded();
+  await expect.poll(() => heroVideo.evaluate((el) => el.paused)).toBe(true);
+  await expect.poll(() => cardVideo.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
+  await page.locator(".project-portal").getByRole("button", { name: "Pause Portal demo" }).click();
+  await expect.poll(() => cardVideo.evaluate((el) => el.paused)).toBe(true);
+});
+
+test("an unavailable video leaves the Portal poster and GIF accessible", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("**/portal-demo.mp4", (route) => route.abort());
+  await page.goto("/");
+  const demo = page.locator(".hero-workbench");
+  await demo.getByRole("button", { name: "Play Portal demo" }).click();
+  await expect(demo.locator(".demo-poster")).toBeVisible();
+  await expect(demo.getByRole("link", { name: "Download GIF" })).toBeVisible();
+  await expect(demo).toContainText("Video unavailable");
 });

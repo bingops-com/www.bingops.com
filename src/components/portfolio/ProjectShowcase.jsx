@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { FiArrowUpRight, FiBookOpen, FiGithub, FiX } from "react-icons/fi";
 import projects from "../../projects.json";
 import profile from "../../portfolio.json";
+import ProjectDemo from "./ProjectDemo";
 
 const categories = ["All", ...new Set(projects.map((project) => project.category))];
 
 function ProjectVisual({ project }) {
+  if (project.videoURL) return <ProjectDemo project={project} />;
   return <img className="project-image" src={project.imageURL} alt={project.imageAlt} loading="lazy" width="960" height="600" />;
 }
 

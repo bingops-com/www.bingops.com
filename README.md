@@ -28,7 +28,7 @@ self-hosted with their OFL licences.
 
 The [EinCode Digital Lab reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
 informs the personal digital lab concept. The current layout uses typography,
-project descriptions, software platform illustrations and an actual Portal screenshot.
+project descriptions, software platform illustrations and a recorded Portal navigation demo.
 The header scrolls with the page; footer section links and “Back to top” provide return navigation.
 The mobile menu expands within the page. A short entrance animation and
 interaction transitions respect `prefers-reduced-motion`.
@@ -61,14 +61,13 @@ copy and controls are in English.
 
 ### Project illustrations
 
-The illustrations use the built-in OpenAI image tool. Monitoring and Ingress
-illustrations use the approved LabOps image as their style reference. These are
+The illustrations use the built-in OpenAI image tool. The Ingress illustration
+uses the approved LabOps image as its style reference. These are
 conceptual illustrations rather than exact deployment diagrams or application screenshots.
 
 | Project | Served asset | Subject |
 | --- | --- | --- |
 | LabOps | `public/projects/labops-platform-v2.webp` | Terraform/Talos, Kubernetes, applications and GitOps delivery |
-| Monitoring provisioning | `public/projects/monitoring-platform-v1.webp` | Automated provisioning, metrics, logs and visualisation |
 | CVE-2025-1974 | `public/projects/ingress-analysis-v1.webp` | AdmissionReview, NGINX Ingress and controller log analysis |
 
 Original PNGs and complete prompts are preserved in `output/imagegen/` with
@@ -77,22 +76,37 @@ composition and dimensions with smaller transfer sizes. The illustrations retain
 their white background in both themes. The earlier hardware illustration is an
 unused draft.
 
-### Portal screenshot
+### Portal navigation recording
 
-`public/projects/portal.jpg` is a real screenshot of the running Portal, captured
-on 28 October 2026. Its metrics reflect that moment and its interface remains
-in its original French language.
+`public/projects/portal-demo.mp4` is a real, muted recording of the running Portal,
+captured on 28 October 2026. It navigates through Home, Cluster and Reliability,
+scrolls the cluster page and returns home in about 12 seconds. Its interface
+remains in its original French language, and the data reflects the capture time.
+`portal-demo-poster.jpg` is the starting dashboard image; `portal-demo.gif` is a
+looping downloadable GIF of the same recording. The portfolio serves the smaller
+MP4 inline, with play/pause controls, lazy loading and playback only while visible.
+Reduced-motion and data-saving preferences disable automatic playback; manual
+play remains available. The poster and GIF link remain available if video loading fails.
 
-To refresh it from an environment authorised to access Portal:
+To refresh the recording, install Chromium for Playwright and a full FFmpeg build
+with H.264 and GIF support, then run:
 
 ```sh
-CHROMIUM=/usr/bin/chromium npm run capture:portal
+npx playwright install ffmpeg
+CHROMIUM=/usr/bin/chromium FFMPEG=/path/to/ffmpeg npm run capture:portal-demo
 ```
 
 The script uses the internal cluster service by default; set `PORTAL_CAPTURE_URL`
-for another accessible address. It starts an ephemeral light-theme browser session,
-waits for widgets, and captures a 1600 × 1150 viewport without changing Portal’s
-configuration. Review visible content before publishing a replacement screenshot.
+for another accessible address. It starts an ephemeral unauthenticated browser
+session and records navigation without changing Portal configuration. Source video
+is held temporarily and removed after encoding. Review the captured content before
+publishing new media. The previous static capture script remains available as
+`npm run capture:portal`.
+
+The opening section follows the EinCode reference’s personal digital workshop
+composition: dark navy field, a short typing reveal, a compact workbench window,
+and real project links. The workbench contains the Portal recording. The header
+scrolls with the page, and reduced motion disables the heading reveal.
 
 ## Contact
 
