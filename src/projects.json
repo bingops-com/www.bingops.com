@@ -21,7 +21,11 @@
     ],
     "imageURL": "/projects/portal-demo-poster.jpg",
     "imageAlt": "Portal dashboard showing the lab map, incidents and resource metrics in its original French interface.",
-    "videoURL": "/projects/portal-demo.mp4"
+    "videoURL": "/projects/portal-demo.mp4",
+    "caseStudy": {
+      "problem": "Cluster health, application delivery and service availability live in separate tools. I wanted one place to inspect my lab without losing that context.",
+      "result": "A customisable workspace for cluster and application health, incidents and resources, with a versioned YAML layout and browser-based editing."
+    }
   },
   {
     "title": "LabOps",
@@ -45,7 +49,11 @@
     ],
     "imageURL": "/projects/labops-platform-v2.webp",
     "imageAlt": "Conceptual LabOps platform illustration: Git and Argo CD deliver applications to a Kubernetes cluster on Terraform and Talos infrastructure, with observability.",
-    "imageType": "illustration"
+    "imageType": "illustration",
+    "caseStudy": {
+      "problem": "Rebuilding a lab means more than recreating virtual machines: cluster lifecycle, applications, secrets and persistent data need a clear order.",
+      "result": "A documented rebuild path from the infrastructure base to a reconciled workload cluster, with explicit ownership and recovery steps."
+    }
   },
   {
     "title": "CVE-2025-1974",
@@ -64,6 +72,10 @@
     ],
     "imageURL": "/projects/ingress-analysis-v1.webp",
     "imageAlt": "Conceptual Kubernetes investigation illustration: a Python AdmissionReview request reaches NGINX Ingress, followed by controller log analysis.",
-    "imageType": "illustration"
+    "imageType": "illustration",
+    "caseStudy": {
+      "problem": "I wanted to examine how an NGINX Ingress controller handles a crafted AdmissionReview request and follow the behaviour in its logs.",
+      "result": "A small Python test harness for focused reproduction and controller-log analysis, published with its source."
+    }
   }
 ]

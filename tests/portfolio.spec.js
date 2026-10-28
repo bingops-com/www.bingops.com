@@ -14,7 +14,17 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.locator(".project-card h3")).toContainText(["Portal", "LabOps"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "SII", exact: true })).toBeVisible();
-  await expect(page.locator(".education-entry")).toContainText("IPSSI");
+  await expect(page.locator(".education-list")).toContainText("IPSSI");
+  await expect(page.getByRole("heading", { name: "Cybersecurity & Cloud computing", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Administration Système & Sécurité Réseaux / secOps", exact: true })).toBeVisible();
+  const radio = page.locator(".experience-entry").filter({ has: page.getByRole("heading", { name: "Radio France", exact: true }) });
+  await expect(radio).toContainText("DevOps Engineer");
+  await expect(radio).toContainText("Oct 2023 – Sep 2025");
+  await expect(radio).toContainText("Molecule and Goss");
+  const namr = page.locator(".experience-entry").filter({ has: page.getByRole("heading", { name: "namR", exact: true }) });
+  await expect(namr).toContainText("Systems Administrator");
+  await expect(namr).toContainText("Sep 2022 – Sep 2023");
+  await expect(namr).toContainText("Greenbone");
   for (const company of ["Radio France", "namR"]) await expect(page.getByRole("heading", { name: company, exact: true })).toBeVisible();
   await expect(page.locator("main")).not.toContainText("Upgrade Dental");
   await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
@@ -53,6 +63,9 @@ test("project filters and accessible details restore focus on Escape", async ({ 
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole("heading", { name: "Portal", exact: true })).toBeVisible();
+  for (const heading of ["The problem", "Engineering choices", "What it delivers"]) {
+    await expect(dialog.getByRole("heading", { name: heading, exact: true })).toBeVisible();
+  }
   await expect(dialog.getByRole("link", { name: "View source" })).toHaveAttribute("href", "https://github.com/bingops-com/portal");
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
@@ -101,7 +114,8 @@ test("contact form preserves failed messages and confirms successful delivery", 
   const submit = page.getByRole("button", { name: "Send message" });
   if (await submit.count() === 0) {
     await expect(page.locator(".contact-fallback")).toBeVisible();
-    await expect(page.locator(".contact-fallback a")).toHaveAttribute("href", "https://www.linkedin.com/in/corentin-guyon/");
+    await expect(page.locator(".contact-fallback a")).toHaveAttribute("href", "mailto:travail.corentinguyon@gmail.com");
+    await expect(page.locator("#contact a")).toHaveCount(1);
     return;
   }
   const message = "Hi Corentin, let’s talk about Kubernetes and your Portal project.";

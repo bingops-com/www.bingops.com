@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <title>Corentin Guyon</title>
+  <rect width="128" height="128" rx="26" fill="#0a1b44"/>
+  <g fill="none" stroke="#f2f3f1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M54 43C41 30 21 39 21 64S41 98 54 85"/>
+    <path d="M107 43C94 30 72 39 72 64S93 98 107 85V65H94"/>
+  </g>
+</svg>

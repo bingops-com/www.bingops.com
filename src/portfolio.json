@@ -18,25 +18,63 @@
     },
     {
       "company": "Radio France",
-      "role": "DevOps",
-      "period": null,
+      "role": "DevOps Engineer",
+      "period": "Oct 2023 – Sep 2025",
       "description": null,
-      "technologies": []
+      "technologies": [
+        "Kubernetes",
+        "GitLab CI/CD",
+        "Helm",
+        "Docker",
+        "Ansible",
+        "Molecule",
+        "Goss"
+      ],
+      "arrangement": "Work-study",
+      "location": "Paris, France",
+      "highlights": [
+        "Tested and deployed applications across development, preproduction and production Kubernetes clusters using Helm.",
+        "Built GitLab CI/CD components and migrated Docker images from Debian Buster and Bullseye to Bookworm.",
+        "Tested Ansible roles and Docker images with Molecule and Goss.",
+        "Helped developers strengthen application security and maintained infrastructure availability and security."
+      ]
     },
     {
       "company": "namR",
-      "role": null,
-      "period": null,
+      "role": "Systems Administrator",
+      "period": "Sep 2022 – Sep 2023",
       "description": null,
-      "technologies": []
+      "technologies": [
+        "Greenbone",
+        "Docker",
+        "Terraform",
+        "Ansible",
+        "Windows",
+        "Linux"
+      ],
+      "arrangement": "Work-study",
+      "location": "Paris, France",
+      "highlights": [
+        "Set up and configured Greenbone Vulnerability Management for infrastructure security scans.",
+        "Containerised the scanner with Docker and used Terraform and Ansible to provision and manage its cloud instance.",
+        "Prepared Windows and Linux workstations for new team members."
+      ]
     }
   ],
   "education": [
     {
-      "title": "Cybersecurity & Cloud",
+      "title": "Cybersecurity & Cloud computing",
       "qualification": "Master’s-level programme",
       "school": "IPSSI",
-      "period": "2023 – 2025"
+      "period": "Oct 2023 – Sep 2025",
+      "location": "Marne-la-Vallée, France"
+    },
+    {
+      "title": "Administration Système & Sécurité Réseaux / secOps",
+      "qualification": "Bachelor",
+      "school": "IPSSI",
+      "period": "Sep 2022 – Sep 2023",
+      "location": "Marne-la-Vallée, France"
     }
   ],
   "skills": [
@@ -61,6 +99,7 @@
         "Helm",
         "Kustomize",
         "GitHub Actions",
+        "GitLab CI/CD",
         "Docker"
       ]
     },
@@ -93,5 +132,7 @@
     "contract": "Permanent",
     "client": "Thales",
     "status": "Permanent employee at SII, currently on assignment at Thales."
-  }
+  },
+  "email": "travail.corentinguyon@gmail.com",
+  "introduction": "I’m a DevOps and cybersecurity engineer. I automate deployments, secure infrastructure and build tools that make systems easier to operate."
 }

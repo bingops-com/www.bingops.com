@@ -75,13 +75,20 @@ LabOps and Portal descriptions are based on their repositories:
 [Cluster API](https://github.com/bingops-com/labops/blob/master/capi/README.md),
 [Portal](https://github.com/bingops-com/portal).
 
-Corentin confirmed his permanent employment at SII, current assignment at
-Thales, and previous experience at namR and Radio France. Upgrade Dental is excluded. This appears in the hero, experience and metadata. Radio France comes
-from the previous portfolio; the Nice area and IPSSI programme (2023–2025)
-come from the [provided LinkedIn profile](https://www.linkedin.com/in/corentin-guyon/).
-Unconfirmed job titles, experience dates and detailed responsibilities are omitted.
-Linked blog posts and the actual Portal interface may be in French; the portfolio
-copy and controls are in English.
+Corentin confirmed his permanent employment at SII and current assignment at
+Thales. His supplied CV provides the work-study roles, dates and responsibilities
+at Radio France (Oct 2023–Sep 2025) and namR (Sep 2022–Sep 2023), plus the two
+IPSSI programmes. The major is “Cybersecurity & Cloud computing”; the Bachelor
+keeps its requested official title, “Administration Système & Sécurité Réseaux / secOps”.
+Upgrade Dental is excluded. The current SII start date and exact job title remain
+unspecified. The CV’s older job-search introduction is superseded by his current
+employment. The professional email comes from the same supplied CV.
+Linked blog posts and the actual Portal interface may be in French; portfolio
+copy and controls are English apart from the official Bachelor programme title.
+
+Project details explain the problem, engineering choices and delivered functionality
+using the linked repositories and rebuild documentation; no performance figures
+are inferred. The navy CG favicon is a local SVG monogram, with PNG and ICO variants.
 
 ### Project illustrations
 
@@ -133,8 +140,8 @@ publishing new media. The previous static capture script remains available as
 Copy `.env.example` to `.env` and configure all three public EmailJS variables
 before building to enable the form. The EmailJS template must accept `user_name`,
 `user_email` and `message`. Without complete configuration, the page links directly
-to LinkedIn. The existing LabOps Docker build does not pass these variables, so
-that build uses the LinkedIn contact option.
+to `mailto:travail.corentinguyon@gmail.com`. The existing LabOps Docker build does
+not pass these variables, so that build uses the email contact option.
 
 ## Verification
 
@@ -149,7 +156,7 @@ Browser checks cover desktop and mobile layouts, filtering, keyboard access to
 project details, navigation, visual theme changes, project-only video viewing, animated wireframes, typed tools and soft skills, unavailable storage, reduced
 motion, horizontal overflow and contact. EmailJS requests are intercepted, so
 no real messages are sent. Configured builds test delivery failure, message
-preservation, retry and confirmation; unconfigured builds test the LinkedIn fallback.
+preservation, retry and confirmation; unconfigured builds test the single email action.
 
 `portfolio-checks.yml` tests builds with and without contact configuration.
 The `portfolio-browser-review` artifact contains reports and desktop/mobile

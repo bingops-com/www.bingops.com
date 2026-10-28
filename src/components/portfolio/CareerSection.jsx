@@ -16,17 +16,19 @@ export default function CareerSection() {
                 <div className="entry-heading"><p className="entry-type">{experience.contract ? 'Current' : 'Previous experience'}</p>{experience.contract && <span className="contract-badge">{experience.contract}</span>}</div>
                 <h3>{experience.company}</h3>
                 {experience.role && <p className="entry-role">{experience.role}</p>}
+                {experience.arrangement && <p className="entry-type entry-arrangement">{experience.arrangement}</p>}
                 {experience.location && <p className="entry-company">{experience.location}</p>}
                 {experience.period && <p className="entry-period">{experience.period}</p>}
                 {experience.client ? <div className="client-assignment"><BrandLogo name={experience.client} /><div><p className="assignment-label">Client assignment</p><p className="assignment-name">{experience.client}</p></div></div> : experience.description && <p className="entry-description">{experience.description}</p>}
+                {experience.highlights && <ul className="experience-highlights">{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>}
                 {experience.technologies.length > 0 && <ul className="tag-list">{experience.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul>}
               </div>
             </article>
           ))}</div>
+          <div className="education-list">{profile.education.map((education) => (
+          <article className="education-entry" key={education.title}><BrandLogo name={education.school} /><div><p className="entry-type">Education · {education.qualification}</p><h3 lang={education.qualification === 'Bachelor' ? 'fr' : 'en'}>{education.title}</h3><p>{education.school}{education.period && ` / ${education.period}`}</p><p className="education-location">{education.location}</p></div></article>
+          ))}</div>
         </div>
-        <div className="education-list">{profile.education.map((education) => (
-          <article className="education-entry" key={education.title}><BrandLogo name={education.school} /><div><p className="entry-type">Education · {education.qualification}</p><h3>{education.title}</h3><p>{education.school}{education.period && ` / ${education.period}`}</p></div></article>
-        ))}</div>
       </div>
     </section>
   );

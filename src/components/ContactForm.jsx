@@ -32,16 +32,16 @@ export default function ContactForm({ closeModal, updateSuccessMessage }) {
       closeModal?.();
     } catch {
       setState("idle");
-      setError("Sending failed. Please try again or contact me on LinkedIn.");
+      setError(`Sending failed. Please try again or email ${profile.email}.`);
     }
   }
 
   if (!configured) {
     return (
       <div className="contact-form contact-fallback">
-        <h3>Let’s connect on LinkedIn.</h3>
+        <h3>Send me an email.</h3>
         <p>Tell me about your project, your questions or what you have been experimenting with.</p>
-        <a className="button button-primary" href={profile.linkedin} target="_blank" rel="noreferrer">Message me on LinkedIn <FiArrowUpRight aria-hidden="true" /></a>
+        <a className="button button-primary" href={`mailto:${profile.email}`}>Email me <FiArrowUpRight aria-hidden="true" /></a>
       </div>
     );
   }

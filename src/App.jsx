@@ -6,7 +6,7 @@ import ContactForm from "./components/ContactForm";
 import profile from "./portfolio.json";
 import articles from "./articles.json";
 import {
-  FiArrowUpRight, FiLinkedin,
+  FiArrowUpRight,
   FiLayers, FiGitBranch, FiActivity, FiShield,
 } from "react-icons/fi";
 import "./portfolio.css";
@@ -52,7 +52,7 @@ function App() {
 
         <section id="contact" className="contact-section section-space" aria-labelledby="contact-title">
           <div className="page-width contact-layout">
-            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s talk.</h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><a className="text-link" href={profile.linkedin} target="_blank" rel="noreferrer"><FiLinkedin aria-hidden="true" /> Find me on LinkedIn <FiArrowUpRight aria-hidden="true" /></a></div>
+            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s talk.</h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
             <ContactForm />
           </div>
         </section>

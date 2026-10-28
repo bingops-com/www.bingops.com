@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="hero-copy">
           <h1 id="hero-title">Corentin<br />Guyon</h1>
           <TerminalRole />
-          <p className="hero-description">I bring infrastructure, development and security together. I automate deployments, build practical tools and share what I learn.</p>
+          <p className="hero-description">{profile.introduction}</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#experience">My experience <FiArrowDown aria-hidden="true" /></a>
             <a className="text-link" href="#projects">Explore my work <FiArrowUpRight aria-hidden="true" /></a>
