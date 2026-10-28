@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("projects, articles and content work on every screen", async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
@@ -11,7 +12,7 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect.poll(() => portrait.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
   await expect(page.locator(".hero-stage video")).toHaveCount(0);
   await expect(page.locator(".project-card")).toHaveCount(3);
-  await expect(page.locator(".project-card h3")).toContainText(["Portal", "LabOps"]);
+  await expect(page.locator(".project-card h3")).toContainText(["LabOps", "Portal"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "SII", exact: true })).toBeVisible();
   await expect(page.locator(".education-entry")).toHaveCount(2);
@@ -51,9 +52,13 @@ test("projects, articles and content work on every screen", async ({ page }, tes
     const experience = await period.locator(".experience-entry").boundingBox();
     if (page.viewportSize().width > 620) {
       expect(Math.abs(education.y - experience.y)).toBeLessThan(1);
-      expect(education.x + education.width).toBeLessThan(experience.x);
+      expect(experience.x + experience.width).toBeLessThan(education.x);
+      const row = await period.boundingBox();
+      const middle = row.x + row.width / 2;
+      expect(experience.x + experience.width).toBeLessThan(middle);
+      expect(education.x).toBeGreaterThan(middle);
     } else {
-      expect(education.y + education.height).toBeLessThanOrEqual(experience.y);
+      expect(experience.y + experience.height).toBeLessThanOrEqual(education.y);
     }
   }
 
@@ -305,20 +310,28 @@ test("the portrait is visible beside the name on mobile", async ({ page }) => {
 });
 
 
-test("career tree reveals each period on scroll and supports reduced motion", async ({ page }) => {
+test("scroll reveals career periods and important sections progressively", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   const radio = page.getByRole("group", { name: /education and work-study at Radio France$/ });
   const namr = page.getByRole("group", { name: /education and work-study at namR$/ });
-  await expect(namr).not.toHaveClass(/is-revealed/);
-  for (const period of [radio, namr]) {
-    await period.scrollIntoViewIfNeeded();
-    await expect(period).toHaveClass(/is-revealed/);
-    await expect(period.locator(".experience-content")).toHaveCSS("animation-name", "career-appear");
+  const project = page.locator(".project-labops");
+  const skill = page.locator(".skill-group").first();
+  const article = page.locator(".article-card").first();
+  const contact = page.locator(".contact-layout");
+  await expect(namr).toHaveAttribute("data-reveal-state", "pending");
+  await expect(namr).toHaveCSS("opacity", "0");
+  await expect(project).toHaveCSS("opacity", "0");
+  for (const target of [radio, namr, project, skill, article, contact]) {
+    await target.scrollIntoViewIfNeeded();
+    await expect(target).toHaveAttribute("data-reveal-state", "shown");
+    await expect(target).toHaveCSS("opacity", "1");
   }
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const period of [radio, namr]) {
-    await expect(period.locator(".experience-content")).toHaveCSS("animation-name", "none");
-    await expect(period.locator(".education-entry")).toHaveCSS("animation-name", "none");
+  await page.reload();
+  for (const target of [radio, namr, project, skill, article, contact]) {
+    await expect(target).toHaveAttribute("data-reveal-state", "shown");
+    await expect(target).toHaveCSS("opacity", "1");
+    await expect(target).toHaveCSS("transition-duration", "0s");
   }
 });

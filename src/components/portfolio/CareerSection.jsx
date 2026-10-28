@@ -1,44 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import profile from "../../portfolio.json";
 import BrandLogo from "./BrandLogo";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 export default function CareerSection() {
   const timelineRef = useRef(null);
 
-  useEffect(() => {
-    const periods = timelineRef.current.querySelectorAll(".career-period");
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let observer;
-    const reveal = (period) => period.classList.add("is-revealed");
-    const observe = () => {
-      observer?.disconnect();
-      if (motion.matches || !("IntersectionObserver" in window)) {
-        periods.forEach(reveal);
-        return;
-      }
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              reveal(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
-      );
-      periods.forEach((period) => {
-        if (!period.classList.contains("is-revealed")) observer.observe(period);
-      });
-    };
-    observe();
-    motion.addEventListener("change", observe);
-    return () => {
-      observer?.disconnect();
-      motion.removeEventListener("change", observe);
-    };
-  }, []);
+  useScrollReveal(timelineRef, ".career-period");
 
   return (
     <section
@@ -49,7 +18,7 @@ export default function CareerSection() {
       <div className="page-width">
         <div className="section-heading">
           <div>
-            <p className="section-context">Professional experience</p>
+            <p className="section-context">Career &amp; education</p>
             <h2 id="experience-title">
               My professional
               <br />
@@ -64,6 +33,14 @@ export default function CareerSection() {
           >
             View my LinkedIn <FiArrowUpRight aria-hidden="true" />
           </a>
+        </div>
+        <p className="career-summary">
+          DevOps at Radio France, systems administration at namR, and now a
+          permanent position at SII on assignment at Thales.
+        </p>
+        <div className="career-columns" aria-hidden="true">
+          <span>Professional experience</span>
+          <span>Education alongside each role</span>
         </div>
         <div className="experience-layout" ref={timelineRef}>
           {profile.experiences.map((experience) => {
@@ -81,41 +58,6 @@ export default function CareerSection() {
                     : "Current employment"
                 }
               >
-                {education ? (
-                  <article className="education-entry">
-                    <BrandLogo name={education.school} />
-                    <div>
-                      <p className="entry-type">
-                        Education · {education.qualification}
-                      </p>
-                      <h3
-                        lang={
-                          education.qualification === "Bachelor" ? "fr" : "en"
-                        }
-                      >
-                        {education.title}
-                      </h3>
-                      <p>
-                        {education.school} / {education.period}
-                      </p>
-                      <p className="education-location">{education.location}</p>
-                      <p className="education-work-study">
-                        Work-study at {experience.company}
-                      </p>
-                    </div>
-                  </article>
-                ) : (
-                  <div className="experience-intro">
-                    <p>From data and public media to engineering services.</p>
-                    <span>
-                      My professional experience includes namR, Radio France and
-                      SII, with a current assignment at Thales.
-                    </span>
-                    <a className="text-link" href="#stacks">
-                      Explore my skills <FiArrowUpRight aria-hidden="true" />
-                    </a>
-                  </div>
-                )}
                 <article
                   className={`experience-entry${experience.contract ? " experience-current" : ""}`}
                   key={experience.company}
@@ -185,6 +127,30 @@ export default function CareerSection() {
                     )}
                   </div>
                 </article>
+                {education ? (
+                  <article className="education-entry">
+                    <BrandLogo name={education.school} />
+                    <div>
+                      <p className="entry-type">
+                        Education · {education.qualification}
+                      </p>
+                      <h3
+                        lang={
+                          education.qualification === "Bachelor" ? "fr" : "en"
+                        }
+                      >
+                        {education.title}
+                      </h3>
+                      <p>
+                        {education.school} / {education.period}
+                      </p>
+                      <p className="education-location">{education.location}</p>
+                      <p className="education-work-study">
+                        Work-study at {experience.company}
+                      </p>
+                    </div>
+                  </article>
+                ) : null}
               </div>
             );
           })}

@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="hero-stage" aria-labelledby="hero-title">
       <div className="hero page-width">
         <div className="hero-copy">
-          <h1 id="hero-title">Corentin<br />Guyon</h1>
+          <h1 id="hero-title">Corentin<br /><span className="hero-name-accent">Guyon</span></h1>
           <TerminalRole />
           <p className="hero-description">{profile.introduction}</p>
           <div className="hero-actions">

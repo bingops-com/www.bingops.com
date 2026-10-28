@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import useScrollReveal from "./hooks/useScrollReveal";
 import PortfolioNav from "./components/portfolio/PortfolioNav";
 import Hero from "./components/portfolio/Hero";
 import CareerSection from "./components/portfolio/CareerSection";
@@ -7,15 +9,17 @@ import profile from "./portfolio.json";
 import articles from "./articles.json";
 import {
   FiArrowUpRight,
-  FiLayers, FiGitBranch, FiActivity, FiShield,
+  FiLayers, FiGitBranch, FiActivity, FiShield, FiCode,
 } from "react-icons/fi";
 import "./portfolio.css";
 
-const skillIcons = [FiLayers, FiGitBranch, FiActivity, FiShield];
+const skillIcons = [FiLayers, FiGitBranch, FiActivity, FiCode];
 
 function App() {
+  const pageRef = useRef(null);
+  useScrollReveal(pageRef);
   return (
-    <div className="portfolio" id="top">
+    <div className="portfolio" id="top" ref={pageRef}>
       <a className="skip-link" href="#main">Skip to content</a>
       <PortfolioNav />
       <main id="main">
@@ -23,7 +27,7 @@ function App() {
 
         <div className="specialties" aria-label="Areas of work">
           <div className="page-width">
-            <span>Infrastructure as Code</span><span>GitOps</span><span>Observability</span><span>Security</span>
+            <span><FiLayers aria-hidden="true" /> Infrastructure as Code</span><span><FiGitBranch aria-hidden="true" /> GitOps</span><span><FiActivity aria-hidden="true" /> Observability</span><span><FiShield aria-hidden="true" /> Security</span>
           </div>
         </div>
 
@@ -33,26 +37,26 @@ function App() {
 
         <section id="stacks" className="skills-section section-space" aria-labelledby="skills-title">
           <div className="page-width">
-            <div className="section-heading"><div><p className="section-context">The toolkit</p><h2 id="skills-title">How I work.</h2></div><p>The technologies I bring together in my projects.</p></div>
+            <div className="section-heading" data-reveal><div><p className="section-context">The toolkit</p><h2 id="skills-title">How I work.</h2></div><p>The technologies I bring together in my projects.</p></div>
             <div className="skills-grid">{profile.skills.map((group, index) => {
               const Icon = skillIcons[index];
-              return <article className="skill-group" key={group.title}><Icon aria-hidden="true" /><h3>{group.title}</h3><p>{group.description}</p><ul className="tag-list">{group.items.map((item) => <li key={item}>{item}</li>)}</ul></article>;
+              return <article className="skill-group" key={group.title} data-reveal><Icon aria-hidden="true" /><h3>{group.title}</h3><p>{group.description}</p><ul className="tag-list">{group.items.map((item) => <li key={item} data-technology={item}>{item}</li>)}</ul></article>;
             })}</div>
           </div>
         </section>
 
         <section id="articles" className="articles-section page-width section-space" aria-labelledby="articles-title">
-          <div className="section-heading"><div><p className="section-context">Field notes</p><h2 id="articles-title">Things I’ve learned.</h2></div><a className="text-link" href={profile.blog} target="_blank" rel="noreferrer">Visit the blog <FiArrowUpRight aria-hidden="true" /></a></div>
+          <div className="section-heading" data-reveal><div><p className="section-context">Field notes</p><h2 id="articles-title">Things I’ve learned.</h2></div><a className="text-link" href={profile.blog} target="_blank" rel="noreferrer">Visit the blog <FiArrowUpRight aria-hidden="true" /></a></div>
           <div className="article-grid">{articles.map((article) => (
-            <a className="article-card" key={article.link} href={article.link} target="_blank" rel="noreferrer">
+            <a className="article-card" key={article.link} data-reveal href={article.link} target="_blank" rel="noreferrer">
               <div className="article-content"><p className="article-topic">{article.topic}</p><h3>{article.title}</h3><p>{article.content}</p><span className="article-read">Read article <FiArrowUpRight aria-hidden="true" /></span></div>
             </a>
           ))}</div>
         </section>
 
         <section id="contact" className="contact-section section-space" aria-labelledby="contact-title">
-          <div className="page-width contact-layout">
-            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s talk.</h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
+          <div className="page-width contact-layout" data-reveal>
+            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s talk.<FiArrowUpRight className="contact-arrow" aria-hidden="true" /></h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
             <ContactForm />
           </div>
         </section>

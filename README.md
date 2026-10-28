@@ -91,11 +91,23 @@ Project details explain the problem, engineering choices and delivered functiona
 using the linked repositories and rebuild documentation; no performance figures
 are inferred. The navy CG favicon is a local SVG monogram, with PNG and ICO variants.
 
-The career tree pairs each IPSSI programme with its work-study experience in a
-shared row: Master’s-level programme with Radio France, Bachelor with namR.
-Mobile stacks each pair together. Scroll-triggered reveals run once per period;
-reduced motion keeps a static, fully visible timeline. Blue highlights dates and
-roles, violet identifies education, and green marks current employment.
+The career tree uses a central vertical spine, with professional experience on
+the left and the relevant IPSSI programme aligned on the right: Master’s-level
+programme with Radio France, Bachelor with namR. Mobile shows each role before its degree. The
+current SII entry labels Thales separately as the client.
+
+Scroll-triggered reveals keep upcoming periods, project previews, skills, articles
+and the contact content visually hidden until they enter the viewport. Keyboard
+focus also reveals content; reduced motion and unavailable IntersectionObserver
+show everything immediately. Reveals run once. Project previews fade without
+moving their interactive controls. The shared hook handles newly filtered cards.
+
+Graphite, pearl and navy remain the base. Cobalt highlights the name and primary
+actions, violet identifies security and education, and teal marks applications,
+observability and contact. The specialties banner has a neutral background with
+coloured icons. The four Toolkit visuals use distinct blue, violet, teal and rose
+accents. Buttons and the portrait frame have no shadows. LabOps precedes Portal
+in the project list.
 
 ### Project illustrations
 
