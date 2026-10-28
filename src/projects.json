@@ -1,30 +1,87 @@
 [
   {
-    "title": "labops",
-    "content": "A Kubernetes homelab project that automates the deployment and management of applications using a GitOps workflow",
-    "imageURL": "../projects/labops.webp",
-    "stacks": ["kubernetes", "terraform", "ansible"],
-    "link": "https://github.com/bingops-com/labops"
+    "title": "LabOps",
+    "category": "Infrastructure",
+    "kind": "labops",
+    "content": "Mon infrastructure de laboratoire, versionnée de bout en bout. Terraform prépare Proxmox et Talos ; Cluster API gère le cluster de workloads ; Argo CD déploie les applications.",
+    "stacks": [
+      "Kubernetes",
+      "Talos",
+      "Terraform",
+      "Cluster API",
+      "Argo CD",
+      "Proxmox"
+    ],
+    "link": "https://github.com/bingops-com/labops",
+    "documentation": "https://github.com/bingops-com/labops/blob/master/docs/rebuild.md",
+    "features": [
+      "Un cycle de vie explicite : Terraform pour le cluster de management, Cluster API pour les workloads.",
+      "Des applications synchronisées depuis Git avec Argo CD, Helm et Kustomize.",
+      "Observabilité avec Prometheus et Grafana, secrets via Bitwarden et sauvegardes PostgreSQL sur R2."
+    ],
+    "imageURL": "/projects/labops.webp",
+    "imageAlt": "Illustration du projet LabOps"
+  },
+  {
+    "title": "Portal",
+    "category": "Applications",
+    "kind": "portal",
+    "content": "Le poste de pilotage de mon lab. Une interface à widgets pour réunir Kubernetes, Argo CD, Gatus, Prometheus et ma veille dans un même espace.",
+    "stacks": [
+      "Go",
+      "React",
+      "TypeScript",
+      "Kubernetes",
+      "Prometheus",
+      "OIDC"
+    ],
+    "link": "https://github.com/bingops-com/portal",
+    "documentation": "https://github.com/bingops-com/portal#readme",
+    "features": [
+      "Un binaire Go unique qui embarque l’API et l’interface React.",
+      "Des pages et widgets réorganisables, une palette de commandes et un mode kiosque.",
+      "Un accès en édition protégé par OpenID Connect avec PKCE."
+    ],
+    "imageURL": null,
+    "imageAlt": ""
+  },
+  {
+    "title": "Monitoring provisioning",
+    "category": "Infrastructure",
+    "kind": "monitoring",
+    "content": "Une infrastructure d’observabilité automatisée sur Proxmox : provisionnement des machines, collecte des métriques, centralisation des logs et visualisation.",
+    "stacks": [
+      "Terraform",
+      "Ansible",
+      "Prometheus",
+      "Grafana",
+      "Elastic"
+    ],
+    "link": "https://github.com/bingops-com/monitoring-provisioning",
+    "features": [
+      "Provisionnement et configuration automatisés avec Terraform et Ansible.",
+      "Métriques et alertes avec Prometheus et Alertmanager.",
+      "Visualisation et analyse avec Grafana et la stack Elastic."
+    ],
+    "imageURL": "/projects/monitoring-provisioning.webp",
+    "imageAlt": "Illustration de l’infrastructure de monitoring"
   },
   {
     "title": "CVE-2025-1974",
-    "content": "A minimal test tool to help detect annotation injection vulnerabilities in Kubernetes NGINX Ingress controllers. This script sends a crafted AdmissionReview request to simulate a potential exploit path from CVE-2025-1974 and checks for signs of misinterpreted annotations in controller logs",
-    "imageURL": "../projects/CVE-2025-1974.webp",
-    "stacks": ["kubernetes", "nginx", "python"],
-    "link": "https://github.com/0xBingo/CVE-2025-1974"
-  },
-  {
-    "title": "monitoring-provisioning",
-    "content": "This project sets up a complete monitoring infrastructure, fully automated with Terraform and Ansible, deployed in a Proxmox environment. It provisions virtual machines for metrics, logs, visualization, by configuring Prometheus, Alertmanager, Grafana, Elasticsearch, Logstash, and Kibana",
-    "imageURL": "../projects/monitoring-provisioning.webp",
+    "category": "Sécurité",
+    "kind": "security",
+    "content": "Un outil de test minimal pour explorer l’injection d’annotations dans les contrôleurs Kubernetes NGINX Ingress et observer les traces côté contrôleur.",
     "stacks": [
-      "ansible",
-      "terraform",
-      "grafana",
-      "prometheus",
-      "alertmanager",
-      "elasticsearch"
+      "Python",
+      "Kubernetes",
+      "NGINX"
     ],
-    "link": "https://github.com/bingops-com/monitoring-provisioning"
+    "link": "https://github.com/0xBingo/CVE-2025-1974",
+    "features": [
+      "Envoi d’une requête AdmissionReview conçue pour tester le chemin d’injection.",
+      "Analyse des traces du contrôleur pour comprendre le comportement observé."
+    ],
+    "imageURL": "/projects/CVE-2025-1974.webp",
+    "imageAlt": "Illustration du projet de test CVE-2025-1974"
   }
 ]

@@ -1,0 +1,52 @@
+name: Portfolio build and browser checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feat/portfolio-refresh]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Build with contact test configuration
+        run: npm run build
+        env:
+          VITE_EMAILJS_SERVICE_ID: portfolio_test_service
+          VITE_EMAILJS_TEMPLATE_ID: portfolio_test_template
+          VITE_EMAILJS_PUBLIC_KEY: portfolio_test_public_key
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Test desktop and mobile
+        run: npm run test:e2e
+      - name: Build without contact configuration
+        run: npm run build
+        env:
+          VITE_EMAILJS_SERVICE_ID: ''
+          VITE_EMAILJS_TEMPLATE_ID: ''
+          VITE_EMAILJS_PUBLIC_KEY: ''
+      - name: Verify the contact fallback
+        run: npm run test:e2e -- --grep "le formulaire" --output=test-results-fallback --reporter=line
+      - name: Upload browser report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-browser-review
+          path: |
+            playwright-report/
+            test-results/
+            test-results-fallback/
+          retention-days: 14

@@ -1,20 +1,23 @@
 [
   {
-    "title": "Deploying a Project Zomboid Server with Terraform & Ansible",
-    "content": "Setup your own Project Zomboid multiplayer server effortlessly using Terraform and Ansible on your Proxmox, with full customization",
-    "imageURL": "../articles/article-project-zomboid.webp",
-    "link": "https://blog.bingops.com/blog/project-zomboid/"
+    "title": "Déployer un serveur Project Zomboid avec Terraform et Ansible",
+    "content": "Du provisionnement Proxmox à la configuration d’un serveur multijoueur.",
+    "imageURL": "/articles/article-project-zomboid.webp",
+    "link": "https://blog.bingops.com/blog/project-zomboid/",
+    "topic": "Infrastructure"
   },
   {
-    "title": "How I Discovered a Critical Vulnerability in a Leading UK Retail Giant’s System",
-    "content": "A deep dive into how I uncovered a critical SSRF vulnerability leaking AWS credentials in a major UK retailer’s system, with insights into responsible disclosure and real-world exploitation",
-    "imageURL": "../articles/article-bugbounty-ssrf.webp",
-    "link": "https://blog.bingops.com/blog/bugbounty-ssrf/"
+    "title": "De la SSRF à l’exposition d’identifiants AWS",
+    "content": "Retour sur la découverte d’une vulnérabilité critique et sa divulgation responsable.",
+    "imageURL": "/articles/article-bugbounty-ssrf.webp",
+    "link": "https://blog.bingops.com/blog/bugbounty-ssrf/",
+    "topic": "Sécurité"
   },
   {
-    "title": "Node - Eval",
-    "content": "A walkthrough of one of Root-Me’s Node.js challenges, showcasing how to exploit an eval vulnerability to gain access to hidden files and ultimately retrieve the flag",
-    "imageURL": "../articles/article-node-eval.webp",
-    "link": "https://blog.bingops.com/blog/node-eval/"
+    "title": "Node.js : comprendre une vulnérabilité eval",
+    "content": "Un challenge Root-Me pour explorer l’exécution de code et l’accès aux fichiers.",
+    "imageURL": "/articles/article-node-eval.webp",
+    "link": "https://blog.bingops.com/blog/node-eval/",
+    "topic": "Write-up"
   }
 ]

@@ -5,3 +5,6 @@ package-lock.json
 .idea
 dist
 .env
+playwright-report/
+test-results/
+test-results-fallback/

@@ -1,45 +1,87 @@
-# About
+# BingOps portfolio
 
-A ReactJS & TailwindCSS portfolio for [Bingo](https://github.com/0xBingo). Based on a [Sagar Shah](https://www.figma.com/@shahsagarm) Figma design.
+Portfolio de Corentin Guyon, réalisé avec React et Vite et publié sur
+[www.bingops.com](https://www.bingops.com/).
 
-- Fully responsive.
-- Light & Dark mode (with auto preference saving).
-- Basic form validation & error handling.
-- Easy data change (projects/stacks) with json files.
-- EmailJS contact form (serverless) & basic inputs validation.
+## Développement
 
-# Configuration
-
-Create & setup an account on [EmailJS](https://www.emailjs.com/)
-Create a `.env` file and fill it with your own keys like this :
-```
-VITE_EMAILJS_SERVICE_ID=""
-VITE_EMAILJS_TEMPLATE_ID=""
-VITE_EMAILJS_PUBLIC_KEY=""
+```sh
+npm install
+npm run dev
 ```
 
-# Run
+`npm run build` produit le site statique dans `dist/`.
+`npm run preview` sert ce build localement.
 
-**Clone the repository:**
-`git clone git@github.com:Oslonline/bingo-portfolio.git`
+## Contenu
 
-**Install dependencies:**
-`npm install`
+- `src/portfolio.json` : profil, expériences, formation, compétences et liens.
+- `src/projects.json` : projets, catégories, technologies, documentation et visuels.
+- `src/articles.json` : sélection d’articles.
+- `src/components/portfolio/` : navigation, schémas et fiches projet.
+- `src/portfolio.css` : styles de la refonte et thèmes clair/sombre.
 
-**Start the development server:**
-`npm run dev`
+Les descriptions de LabOps et Portal proviennent de leurs dépôts :
+[LabOps](https://github.com/bingops-com/labops),
+[architecture GitOps](https://github.com/bingops-com/labops/blob/master/apps/README.md),
+[Cluster API](https://github.com/bingops-com/labops/blob/master/capi/README.md),
+[Portal](https://github.com/bingops-com/portal).
 
-### Prod
+Le parcours reprend uniquement les éléments présents dans la version précédente
+(Radio France et Master Cybersecurity & Cloud Computing). Les dates, missions,
+résultats et le statut actuel restent à compléter depuis un CV ou des informations
+confirmées par Corentin. Les périodes absentes sont omises à l’affichage.
 
-**Build for production:**
-`npm run build`
+Portal dispose d’un schéma fonctionnel explicitement légendé. Pour utiliser une
+vraie capture, ajouter `public/projects/portal.webp`, puis renseigner
+`imageURL: "/projects/portal.webp"` et un `imageAlt` descriptif dans son entrée.
+La capture remplace le schéma dans la carte et dans la fiche détaillée.
 
-**Run the optimized application locally:**
-`npm run serve`
+## Contact
 
-# Screenshots
+Copier `.env.example` vers `.env` et renseigner les trois variables publiques
+EmailJS avant le build pour activer le formulaire. Le modèle EmailJS doit utiliser
+`user_name`, `user_email` et `message`. Sans configuration complète, le site
+propose le contact LinkedIn. Le formulaire ne simule jamais un envoi réussi.
 
-![Capture d’écran 2024-06-10 à 16.16.47](https://i.imgur.com/EmrOZHQ.png)
-![Capture d’écran 2024-06-10 à 16.16.51](https://i.imgur.com/0KtfwK5.png)
-![Capture d’écran 2024-06-10 à 18.35.15](https://i.imgur.com/gKFVcKA.png)
-![Capture d’écran 2024-06-10 à 18.35.25](https://i.imgur.com/fCdlnDK.png)
+Le build Docker actuellement défini dans LabOps ne transmet pas ces variables ;
+le contact LinkedIn reste donc le chemin disponible avec ce build.
+
+## Vérification
+
+```sh
+npm run lint
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+Les tests couvrent les projets et leurs filtres, les fiches au clavier, la
+navigation mobile, les préférences de thème, le stockage indisponible, le
+débordement horizontal et le contact. Les tests interceptent EmailJS : aucun
+message réel n’est envoyé. Sans configuration, ils vérifient le lien de repli.
+Avec les variables de test de la CI, ils vérifient échec, conservation du message,
+nouvel essai et confirmation.
+
+Le workflow `portfolio-checks.yml` construit le site avec puis sans configuration
+de contact. L’artefact `portfolio-browser-review` contient le rapport et les
+captures desktop/mobile en clair et sombre.
+
+## Skill de design
+
+Le skill officiel Anthropic
+[frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design)
+est installé dans `.agents/skills/frontend-design/`, avec sa licence Apache 2.0,
+dans un commit antérieur à la refonte. Il est disponible pour les sessions qui
+ouvrent cette branche à partir du prochain tour.
+
+## Déploiement
+
+Le dépôt reste un site statique React/Vite. La livraison suit le processus
+existant : PR vers `main`, revue, puis construction de l’image dans LabOps.
+Cette branche ne modifie pas les manifests d’infrastructure.
+
+## Crédits
+
+La version initiale du portfolio était basée sur un design Figma de
+[Sagar Shah](https://www.figma.com/@shahsagarm).

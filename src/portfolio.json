@@ -1,0 +1,73 @@
+{
+  "name": "Corentin Guyon",
+  "location": "Paris, France",
+  "github": "https://github.com/0xBingo",
+  "organization": "https://github.com/bingops-com",
+  "linkedin": "https://www.linkedin.com/in/corentin-guyon/",
+  "blog": "https://blog.bingops.com",
+  "experiences": [
+    {
+      "company": "Radio France",
+      "role": "DevOps",
+      "period": null,
+      "description": null,
+      "technologies": []
+    }
+  ],
+  "education": [
+    {
+      "title": "Cybersecurity & Cloud Computing",
+      "qualification": "Master",
+      "period": null
+    }
+  ],
+  "skills": [
+    {
+      "title": "Construire l’infrastructure",
+      "description": "Du provisionnement des machines à l’orchestration des applications.",
+      "items": [
+        "Proxmox",
+        "Terraform",
+        "Ansible",
+        "Talos",
+        "Kubernetes",
+        "Cluster API"
+      ]
+    },
+    {
+      "title": "Automatiser les déploiements",
+      "description": "Décrire l’état attendu dans Git et le faire vivre sur le cluster.",
+      "items": [
+        "Git",
+        "Argo CD",
+        "Helm",
+        "Kustomize",
+        "GitHub Actions",
+        "Docker"
+      ]
+    },
+    {
+      "title": "Observer les systèmes",
+      "description": "Réunir métriques, alertes et logs pour comprendre ce qui se passe.",
+      "items": [
+        "Prometheus",
+        "Grafana",
+        "Alertmanager",
+        "Elastic",
+        "Gatus"
+      ]
+    },
+    {
+      "title": "Développer et sécuriser",
+      "description": "Créer mes outils, explorer les vulnérabilités et comprendre les usages.",
+      "items": [
+        "Go",
+        "Python",
+        "React",
+        "TypeScript",
+        "Burp Suite",
+        "Nmap"
+      ]
+    }
+  ]
+}
