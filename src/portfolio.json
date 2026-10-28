@@ -67,14 +67,16 @@
       "qualification": "Master’s-level programme",
       "school": "IPSSI",
       "period": "Oct 2023 – Sep 2025",
-      "location": "Marne-la-Vallée, France"
+      "location": "Marne-la-Vallée, France",
+      "workStudyCompany": "Radio France"
     },
     {
       "title": "Administration Système & Sécurité Réseaux / secOps",
       "qualification": "Bachelor",
       "school": "IPSSI",
       "period": "Sep 2022 – Sep 2023",
-      "location": "Marne-la-Vallée, France"
+      "location": "Marne-la-Vallée, France",
+      "workStudyCompany": "namR"
     }
   ],
   "skills": [

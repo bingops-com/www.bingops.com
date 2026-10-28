@@ -5,7 +5,7 @@
 :root {
   --page: #f2f3f1; --surface: #fff; --ink: #202124; --muted: #606368; --line: #d5d7d8;
   --accent: #0a1b44; --signal: #0a1b44; --tint: #e4eaf3; --on-accent: #fff;
-  --career-bg: #252629; --career-ink: #f4f5f3; --career-muted: #b9bcc0; --career-line: #4b4d51;
+  --career-bg: #252629; --career-ink: #f4f5f3; --career-muted: #b9bcc0; --career-line: #4b4d51; --career-blue: #9cc6ff; --career-violet: #cfbaff; --career-green: #9ce4c1;
   --contact-bg: #10264d; --contact-ink: #fff; color-scheme: light;
 }
 :root[data-theme='dark'] {
@@ -82,31 +82,29 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .experience-section .section-context { color: #b7ccf5; }
 .experience-section .text-link:hover { color: #b7ccf5; }
 .experience-section :focus-visible { outline-color: #b7ccf5; }
-.experience-layout { display: grid; grid-template-columns: .8fr 1.2fr; grid-template-areas: "intro timeline" "education timeline"; grid-template-rows: auto 1fr; column-gap: 100px; row-gap: 50px; }
-.experience-intro { grid-area: intro; }
+.career-period { position: relative; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); column-gap: 100px; }
+.experience-intro { padding-bottom: 28px; }
 .experience-intro > p { max-width: 340px; font: 400 1.5rem/1.4 'IBM Plex Sans', sans-serif; letter-spacing: -.015em; }
 .experience-intro > span { display: block; max-width: 340px; color: var(--career-muted); font-size: .9rem; margin-top: 20px; }
 .experience-intro .text-link { margin-top: 30px; }
-.experience-list { grid-area: timeline; border-left: 1px solid var(--career-line); padding-left: 30px; }
-.experience-entry { position: relative; display: flex; gap: 25px; padding: 28px 0; border-bottom: 1px solid var(--career-line); }
-.experience-entry:first-child { padding-top: 0; }
-.experience-entry:last-child { border-bottom: 0; }
-.experience-entry::before { content: ''; position: absolute; width: 7px; height: 7px; border-radius: 50%; left: -34px; top: 37px; background: var(--career-muted); }
-.experience-current::before { top: 8px; background: var(--signal); }
+.experience-entry { position: relative; display: flex; gap: 25px; padding: 28px 0 28px 30px; border-left: 1px solid var(--career-line); min-width: 0; }
+.career-period:first-child .experience-entry { padding-top: 0; }
+.experience-entry::before { z-index: 1; content: ''; position: absolute; width: 11px; height: 11px; border-radius: 50%; left: -6px; top: 38px; background: var(--career-blue); box-shadow: 0 0 0 5px var(--career-bg), 0 0 0 6px #607ca0; }
+.experience-current::before { top: 8px; background: var(--career-green); box-shadow: 0 0 0 5px var(--career-bg), 0 0 0 6px #5c987c; }
 .experience-content { flex: 1; min-width: 0; }
 .experience-content h3 { font-size: 1.9rem; }
 .entry-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .entry-type { color: var(--career-muted); font-size: .75rem; margin-bottom: 10px !important; }
-.contract-badge { padding: 2px 9px; border: 1px solid var(--career-line); border-radius: 12px; font-size: .75rem; color: #b7ccf5; }
-.entry-role { margin-top: 9px !important; font-size: .95rem; }
+.contract-badge { padding: 3px 10px; border: 1px solid #51866c; border-radius: 12px; font-size: .75rem; color: var(--career-green); background: #173c2b; }
+.entry-role { margin-top: 9px !important; font-size: 1rem; font-weight: 600; color: var(--career-blue); }
 .entry-company, .entry-period, .entry-description { color: var(--career-muted); font-size: .8rem; margin-top: 10px !important; }
 .client-assignment { display: flex; align-items: center; gap: 16px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--career-line); }
 .client-assignment .brand-logo { width: 110px; height: 44px; padding: 8px; border: 0; }
 .assignment-label { color: var(--career-muted); font-size: .75rem; margin-bottom: 4px !important; }
 .assignment-name { font: 500 1.1rem/1.3 'IBM Plex Sans', sans-serif; }
-.education-list { grid-area: education; display: grid; align-content: start; gap: 36px; padding-top: 28px; border-top: 1px solid var(--career-line); }
-.education-entry { display: flex; align-items: flex-start; gap: 28px; }
-.education-entry h3 { font-size: 1.4rem; }
+.education-entry { position: relative; display: flex; align-items: flex-start; gap: 28px; padding-block: 28px; min-width: 0; }
+.education-entry > div { min-width: 0; }
+.education-entry h3 { font-size: 1.4rem; color: var(--career-violet); }
 .education-entry div > p:not(.entry-type) { margin-top: 8px; color: var(--career-muted); font-size: .8rem; }
 .project-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 30px; }
 .project-filters { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -202,7 +200,8 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .page-width { width: calc(100% - 64px); }
   .main-nav { gap: 18px; }
   .hero { gap: 50px; }
-  .experience-layout, .contact-layout { gap: 50px; }
+  .career-period { column-gap: 50px; }
+  .contact-layout { gap: 50px; }
   .skills-grid { gap: 23px; }
   .skill-group { padding-left: 18px; }
 }
@@ -218,7 +217,8 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .hero-description { font-size: .88rem; }
   .hero-bottom { flex-wrap: wrap; }
   .hero-scroll { display: none; }
-  .experience-layout { grid-template-columns: .7fr 1fr; gap: 35px; }
+  .career-period { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); column-gap: 35px; }
+  .education-entry { flex-direction: column; gap: 18px; }
   .experience-entry { gap: 18px; flex-direction: column; }
   .experience-content { width: 100%; }
   .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
@@ -253,17 +253,18 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .section-space { padding-block: 55px; }
   .portfolio h2 { font-size: 2.5rem; }
   .section-heading { margin-bottom: 30px; }
-  .experience-layout { grid-template-columns: 1fr; grid-template-areas: "intro" "timeline" "education"; grid-template-rows: auto; gap: 30px; }
+  .career-period { grid-template-columns: 1fr; gap: 24px; padding-block: 28px; }
+  .career-period:first-child { padding-top: 0; }
+  .experience-intro { padding-bottom: 0; }
   .experience-intro > p, .experience-intro > span { max-width: none; }
   .experience-intro > p { font-size: 1.45rem; }
-  .experience-list { padding-left: 25px; }
-  .experience-entry { flex-direction: column; gap: 18px; }
-  .experience-entry::before { left: -29px; }
+  .experience-entry { flex-direction: column; gap: 18px; padding: 0 0 0 25px; }
+  .experience-entry::before { left: -6px; top: 8px; }
   .experience-logo { width: 82px; height: 55px; padding: 10px; }
   .experience-content h3 { font-size: 1.6rem; }
   .entry-heading { flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
   .entry-type { font-size: .75rem; }
-  .education-entry { gap: 20px; align-items: flex-start; }
+  .education-entry { flex-direction: row; gap: 20px; align-items: flex-start; padding-block: 0; }
   .education-entry .brand-logo { width: 82px; height: 55px; padding: 10px; }
   .education-entry h3 { font-size: 1.25rem; }
   .project-toolbar { flex-direction: column; align-items: flex-start; }
@@ -417,3 +418,33 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .project-case-study h3 { font-size: 1.25rem; margin-bottom: 12px; }
 .project-case-study p { color: var(--muted); font-size: .9rem; max-width: 72ch; }
 .contact-copy .contact-address { font-size: .875rem; overflow-wrap: anywhere; user-select: all; }
+
+
+/* Shared rows connect each qualification with its work-study placement. */
+.education-entry::after { content: ''; position: absolute; right: -100px; top: 43px; width: 76px; height: 1px; background: #8d7aad; }
+.experience-entry::after { content: ''; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px; background: #7195c4; transform: scaleY(0); transform-origin: top; }
+.career-period-current .experience-entry::after { background: #75b596; }
+.experience-current .entry-type { color: var(--career-green); }
+.experience-content .entry-period { display: inline-block; color: var(--career-blue); background: #263a55; padding: 3px 10px; border-radius: 4px; font-weight: 600; }
+.education-entry .entry-type { color: var(--career-violet); }
+.education-entry div > p.education-work-study { color: var(--career-blue); margin-top: 16px; }
+.experience-content .tag-list li[data-technology='Terraform'] { color: #cfbaff; border-color: #77618f; }
+.experience-content .tag-list li[data-technology='Kubernetes'], .experience-content .tag-list li[data-technology='Helm'] { color: var(--career-blue); border-color: #4e6c93; }
+.experience-content .tag-list li[data-technology='GitLab CI/CD'] { color: #ffd3a5; border-color: #987248; }
+.career-period.is-revealed .experience-entry::after { transform: scaleY(1); transition: transform 1s ease-out; }
+.career-period.is-revealed .education-entry, .career-period.is-revealed .experience-content { animation: career-appear .65s ease-out both; }
+.career-period.is-revealed .experience-content { animation-delay: .1s; }
+@keyframes career-appear { from { opacity: .3; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1100px) { .education-entry::after { right: -50px; width: 34px; } }
+@media (max-width: 900px) { .education-entry::after { right: -35px; width: 24px; } }
+@media (max-width: 620px) {
+  .career-period { border-left: 1px solid var(--career-line); padding-left: 25px; }
+  .experience-entry { border-left: 0; padding-left: 0; }
+  .experience-entry::before { left: -31px; }
+  .experience-entry::after { left: -26px; }
+  .education-entry::after { left: -26px; right: auto; top: 27px; width: 16px; background: var(--career-violet); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .career-period.is-revealed .experience-entry::after { transition: none; }
+  .career-period.is-revealed .education-entry, .career-period.is-revealed .experience-content { animation: none; }
+}

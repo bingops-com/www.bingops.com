@@ -63,7 +63,8 @@ as a distinct client assignment under the SII employment.
 
 ## Content
 
-- `src/portfolio.json`: profile, experience, education, skills and links.
+- `src/portfolio.json`: profile, experience, education, skills and links. Each
+  degree links to its work-study employer through `workStudyCompany`.
 - `src/projects.json`: project descriptions, categories, technologies and documentation.
 - `src/articles.json`: selected blog posts, with English summaries.
 - `src/components/portfolio/`: navigation, career and project components.
@@ -89,6 +90,12 @@ copy and controls are English apart from the official Bachelor programme title.
 Project details explain the problem, engineering choices and delivered functionality
 using the linked repositories and rebuild documentation; no performance figures
 are inferred. The navy CG favicon is a local SVG monogram, with PNG and ICO variants.
+
+The career tree pairs each IPSSI programme with its work-study experience in a
+shared row: Master’s-level programme with Radio France, Bachelor with namR.
+Mobile stacks each pair together. Scroll-triggered reveals run once per period;
+reduced motion keeps a static, fully visible timeline. Blue highlights dates and
+roles, violet identifies education, and green marks current employment.
 
 ### Project illustrations
 

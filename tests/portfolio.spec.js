@@ -14,7 +14,8 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.locator(".project-card h3")).toContainText(["Portal", "LabOps"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "SII", exact: true })).toBeVisible();
-  await expect(page.locator(".education-list")).toContainText("IPSSI");
+  await expect(page.locator(".education-entry")).toHaveCount(2);
+  await expect(page.locator(".education-entry")).toContainText(["IPSSI", "IPSSI"]);
   await expect(page.getByRole("heading", { name: "Cybersecurity & Cloud computing", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Administration Système & Sécurité Réseaux / secOps", exact: true })).toBeVisible();
   const radio = page.locator(".experience-entry").filter({ has: page.getByRole("heading", { name: "Radio France", exact: true }) });
@@ -38,6 +39,24 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.locator('a[href="https://github.com/bingops-com/portal"]').first()).toBeVisible();
   await expect(page.locator("main")).not.toContainText("22-year-old");
   await page.evaluate(() => document.fonts.ready);
+  for (const [company, programme] of [
+    ["Radio France", "Cybersecurity & Cloud computing"],
+    ["namR", "Administration Système & Sécurité Réseaux / secOps"],
+  ]) {
+    const period = page.getByRole("group", { name: new RegExp(`education and work-study at ${company}$`) });
+    await expect(period.getByRole("heading", { name: company, exact: true })).toBeVisible();
+    await expect(period.getByRole("heading", { name: programme, exact: true })).toBeVisible();
+    await expect(period).toContainText(`Work-study at ${company}`);
+    const education = await period.locator(".education-entry").boundingBox();
+    const experience = await period.locator(".experience-entry").boundingBox();
+    if (page.viewportSize().width > 620) {
+      expect(Math.abs(education.y - experience.y)).toBeLessThan(1);
+      expect(education.x + education.width).toBeLessThan(experience.x);
+    } else {
+      expect(education.y + education.height).toBeLessThanOrEqual(experience.y);
+    }
+  }
+
   await page.locator("img").evaluateAll((images) => Promise.all(images.map((image) => { image.loading = "eager"; return image.decode().catch(() => {}); })));
   await expect.poll(() => cveImage.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
   await expect(page.locator(".project-portal video")).toHaveCount(0);
@@ -283,4 +302,23 @@ test("the portrait is visible beside the name on mobile", async ({ page }) => {
   expect(portrait.width).toBeLessThanOrEqual(120);
   expect(portrait.y + portrait.height).toBeLessThan(400);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+
+test("career tree reveals each period on scroll and supports reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const radio = page.getByRole("group", { name: /education and work-study at Radio France$/ });
+  const namr = page.getByRole("group", { name: /education and work-study at namR$/ });
+  await expect(namr).not.toHaveClass(/is-revealed/);
+  for (const period of [radio, namr]) {
+    await period.scrollIntoViewIfNeeded();
+    await expect(period).toHaveClass(/is-revealed/);
+    await expect(period.locator(".experience-content")).toHaveCSS("animation-name", "career-appear");
+  }
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const period of [radio, namr]) {
+    await expect(period.locator(".experience-content")).toHaveCSS("animation-name", "none");
+    await expect(period.locator(".education-entry")).toHaveCSS("animation-name", "none");
+  }
 });
