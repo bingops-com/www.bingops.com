@@ -1,6 +1,6 @@
 {
   "name": "Corentin Guyon",
-  "location": "Nice et périphérie, France",
+  "location": "Nice area, France",
   "github": "https://github.com/0xBingo",
   "organization": "https://github.com/bingops-com",
   "linkedin": "https://www.linkedin.com/in/corentin-guyon/",
@@ -9,11 +9,11 @@
     {
       "company": "SII",
       "role": null,
-      "contract": "CDI",
+      "contract": "Permanent",
       "client": "Thales",
       "location": "Sophia Antipolis, France",
       "period": null,
-      "description": "Actuellement en mission chez Thales.",
+      "description": "Currently on assignment at Thales.",
       "technologies": []
     },
     {
@@ -26,16 +26,16 @@
   ],
   "education": [
     {
-      "title": "Cybersécurité & Cloud",
-      "qualification": "Mastère",
+      "title": "Cybersecurity & Cloud",
+      "qualification": "Master’s-level programme",
       "school": "IPSSI",
       "period": "2023 – 2025"
     }
   ],
   "skills": [
     {
-      "title": "Construire l’infrastructure",
-      "description": "Du provisionnement des machines à l’orchestration des applications.",
+      "title": "Build infrastructure",
+      "description": "From provisioning machines to orchestrating applications.",
       "items": [
         "Proxmox",
         "Terraform",
@@ -46,8 +46,8 @@
       ]
     },
     {
-      "title": "Automatiser les déploiements",
-      "description": "Décrire l’état attendu dans Git et le faire vivre sur le cluster.",
+      "title": "Automate deployments",
+      "description": "Define the desired state in Git and keep the cluster in sync.",
       "items": [
         "Git",
         "Argo CD",
@@ -58,8 +58,8 @@
       ]
     },
     {
-      "title": "Observer les systèmes",
-      "description": "Réunir métriques, alertes et logs pour comprendre ce qui se passe.",
+      "title": "Observe systems",
+      "description": "Bring metrics, alerts and logs together to understand system behaviour.",
       "items": [
         "Prometheus",
         "Grafana",
@@ -69,8 +69,8 @@
       ]
     },
     {
-      "title": "Développer et sécuriser",
-      "description": "Créer mes outils, explorer les vulnérabilités et comprendre les usages.",
+      "title": "Develop & secure",
+      "description": "Build tools, investigate vulnerabilities and understand how systems are used.",
       "items": [
         "Go",
         "Python",
@@ -83,8 +83,8 @@
   ],
   "employment": {
     "employer": "SII",
-    "contract": "CDI",
+    "contract": "Permanent",
     "client": "Thales",
-    "status": "En CDI chez SII, actuellement en mission chez Thales."
+    "status": "Permanent employee at SII, currently on assignment at Thales."
   }
 }

@@ -13,7 +13,7 @@ export default function ContactForm({ closeModal, updateSuccessMessage }) {
     if (!configured || state === "sending") return;
     const values = new FormData(formRef.current);
     if (!String(values.get("user_name")).trim() || String(values.get("message")).trim().length < 20) {
-      setError("Indique ton nom et un message d’au moins 20 caractères.");
+      setError("Please enter your name and a message of at least 20 characters.");
       return;
     }
     setError("");
@@ -28,32 +28,32 @@ export default function ContactForm({ closeModal, updateSuccessMessage }) {
       );
       formRef.current.reset();
       setState("sent");
-      updateSuccessMessage?.("Message envoyé. Merci pour ton message !");
+      updateSuccessMessage?.("Message sent. Thanks for getting in touch!");
       closeModal?.();
     } catch {
       setState("idle");
-      setError("L’envoi a échoué. Réessaie ou contacte-moi sur LinkedIn.");
+      setError("Sending failed. Please try again or contact me on LinkedIn.");
     }
   }
 
   if (!configured) {
     return (
       <div className="contact-form contact-fallback">
-        <h3>Retrouvons-nous sur LinkedIn.</h3>
-        <p>Parle-moi de ton projet, de tes questions ou de tes dernières expérimentations.</p>
-        <a className="button button-primary" href={profile.linkedin} target="_blank" rel="noreferrer">M’écrire sur LinkedIn <FiArrowUpRight aria-hidden="true" /></a>
+        <h3>Let’s connect on LinkedIn.</h3>
+        <p>Tell me about your project, your questions or what you have been experimenting with.</p>
+        <a className="button button-primary" href={profile.linkedin} target="_blank" rel="noreferrer">Message me on LinkedIn <FiArrowUpRight aria-hidden="true" /></a>
       </div>
     );
   }
 
   return (
-    <form className="contact-form" ref={formRef} onSubmit={send} aria-label="Envoyer un message" aria-busy={state === "sending"}>
-      <h3>Écris-moi quelques lignes.</h3>
-      <div className="form-row"><div className="form-field"><label htmlFor="contact-name">Ton nom</label><input id="contact-name" name="user_name" autoComplete="name" placeholder="Alex Martin" maxLength={120} required readOnly={state === "sending"} /></div><div className="form-field"><label htmlFor="contact-email">Ton adresse e-mail</label><input id="contact-email" name="user_email" type="email" autoComplete="email" placeholder="alex@exemple.fr" maxLength={254} required readOnly={state === "sending"} /></div></div>
-      <div className="form-field"><label htmlFor="contact-message">Ton message</label><textarea id="contact-message" name="message" placeholder="De quoi aimerais-tu parler ?" rows={5} minLength={20} maxLength={5000} aria-describedby="message-help" required readOnly={state === "sending"} /><p id="message-help" className="field-help">20 caractères minimum.</p></div>
+    <form className="contact-form" ref={formRef} onSubmit={send} aria-label="Send a message" aria-busy={state === "sending"}>
+      <h3>Drop me a few lines.</h3>
+      <div className="form-row"><div className="form-field"><label htmlFor="contact-name">Your name</label><input id="contact-name" name="user_name" autoComplete="name" placeholder="Alex Martin" maxLength={120} required readOnly={state === "sending"} /></div><div className="form-field"><label htmlFor="contact-email">Email address</label><input id="contact-email" name="user_email" type="email" autoComplete="email" placeholder="alex@example.com" maxLength={254} required readOnly={state === "sending"} /></div></div>
+      <div className="form-field"><label htmlFor="contact-message">Your message</label><textarea id="contact-message" name="message" placeholder="What would you like to discuss?" rows={5} minLength={20} maxLength={5000} aria-describedby="message-help" required readOnly={state === "sending"} /><p id="message-help" className="field-help">At least 20 characters.</p></div>
       {error && <p className="form-error" role="alert">{error}</p>}
-      {state === "sent" && <p className="form-success" role="status"><FiCheck aria-hidden="true" /> Message envoyé. Merci pour ton message !</p>}
-      <button className="button button-primary" type="submit" disabled={state === "sending"}>{state === "sending" ? "Envoi en cours…" : "Envoyer mon message"}<FiSend aria-hidden="true" /></button>
+      {state === "sent" && <p className="form-success" role="status"><FiCheck aria-hidden="true" /> Message sent. Thanks for getting in touch!</p>}
+      <button className="button button-primary" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Send message"}<FiSend aria-hidden="true" /></button>
     </form>
   );
 }

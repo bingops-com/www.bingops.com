@@ -10,7 +10,7 @@ export default function BrandLogo({ name, className = '' }) {
   if (!logo) return <span className={className}>{name}</span>;
   return (
     <span className={`brand-logo brand-logo-${logo.className} ${className}`}>
-      <img src={logo.src} alt={`Logo ${name}`} width={logo.width} height={logo.height} />
+      <img src={logo.src} alt={`${name} logo`} width={logo.width} height={logo.height} />
     </span>
   );
 }

@@ -1,22 +1,19 @@
 [
   {
-    "title": "Déployer un serveur Project Zomboid avec Terraform et Ansible",
-    "content": "Du provisionnement Proxmox à la configuration d’un serveur multijoueur.",
-    "imageURL": "/articles/article-project-zomboid.webp",
+    "title": "Deploying a Project Zomboid server with Terraform and Ansible",
+    "content": "From Proxmox provisioning to configuring a multiplayer server.",
     "link": "https://blog.bingops.com/blog/project-zomboid/",
     "topic": "Infrastructure"
   },
   {
-    "title": "De la SSRF à l’exposition d’identifiants AWS",
-    "content": "Retour sur la découverte d’une vulnérabilité critique et sa divulgation responsable.",
-    "imageURL": "/articles/article-bugbounty-ssrf.webp",
+    "title": "From SSRF to exposed AWS credentials",
+    "content": "Investigating a critical vulnerability and reporting it responsibly.",
     "link": "https://blog.bingops.com/blog/bugbounty-ssrf/",
-    "topic": "Sécurité"
+    "topic": "Security"
   },
   {
-    "title": "Node.js : comprendre une vulnérabilité eval",
-    "content": "Un challenge Root-Me pour explorer l’exécution de code et l’accès aux fichiers.",
-    "imageURL": "/articles/article-node-eval.webp",
+    "title": "Understanding an eval vulnerability in Node.js",
+    "content": "A Root-Me challenge exploring code execution and file access.",
     "link": "https://blog.bingops.com/blog/node-eval/",
     "topic": "Write-up"
   }

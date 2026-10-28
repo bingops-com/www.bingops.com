@@ -1,102 +1,90 @@
 # BingOps portfolio
 
-Portfolio de Corentin Guyon, réalisé avec React et Vite et publié sur
+Corentin Guyon’s English-language portfolio, built with React and Vite for
 [www.bingops.com](https://www.bingops.com/).
 
-## Développement
+## Development
 
 ```sh
 npm install
 npm run dev
 ```
 
-`npm run build` produit le site statique dans `dist/`.
-`npm run preview` sert ce build localement.
+Vite listens on `0.0.0.0:5173`. Both `5173.dev.lab.bingo` and
+`5173--main--lab--bingops.dev.lab.bingo` are allowed for the Coder proxy.
+The running server appears in [Dev](https://dev.lab.bingo/) and opens at
+[port 5173](https://5173.dev.lab.bingo/), using the existing Coder session.
+Other servers can be opened through the dashboard’s port field.
 
-Dans le workspace Coder, `npm run dev` écoute sur `0.0.0.0:5173` et autorise
-les noms `5173.dev.lab.bingo` et `5173--main--lab--bingops.dev.lab.bingo`
-(le nom long transmis par le proxy Coder). Le serveur apparaît automatiquement dans
-[Dev](https://dev.lab.bingo/) et s’ouvre sur [le port 5173](https://5173.dev.lab.bingo/).
-Pour un autre serveur, saisir son port dans « Ouvrir un port » du dashboard.
-Les aperçus utilisent la session Coder et l’accès privé existant.
+`npm run build` creates the static site in `dist/`.
+`npm run preview` serves that build locally.
 
-## Direction visuelle
+## Visual direction
 
-L’identité suit LabOps/Portal : cobalt `#1443D6`, encre marine `#0A1B44`,
-menthe `#8AF2BF`, fond `#EEF2FB` et surfaces blanches. Les variantes sombres
-reprennent également les tokens de Portal. Titres en Bricolage Grotesque et texte
-en Onest, hébergés localement avec leurs licences OFL.
+The palette and typography follow [LabOps Portal](https://github.com/bingops-com/portal):
+cobalt `#1443D6`, navy `#0A1B44`, mint `#8AF2BF`, ground `#EEF2FB`, and white
+surfaces, with matching dark theme tokens. Bricolage Grotesque and Onest are
+self-hosted with their OFL licences.
 
-La trame de carte marine, la rose des vents et le chat à cache-œil reprennent
-l’univers graphique de [LabOps Portal](https://github.com/bingops-com/portal).
-Le composant du chat et son animation proviennent de `web/src/App.tsx` et
-`web/src/styles.css` de Portal. Les surfaces, bordures et contrastes s’appuient
-sur les mêmes couleurs ; aucun service de production n’est modifié pour cela.
+The [EinCode Digital Lab reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
+informs the personal digital lab concept. The current layout uses typography,
+project descriptions and an actual Portal screenshot. The header scrolls with
+the page; footer section links and “Back to top” provide return navigation.
+The mobile menu expands within the page. A short entrance animation and
+interaction transitions respect `prefers-reduced-motion`.
 
-La référence [EinCode Digital Lab](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
-inspire la composition en laboratoire numérique, le terminal à lettres pixels et
-le prompt animé. Le dessin et le contenu sont propres à BingOps ; la palette
-et la typographie restent celles de LabOps. L’accueil conserve l’entrée animée
-GSAP et la scène GitOps interactive. Les
-boutons Git, Argo CD et Kubernetes changent la commande et son explication ;
-aucune fausse télémétrie n’est affichée. Les mouvements d’ambiance, de dialogue,
-de survol et la barre de lecture respectent `prefers-reduced-motion`.
+SII, Thales, Radio France and IPSSI logos retain their original colours.
+Local assets and their provenance are recorded in `public/brands/sources.json`.
+SII is the employer, Thales the client, and IPSSI the school.
 
-Les logos de SII, Thales, Radio France et IPSSI restent dans leurs couleurs
-originales. Les fichiers sont locaux ; leurs sources et empreintes figurent dans
-`public/brands/sources.json`. Le parcours distingue l’employeur SII, le client
-Thales et la formation IPSSI.
+## Content
 
-## Contenu
+- `src/portfolio.json`: profile, experience, education, skills and links.
+- `src/projects.json`: project descriptions, categories, technologies and documentation.
+- `src/articles.json`: selected blog posts, with English summaries.
+- `src/components/portfolio/`: navigation, career and project components.
+- `src/portfolio.css`: layout, interactions and themes.
 
-- `src/portfolio.json` : profil, expériences, formation, compétences et liens.
-- `src/projects.json` : projets, catégories, technologies, documentation et visuels.
-- `src/articles.json` : sélection d’articles.
-- `src/components/portfolio/` : navigation, schémas et fiches projet.
-- `src/portfolio.css` : styles de la refonte et thèmes clair/sombre.
-
-Les descriptions de LabOps et Portal proviennent de leurs dépôts :
+LabOps and Portal descriptions are based on their repositories:
 [LabOps](https://github.com/bingops-com/labops),
-[architecture GitOps](https://github.com/bingops-com/labops/blob/master/apps/README.md),
+[GitOps architecture](https://github.com/bingops-com/labops/blob/master/apps/README.md),
 [Cluster API](https://github.com/bingops-com/labops/blob/master/capi/README.md),
 [Portal](https://github.com/bingops-com/portal).
 
-Le statut actuel est confirmé par Corentin : en CDI chez SII, actuellement en
-mission chez Thales. Il figure dans l’accueil, le parcours et les métadonnées.
-Radio France provient de la version précédente ; la région de Nice et IPSSI
-(2023–2025) proviennent du [profil LinkedIn fourni](https://fr.linkedin.com/in/corentin-guyon).
-L’intitulé du poste, les dates d’expériences et les missions détaillées restent
-à compléter quand ils seront connus ; les champs absents sont omis.
+Corentin confirmed his permanent employment at SII and current assignment at
+Thales. This appears in the hero, experience and metadata. Radio France comes
+from the previous portfolio; the Nice area and IPSSI programme (2023–2025)
+come from the [provided LinkedIn profile](https://www.linkedin.com/in/corentin-guyon/).
+Unconfirmed job titles, experience dates and detailed responsibilities are omitted.
+Linked blog posts and the actual Portal interface may be in French; the portfolio
+copy and controls are in English.
 
-### Capture de Portal
+### Portal screenshot
 
-`public/projects/portal.jpg` est une capture réelle du Portal en fonctionnement,
-réalisée le 28 octobre 2026. Elle remplace le schéma dans la carte et la fiche
-projet. Les indicateurs visibles correspondent à cet instant.
+`public/projects/portal.jpg` is a real screenshot of the running Portal, captured
+on 28 October 2026. Its metrics reflect that moment and its interface remains
+in its original French language.
 
-Pour renouveler la capture depuis un environnement autorisé à lire le portail :
+To refresh it from an environment authorised to access Portal:
 
 ```sh
 CHROMIUM=/usr/bin/chromium npm run capture:portal
 ```
 
-Le script utilise par défaut le service interne du cluster. Pour une autre
-adresse accessible, définir `PORTAL_CAPTURE_URL`. Il ouvre une nouvelle session
-éphémère en thème clair, attend les widgets et capture le viewport 1600 × 1150.
-Il ne modifie aucune configuration de Portal. Ne pas utiliser une URL contenant
-un jeton ; vérifier le contenu visible avant de publier une nouvelle capture.
+The script uses the internal cluster service by default; set `PORTAL_CAPTURE_URL`
+for another accessible address. It starts an ephemeral light-theme browser session,
+waits for widgets, and captures a 1600 × 1150 viewport without changing Portal’s
+configuration. Review visible content before publishing a replacement screenshot.
 
 ## Contact
 
-Copier `.env.example` vers `.env` et renseigner les trois variables publiques
-EmailJS avant le build pour activer le formulaire. Le modèle EmailJS doit utiliser
-`user_name`, `user_email` et `message`. Sans configuration complète, le site
-propose le contact LinkedIn. Le formulaire ne simule jamais un envoi réussi.
+Copy `.env.example` to `.env` and configure all three public EmailJS variables
+before building to enable the form. The EmailJS template must accept `user_name`,
+`user_email` and `message`. Without complete configuration, the page links directly
+to LinkedIn. The existing LabOps Docker build does not pass these variables, so
+that build uses the LinkedIn contact option.
 
-Le build Docker actuellement défini dans LabOps ne transmet pas ces variables ;
-le contact LinkedIn reste donc le chemin disponible avec ce build.
-
-## Vérification
+## Verification
 
 ```sh
 npm run lint
@@ -105,32 +93,28 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Les tests couvrent les projets et leurs filtres, les fiches au clavier, la
-navigation mobile, les préférences de thème, le stockage indisponible, le
-débordement horizontal et le contact. Les tests interceptent EmailJS : aucun
-message réel n’est envoyé. Sans configuration, ils vérifient le lien de repli.
-Avec les variables de test de la CI, ils vérifient échec, conservation du message,
-nouvel essai et confirmation.
+Browser checks cover desktop and mobile layouts, filtering, keyboard access to
+project details, navigation, theme persistence, unavailable storage, reduced
+motion, horizontal overflow and contact. EmailJS requests are intercepted, so
+no real messages are sent. Configured builds test delivery failure, message
+preservation, retry and confirmation; unconfigured builds test the LinkedIn fallback.
 
-Le workflow `portfolio-checks.yml` construit le site avec puis sans configuration
-de contact. L’artefact `portfolio-browser-review` contient le rapport et les
-captures desktop/mobile en clair et sombre.
+`portfolio-checks.yml` tests builds with and without contact configuration.
+The `portfolio-browser-review` artifact contains reports and desktop/mobile
+screenshots in both themes.
 
-## Skill de design
+## Design skill
 
-Le skill officiel Anthropic
-[frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design)
-est installé dans `.agents/skills/frontend-design/`, avec sa licence Apache 2.0,
-dans un commit antérieur à la refonte. Il est disponible pour les sessions qui
-ouvrent cette branche à partir du prochain tour.
+The Anthropic [frontend-design skill](https://github.com/anthropics/skills/tree/main/skills/frontend-design)
+is installed in `.agents/skills/frontend-design/`, with its Apache 2.0 licence,
+in a dedicated commit before the redesign.
 
-## Déploiement
+## Deployment
 
-Le dépôt reste un site statique React/Vite. La livraison suit le processus
-existant : PR vers `main`, revue, puis construction de l’image dans LabOps.
-Cette branche ne modifie pas les manifests d’infrastructure.
+Delivery follows the existing process: PR to `main`, review, then image building
+in LabOps. This branch does not change infrastructure manifests.
 
-## Crédits
+## Credits
 
-La version initiale du portfolio était basée sur un design Figma de
+The original portfolio was based on a Figma design by
 [Sagar Shah](https://www.figma.com/@shahsagarm).

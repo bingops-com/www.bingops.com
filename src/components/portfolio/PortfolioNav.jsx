@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiArrowUpRight, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 import profile from "../../portfolio.json";
 
-const links = [["#projects", "Projets"], ["#experience", "Parcours"], ["#stacks", "Compétences"], ["#articles", "Articles"]];
+const links = [["#projects", "Projects"], ["#experience", "Experience"], ["#stacks", "Skills"], ["#articles", "Articles"]];
 
 function readTheme() {
   try {
@@ -39,18 +39,18 @@ export default function PortfolioNav() {
   return (
     <header className="portfolio-header">
       <div className="page-width header-inner">
-        <a className="brand" href="#top" onClick={() => setMenuOpen(false)} aria-label="BingOps, accueil">bing<span>ops</span><span className="brand-dot">.</span></a>
-        <nav className={menuOpen ? "main-nav is-open" : "main-nav"} id="main-navigation" aria-label="Navigation principale">
+        <a className="brand" href="#top" onClick={() => setMenuOpen(false)} aria-label="BingOps, home">bing<span>ops</span><span className="brand-dot">.</span></a>
+        <nav className={menuOpen ? "main-nav is-open" : "main-nav"} id="main-navigation" aria-label="Main navigation">
           {links.map(([href, label]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
           <a href={profile.blog} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Blog <FiArrowUpRight aria-hidden="true" /></a>
-          <a className="mobile-contact" href="#contact" onClick={() => setMenuOpen(false)}>Me contacter</a>
+          <a className="mobile-contact" href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </nav>
         <div className="header-actions">
-          <button className="icon-button" type="button" aria-label={theme === "dark" ? "Activer le thème clair" : "Activer le thème sombre"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+          <button className="icon-button" type="button" aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             {theme === "dark" ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
           </button>
-          <a className="button button-small header-contact" href="#contact">Discutons <FiArrowUpRight aria-hidden="true" /></a>
-          <button id="mobile-menu-toggle" className="icon-button menu-toggle" type="button" aria-controls="main-navigation" aria-expanded={menuOpen} aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} onClick={() => setMenuOpen(!menuOpen)}>
+          <a className="button button-small header-contact" href="#contact">Let’s talk <FiArrowUpRight aria-hidden="true" /></a>
+          <button id="mobile-menu-toggle" className="icon-button menu-toggle" type="button" aria-controls="main-navigation" aria-expanded={menuOpen} aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
           </button>
         </div>

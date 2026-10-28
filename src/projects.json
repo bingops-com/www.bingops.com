@@ -3,7 +3,7 @@
     "title": "LabOps",
     "category": "Infrastructure",
     "kind": "labops",
-    "content": "Mon infrastructure de laboratoire, versionnée de bout en bout. Terraform prépare Proxmox et Talos ; Cluster API gère le cluster de workloads ; Argo CD déploie les applications.",
+    "content": "My lab infrastructure, versioned from end to end. Terraform provisions Proxmox and Talos, Cluster API manages the workload cluster, and Argo CD deploys applications.",
     "stacks": [
       "Kubernetes",
       "Talos",
@@ -15,18 +15,18 @@
     "link": "https://github.com/bingops-com/labops",
     "documentation": "https://github.com/bingops-com/labops/blob/master/docs/rebuild.md",
     "features": [
-      "Un cycle de vie explicite : Terraform pour le cluster de management, Cluster API pour les workloads.",
-      "Des applications synchronisées depuis Git avec Argo CD, Helm et Kustomize.",
-      "Observabilité avec Prometheus et Grafana, secrets via Bitwarden et sauvegardes PostgreSQL sur R2."
+      "An explicit lifecycle: Terraform for the management cluster, Cluster API for workloads.",
+      "Applications synced from Git with Argo CD, Helm and Kustomize.",
+      "Prometheus and Grafana for observability, Bitwarden for secrets, and PostgreSQL backups on R2."
     ],
-    "imageURL": "/projects/labops.webp",
-    "imageAlt": "Illustration du projet LabOps"
+    "imageURL": null,
+    "imageAlt": null
   },
   {
     "title": "Portal",
     "category": "Applications",
     "kind": "portal",
-    "content": "Le poste de pilotage de mon lab. Une interface à widgets pour réunir Kubernetes, Argo CD, Gatus, Prometheus et ma veille dans un même espace.",
+    "content": "A dashboard for my lab. Customisable widgets bring Kubernetes, Argo CD, Gatus, Prometheus and my reading feed into one workspace.",
     "stacks": [
       "Go",
       "React",
@@ -38,18 +38,18 @@
     "link": "https://github.com/bingops-com/portal",
     "documentation": "https://github.com/bingops-com/portal#readme",
     "features": [
-      "Un binaire Go unique qui embarque l’API et l’interface React.",
-      "Des pages et widgets réorganisables, une palette de commandes et un mode kiosque.",
-      "Un accès en édition protégé par OpenID Connect avec PKCE."
+      "A single Go binary serving both the API and embedded React frontend.",
+      "Rearrangeable pages and widgets, a command palette and a kiosk mode.",
+      "Editing access protected by OpenID Connect with PKCE."
     ],
     "imageURL": "/projects/portal.jpg",
-    "imageAlt": "Capture réelle de Portal : état du cluster, carte du lab, incidents et métriques de ressources."
+    "imageAlt": "Screenshot of Portal showing cluster status, incidents and resource metrics. The application is shown in its original French interface."
   },
   {
     "title": "Monitoring provisioning",
     "category": "Infrastructure",
     "kind": "monitoring",
-    "content": "Une infrastructure d’observabilité automatisée sur Proxmox : provisionnement des machines, collecte des métriques, centralisation des logs et visualisation.",
+    "content": "Automated observability infrastructure on Proxmox, covering machine provisioning, metrics collection, centralised logs and visualisation.",
     "stacks": [
       "Terraform",
       "Ansible",
@@ -59,18 +59,18 @@
     ],
     "link": "https://github.com/bingops-com/monitoring-provisioning",
     "features": [
-      "Provisionnement et configuration automatisés avec Terraform et Ansible.",
-      "Métriques et alertes avec Prometheus et Alertmanager.",
-      "Visualisation et analyse avec Grafana et la stack Elastic."
+      "Automated provisioning and configuration with Terraform and Ansible.",
+      "Metrics and alerting with Prometheus and Alertmanager.",
+      "Visualisation and analysis with Grafana and the Elastic stack."
     ],
-    "imageURL": "/projects/monitoring-provisioning.webp",
-    "imageAlt": "Illustration de l’infrastructure de monitoring"
+    "imageURL": null,
+    "imageAlt": null
   },
   {
     "title": "CVE-2025-1974",
-    "category": "Sécurité",
+    "category": "Security",
     "kind": "security",
-    "content": "Un outil de test minimal pour explorer l’injection d’annotations dans les contrôleurs Kubernetes NGINX Ingress et observer les traces côté contrôleur.",
+    "content": "A minimal testing tool to investigate annotation injection in Kubernetes NGINX Ingress controllers and inspect controller logs.",
     "stacks": [
       "Python",
       "Kubernetes",
@@ -78,10 +78,10 @@
     ],
     "link": "https://github.com/0xBingo/CVE-2025-1974",
     "features": [
-      "Envoi d’une requête AdmissionReview conçue pour tester le chemin d’injection.",
-      "Analyse des traces du contrôleur pour comprendre le comportement observé."
+      "An AdmissionReview request designed to test the injection path.",
+      "Controller log analysis to understand the observed behaviour."
     ],
-    "imageURL": "/projects/CVE-2025-1974.webp",
-    "imageAlt": "Illustration du projet de test CVE-2025-1974"
+    "imageURL": null,
+    "imageAlt": null
   }
 ]
