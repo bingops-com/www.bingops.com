@@ -28,7 +28,7 @@ self-hosted with their OFL licences.
 
 The [EinCode Digital Lab reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
 informs the personal digital lab concept. The current layout uses typography,
-project descriptions and an actual Portal screenshot. The header scrolls with
+project descriptions, an editorial LabOps illustration and an actual Portal screenshot. The header scrolls with
 the page; footer section links and “Back to top” provide return navigation.
 The mobile menu expands within the page. A short entrance animation and
 interaction transitions respect `prefers-reduced-motion`.
@@ -58,6 +58,14 @@ come from the [provided LinkedIn profile](https://www.linkedin.com/in/corentin-g
 Unconfirmed job titles, experience dates and detailed responsibilities are omitted.
 Linked blog posts and the actual Portal interface may be in French; the portfolio
 copy and controls are in English.
+
+### LabOps illustration
+
+`public/projects/labops-editorial-v1.webp` is an editorial hardware illustration
+generated with the built-in OpenAI image tool. It is a conceptual visual, not
+a photograph or a literal diagram of the deployed lab. The original PNG is in
+`output/imagegen/labops-editorial-v1.png`; the prompt is recorded alongside it.
+The WebP preserves the composition and dimensions with a smaller transfer size.
 
 ### Portal screenshot
 

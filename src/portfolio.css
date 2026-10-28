@@ -238,8 +238,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .footer-signature { display: inline-flex; align-items: center; gap: 10px; }
 
 @keyframes dialog-in { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.project-highlights { margin: 24px 0 0; padding-left: 18px; color: var(--muted); font-size: .85rem; }
-.project-highlights li + li { margin-top: 12px; }
 .hero-copy { animation: enter .65s ease-out both; }
 .hero-summary { animation: enter .65s .12s ease-out both; }
 .hero-summary .hero-description { max-width: 400px; }
@@ -355,3 +353,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   html { scroll-behavior: auto; }
   .portfolio *, .portfolio *::before, .portfolio *::after { animation: none !important; transition: none !important; }
 }
+
+/* Preserve the illustration’s white paper in both themes. */
+.project-labops .project-visual, .project-dialog-visual:has(.project-image[src*="labops-editorial"]) { background: #fff; }
+.project-labops .project-visual { padding: 22px; }
