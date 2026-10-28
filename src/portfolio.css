@@ -355,5 +355,5 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 }
 
 /* Preserve the illustration’s white paper in both themes. */
-.project-labops .project-visual, .project-dialog-visual:has(.project-image[src*="labops-platform"]) { background: #fff; }
-.project-labops .project-visual { padding: 22px; }
+.portfolio .project-illustration { background: #fff; }
+.project-card .project-illustration { padding: 22px; }

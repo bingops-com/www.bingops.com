@@ -28,8 +28,8 @@ self-hosted with their OFL licences.
 
 The [EinCode Digital Lab reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
 informs the personal digital lab concept. The current layout uses typography,
-project descriptions, a LabOps platform illustration and an actual Portal screenshot. The header scrolls with
-the page; footer section links and “Back to top” provide return navigation.
+project descriptions, software platform illustrations and an actual Portal screenshot.
+The header scrolls with the page; footer section links and “Back to top” provide return navigation.
 The mobile menu expands within the page. A short entrance animation and
 interaction transitions respect `prefers-reduced-motion`.
 
@@ -59,15 +59,23 @@ Unconfirmed job titles, experience dates and detailed responsibilities are omitt
 Linked blog posts and the actual Portal interface may be in French; the portfolio
 copy and controls are in English.
 
-### LabOps illustration
+### Project illustrations
 
-`public/projects/labops-platform-v2.webp` illustrates the software platform:
-Terraform/Talos infrastructure, Kubernetes application workloads, GitOps delivery
-with Git and Argo CD, and observability. It was generated with the built-in OpenAI
-image tool. It is a conceptual illustration rather than an exact deployment diagram.
-The original PNG and complete prompt are preserved in `output/imagegen/` under
-`labops-platform-v2`. The served WebP preserves the composition and dimensions.
-The earlier hardware illustration is retained there as an unused draft.
+The illustrations use the built-in OpenAI image tool. Monitoring and Ingress
+illustrations use the approved LabOps image as their style reference. These are
+conceptual illustrations rather than exact deployment diagrams or application screenshots.
+
+| Project | Served asset | Subject |
+| --- | --- | --- |
+| LabOps | `public/projects/labops-platform-v2.webp` | Terraform/Talos, Kubernetes, applications and GitOps delivery |
+| Monitoring provisioning | `public/projects/monitoring-platform-v1.webp` | Automated provisioning, metrics, logs and visualisation |
+| CVE-2025-1974 | `public/projects/ingress-analysis-v1.webp` | AdmissionReview, NGINX Ingress and controller log analysis |
+
+Original PNGs and complete prompts are preserved in `output/imagegen/` with
+matching filenames (`.png` and `-prompt.txt`). The served WebPs preserve the
+composition and dimensions with smaller transfer sizes. The illustrations retain
+their white background in both themes. The earlier hardware illustration is an
+unused draft.
 
 ### Portal screenshot
 

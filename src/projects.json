@@ -20,7 +20,8 @@
       "Prometheus and Grafana for observability, Bitwarden for secrets, and PostgreSQL backups on R2."
     ],
     "imageURL": "/projects/labops-platform-v2.webp",
-    "imageAlt": "Conceptual LabOps platform illustration: Git and Argo CD deliver applications to a Kubernetes cluster on Terraform and Talos infrastructure, with observability."
+    "imageAlt": "Conceptual LabOps platform illustration: Git and Argo CD deliver applications to a Kubernetes cluster on Terraform and Talos infrastructure, with observability.",
+    "imageType": "illustration"
   },
   {
     "title": "Portal",
@@ -63,8 +64,9 @@
       "Metrics and alerting with Prometheus and Alertmanager.",
       "Visualisation and analysis with Grafana and the Elastic stack."
     ],
-    "imageURL": null,
-    "imageAlt": null
+    "imageURL": "/projects/monitoring-platform-v1.webp",
+    "imageAlt": "Conceptual observability illustration: Terraform and Ansible provision services that send metrics and logs to Prometheus, Grafana and Elastic.",
+    "imageType": "illustration"
   },
   {
     "title": "CVE-2025-1974",
@@ -81,7 +83,8 @@
       "An AdmissionReview request designed to test the injection path.",
       "Controller log analysis to understand the observed behaviour."
     ],
-    "imageURL": null,
-    "imageAlt": null
+    "imageURL": "/projects/ingress-analysis-v1.webp",
+    "imageAlt": "Conceptual Kubernetes investigation illustration: a Python AdmissionReview request reaches NGINX Ingress, followed by controller log analysis.",
+    "imageType": "illustration"
   }
 ]
