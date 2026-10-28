@@ -8,6 +8,8 @@ test("les projets, les articles et la page restent utilisables sur chaque écran
   await expect(page.locator(".project-card")).toHaveCount(4);
   await expect(page.locator(".project-card h3")).toContainText(["LabOps", "Portal"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
+  await expect(page.getByRole("heading", { name: "Thales", exact: true })).toBeVisible();
+  await expect(page.getByText("IPSSI", { exact: true })).toBeVisible();
   await expect(page.locator('a[href="https://github.com/bingops-com/portal"]').first()).toBeVisible();
   await expect(page.locator("main")).not.toContainText("22-year-old");
   await page.evaluate(() => document.fonts.ready);

@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { FiArrowUpRight, FiCheck, FiSend } from "react-icons/fi";
 import profile from "../portfolio.json";
 
@@ -20,6 +19,7 @@ export default function ContactForm({ closeModal, updateSuccessMessage }) {
     setError("");
     setState("sending");
     try {
+      const { default: emailjs } = await import("@emailjs/browser");
       await emailjs.sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,

@@ -58,7 +58,7 @@ function App() {
               {profile.experiences.map((experience) => (
                 <article className="experience-entry" key={experience.company + experience.role}>
                   <span className="experience-mark" aria-hidden="true">{experience.company.split(/\s+/).map((word) => word[0]).join("").slice(0, 2).toLowerCase()}.</span>
-                  <div><p className="entry-type">Expérience professionnelle</p><h3>{experience.role}</h3><p className="entry-company">{experience.company}</p>
+                  <div><p className="entry-type">Expérience professionnelle</p><h3>{experience.role || experience.company}</h3><p className="entry-company">{experience.role ? experience.company : experience.location}</p>
                     {experience.period && <p className="entry-period">{experience.period}</p>}
                     {experience.description && <p className="entry-description">{experience.description}</p>}
                     {experience.technologies.length > 0 && <ul className="tag-list">{experience.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul>}
@@ -67,7 +67,7 @@ function App() {
               ))}
               {profile.education.map((education) => (
                 <article className="education-entry" key={education.title}>
-                  <FiShield aria-hidden="true" /><div><p className="entry-type">Formation · {education.qualification}</p><h3>{education.title}</h3>{education.period && <p className="entry-period">{education.period}</p>}</div>
+                  <FiShield aria-hidden="true" /><div><p className="entry-type">Formation · {education.qualification}</p><h3>{education.title}</h3>{education.school && <p className="entry-company">{education.school}</p>}{education.period && <p className="entry-period">{education.period}</p>}</div>
                 </article>
               ))}
             </div>

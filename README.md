@@ -27,10 +27,12 @@ Les descriptions de LabOps et Portal proviennent de leurs dépôts :
 [Cluster API](https://github.com/bingops-com/labops/blob/master/capi/README.md),
 [Portal](https://github.com/bingops-com/portal).
 
-Le parcours reprend uniquement les éléments présents dans la version précédente
-(Radio France et Master Cybersecurity & Cloud Computing). Les dates, missions,
-résultats et le statut actuel restent à compléter depuis un CV ou des informations
-confirmées par Corentin. Les périodes absentes sont omises à l’affichage.
+Le parcours reprend Radio France depuis la version précédente et les éléments
+publics indexés du [profil LinkedIn fourni](https://fr.linkedin.com/in/corentin-guyon) :
+Thales à Sophia Antipolis, localisation Nice et périphérie, et IPSSI (2023–2025).
+L’intitulé du poste Thales, ses dates, les missions et résultats restent à compléter
+depuis un CV ou des informations confirmées par Corentin. Les champs absents sont
+omis à l’affichage ; aucun rôle ou résultat n’est inventé.
 
 Portal dispose d’un schéma fonctionnel explicitement légendé. Pour utiliser une
 vraie capture, ajouter `public/projects/portal.webp`, puis renseigner

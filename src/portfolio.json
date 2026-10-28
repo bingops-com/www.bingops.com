@@ -1,11 +1,19 @@
 {
   "name": "Corentin Guyon",
-  "location": "Paris, France",
+  "location": "Nice et périphérie, France",
   "github": "https://github.com/0xBingo",
   "organization": "https://github.com/bingops-com",
   "linkedin": "https://www.linkedin.com/in/corentin-guyon/",
   "blog": "https://blog.bingops.com",
   "experiences": [
+    {
+      "company": "Thales",
+      "role": null,
+      "location": "Sophia Antipolis, France",
+      "period": null,
+      "description": null,
+      "technologies": []
+    },
     {
       "company": "Radio France",
       "role": "DevOps",
@@ -16,9 +24,10 @@
   ],
   "education": [
     {
-      "title": "Cybersecurity & Cloud Computing",
-      "qualification": "Master",
-      "period": null
+      "title": "Cybersécurité & Cloud",
+      "qualification": "Mastère",
+      "school": "IPSSI",
+      "period": "2023 – 2025"
     }
   ],
   "skills": [
