@@ -45,8 +45,7 @@
     ],
     "imageURL": "/projects/portal-demo-poster.jpg",
     "imageAlt": "Portal dashboard showing the lab map, incidents and resource metrics in its original French interface.",
-    "videoURL": "/projects/portal-demo.mp4",
-    "gifURL": "/projects/portal-demo.gif"
+    "videoURL": "/projects/portal-demo.mp4"
   },
   {
     "title": "CVE-2025-1974",

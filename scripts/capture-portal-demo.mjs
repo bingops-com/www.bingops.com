@@ -51,8 +51,7 @@ try {
   const raw = await video.path();
   const tail = ['-sseof', (-duration).toFixed(3), '-i', raw];
   run(['-y', ...tail, '-an', '-vf', 'fps=24', '-c:v', 'libx264', '-preset', 'fast', '-crf', '25', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', join(destination, 'portal-demo.mp4')]);
-  run(['-y', '-i', join(destination, 'portal-demo.mp4'), '-filter_complex', '[0:v]fps=8,scale=960:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle', '-loop', '0', join(destination, 'portal-demo.gif')]);
-  console.log(`Portal navigation captured: ${duration.toFixed(1)} seconds, MP4 + GIF + poster in public/projects/.`);
+  console.log(`Portal navigation captured: ${duration.toFixed(1)} seconds, MP4 + poster in public/projects/.`);
 } finally {
   await browser.close();
   await rm(scratch, { recursive: true, force: true });

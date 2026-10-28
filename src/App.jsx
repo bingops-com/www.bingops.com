@@ -27,13 +27,13 @@ function App() {
           </div>
         </div>
 
-        <ProjectShowcase />
-
         <CareerSection />
+
+        <ProjectShowcase />
 
         <section id="stacks" className="skills-section section-space" aria-labelledby="skills-title">
           <div className="page-width">
-            <div className="section-heading"><div><p className="section-context">The toolkit</p><h2 id="skills-title">From machine to service.</h2></div><p>The technologies I bring together in my projects.</p></div>
+            <div className="section-heading"><div><p className="section-context">The toolkit</p><h2 id="skills-title">How I work.</h2></div><p>The technologies I bring together in my projects.</p></div>
             <div className="skills-grid">{profile.skills.map((group, index) => {
               const Icon = skillIcons[index];
               return <article className="skill-group" key={group.title}><Icon aria-hidden="true" /><h3>{group.title}</h3><p>{group.description}</p><ul className="tag-list">{group.items.map((item) => <li key={item}>{item}</li>)}</ul></article>;
@@ -42,7 +42,7 @@ function App() {
         </section>
 
         <section id="articles" className="articles-section page-width section-space" aria-labelledby="articles-title">
-          <div className="section-heading"><div><p className="section-context">Field notes</p><h2 id="articles-title">Experiment. Document. Share.</h2></div><a className="text-link" href={profile.blog} target="_blank" rel="noreferrer">Visit the blog <FiArrowUpRight aria-hidden="true" /></a></div>
+          <div className="section-heading"><div><p className="section-context">Field notes</p><h2 id="articles-title">Things I’ve learned.</h2></div><a className="text-link" href={profile.blog} target="_blank" rel="noreferrer">Visit the blog <FiArrowUpRight aria-hidden="true" /></a></div>
           <div className="article-grid">{articles.map((article) => (
             <a className="article-card" key={article.link} href={article.link} target="_blank" rel="noreferrer">
               <div className="article-content"><p className="article-topic">{article.topic}</p><h3>{article.title}</h3><p>{article.content}</p><span className="article-read">Read article <FiArrowUpRight aria-hidden="true" /></span></div>
@@ -52,12 +52,12 @@ function App() {
 
         <section id="contact" className="contact-section section-space" aria-labelledby="contact-title">
           <div className="page-width contact-layout">
-            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">An idea.<br />A project.<br />A conversation.</h2><p>Infrastructure, open source or cybersecurity — I’m always happy to compare notes.</p><a className="text-link" href={profile.linkedin} target="_blank" rel="noreferrer"><FiLinkedin aria-hidden="true" /> Find me on LinkedIn <FiArrowUpRight aria-hidden="true" /></a></div>
+            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s talk.</h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><a className="text-link" href={profile.linkedin} target="_blank" rel="noreferrer"><FiLinkedin aria-hidden="true" /> Find me on LinkedIn <FiArrowUpRight aria-hidden="true" /></a></div>
             <ContactForm />
           </div>
         </section>
       </main>
-      <div className="footer-navigation page-width"><nav aria-label="Page sections"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#stacks">Skills</a><a href="#contact">Contact</a></nav><a className="text-link" href="#top">Back to top ↑</a></div>
+      <div className="footer-navigation page-width"><nav aria-label="Page sections"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#stacks">Skills</a><a href="#contact">Contact</a></nav><a className="text-link" href="#top">Back to top ↑</a></div>
       <footer className="portfolio-footer page-width">
         <a className="brand" href="#top" aria-label="BingOps, back to top">bing<span>ops</span><span className="brand-dot">.</span></a>
         <p className="footer-signature"><span>© {new Date().getFullYear()} {profile.name}</span></p>

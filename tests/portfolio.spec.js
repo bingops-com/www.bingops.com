@@ -4,12 +4,19 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("DevOps");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("CorentinGuyon");
+  await expect(page.locator(".hero-role")).toHaveText("DevOps & cybersecurity");
+  const portrait = page.getByRole("img", { name: "Corentin Guyon", exact: true });
+  await expect.poll(() => portrait.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator(".hero-stage video")).toHaveCount(0);
   await expect(page.locator(".project-card")).toHaveCount(3);
   await expect(page.locator(".project-card h3")).toContainText(["LabOps", "Portal"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "SII", exact: true })).toBeVisible();
-  await expect(page.getByText("IPSSI", { exact: true })).toBeVisible();
+  await expect(page.locator(".education-entry")).toContainText("IPSSI");
+  for (const company of ["Radio France", "namR"]) await expect(page.getByRole("heading", { name: company, exact: true })).toBeVisible();
+  await expect(page.locator("main")).not.toContainText("Upgrade Dental");
+  await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
   await expect(page.locator(".hero-employment")).toHaveText("Permanent employee at SII, currently on assignment at Thales.");
   await expect(page.locator('a[href="https://github.com/bingops-com/portal"]').first()).toBeVisible();
   await expect(page.locator("main")).not.toContainText("22-year-old");
@@ -48,7 +55,12 @@ test("project filters and accessible details restore focus on Escape", async ({ 
 test("theme persists and tolerates an invalid legacy preference", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
+  const backgrounds = () => page.evaluate(() => ["body", ".portfolio-header", ".hero-stage", ".contact-section"].map((selector) => getComputedStyle(document.querySelector(selector)).backgroundColor));
+  const lightBackgrounds = await backgrounds();
   await page.getByRole("button", { name: "Switch to dark theme" }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  const darkBackgrounds = await backgrounds();
+  for (let index = 0; index < lightBackgrounds.length; index += 1) expect(darkBackgrounds[index]).not.toBe(lightBackgrounds[index]);
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.evaluate(() => {
@@ -124,7 +136,7 @@ test("normal-flow header leaves the viewport and footer navigation returns to th
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("DevOps in practice.Built in my lab.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("CorentinGuyon");
   await page.locator("#experience").scrollIntoViewIfNeeded();
   expect(await page.locator(".portfolio-header").evaluate((header) => header.getBoundingClientRect().bottom)).toBeLessThan(0);
   await page.getByRole("link", { name: "Back to top ↑", exact: true }).click();
@@ -140,7 +152,7 @@ test("normal-flow header leaves the viewport and footer navigation returns to th
 test("Portal demo respects reduced motion and supports manual play and pause", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const demo = page.locator(".hero-workbench");
+  const demo = page.locator(".project-portal");
   const video = demo.locator("video");
   await video.scrollIntoViewIfNeeded();
   await expect(video).not.toHaveAttribute("src");
@@ -149,33 +161,44 @@ test("Portal demo respects reduced motion and supports manual play and pause", a
   await expect.poll(() => video.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
   await demo.getByRole("button", { name: "Pause Portal demo" }).click();
   await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
-  const gif = demo.getByRole("link", { name: "Download GIF" });
-  await expect(gif).toHaveAttribute("href", "/projects/portal-demo.gif");
-  await expect(gif).toHaveAttribute("download", "");
-  expect((await page.request.head("/projects/portal-demo.gif")).status()).toBe(200);
 });
 
 test("Portal navigation plays when visible and pauses outside the viewport", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
-  const heroVideo = page.locator(".hero-workbench video");
-  await heroVideo.scrollIntoViewIfNeeded();
-  await expect.poll(() => heroVideo.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
-  const cardVideo = page.locator(".project-portal video");
-  await cardVideo.scrollIntoViewIfNeeded();
-  await expect.poll(() => heroVideo.evaluate((el) => el.paused)).toBe(true);
-  await expect.poll(() => cardVideo.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
+  const video = page.locator(".project-portal video");
+  await expect(video).not.toHaveAttribute("src");
+  await video.scrollIntoViewIfNeeded();
+  await expect.poll(() => video.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
+  await page.locator("#experience").scrollIntoViewIfNeeded();
+  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
+  await video.scrollIntoViewIfNeeded();
+  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(false);
   await page.locator(".project-portal").getByRole("button", { name: "Pause Portal demo" }).click();
-  await expect.poll(() => cardVideo.evaluate((el) => el.paused)).toBe(true);
+  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
 });
 
-test("an unavailable video leaves the Portal poster and GIF accessible", async ({ page }) => {
+test("an unavailable video leaves the Portal poster accessible", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.route("**/portal-demo.mp4", (route) => route.abort());
   await page.goto("/");
-  const demo = page.locator(".hero-workbench");
+  const demo = page.locator(".project-portal");
   await demo.getByRole("button", { name: "Play Portal demo" }).click();
   await expect(demo.locator(".demo-poster")).toBeVisible();
-  await expect(demo.getByRole("link", { name: "Download GIF" })).toBeVisible();
   await expect(demo).toContainText("Video unavailable");
+  await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
+});
+
+test("LabOps and Portal align their media and headings", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  for (const theme of ["light", "dark"]) {
+    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+    const geometry = await page.locator(".project-labops, .project-portal").evaluateAll((cards) => cards.map((card) => ({
+      mediaHeight: card.querySelector(".project-visual").getBoundingClientRect().height,
+      headingOffset: card.querySelector("h3").getBoundingClientRect().top - card.getBoundingClientRect().top,
+    })));
+    expect(Math.abs(geometry[0].mediaHeight - geometry[1].mediaHeight)).toBeLessThanOrEqual(1);
+    expect(Math.abs(geometry[0].headingOffset - geometry[1].headingOffset)).toBeLessThanOrEqual(1);
+  }
 });

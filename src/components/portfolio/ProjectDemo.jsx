@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { FiDownload, FiPause, FiPlay } from 'react-icons/fi';
+import { FiPause, FiPlay } from 'react-icons/fi';
 
 export default function ProjectDemo({ project }) {
   const videoRef = useRef(null);
@@ -65,9 +65,8 @@ export default function ProjectDemo({ project }) {
       )}
       <div className="demo-controls">
         {!failed && <button className="text-link demo-toggle" type="button" onClick={togglePlayback} aria-label={playing ? 'Pause Portal demo' : 'Play Portal demo'}>{playing ? <FiPause aria-hidden="true" /> : <FiPlay aria-hidden="true" />}{playing ? 'Pause demo' : 'Play demo'}</button>}
-        <a className="text-link" href={project.gifURL} download><FiDownload aria-hidden="true" /> Download GIF</a>
       </div>
-      <figcaption id={captionId}>{failed ? 'Video unavailable. The GIF is available to download.' : 'Recorded navigation · Original French interface'}</figcaption>
+      <figcaption id={captionId}>{failed ? 'Video unavailable. A still preview is shown.' : 'Recorded navigation · Original French interface'}</figcaption>
     </figure>
   );
 }

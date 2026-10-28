@@ -21,21 +21,30 @@ Other servers can be opened through the dashboard’s port field.
 
 ## Visual direction
 
-The palette and typography follow [LabOps Portal](https://github.com/bingops-com/portal):
-cobalt `#1443D6`, navy `#0A1B44`, mint `#8AF2BF`, ground `#EEF2FB`, and white
-surfaces, with matching dark theme tokens. Bricolage Grotesque and Onest are
-self-hosted with their OFL licences.
+The portfolio leads with Corentin’s name, portrait, DevOps/cybersecurity focus and
+professional background. The hero links to experience first; personal projects
+follow the career section. The portrait is the original 400 × 400 photograph
+provided by Corentin, stored locally at `public/profile/corentin-guyon.jpg`.
+It has a narrow rectangular frame. Provenance is recorded in
+`public/profile/sources.json`; signed, expiring image URLs are not embedded in the page.
 
-The [EinCode Digital Lab reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X)
-informs the personal digital lab concept. The current layout uses typography,
-project descriptions, software platform illustrations and a recorded Portal navigation demo.
-The header scrolls with the page; footer section links and “Back to top” provide return navigation.
-The mobile menu expands within the page. A short entrance animation and
-interaction transitions respect `prefers-reduced-motion`.
+The palette combines graphite `#202124`, pearl `#F2F3F1`, and dark blue `#0A1B44`,
+with separate dark theme tokens. The header, hero and contact section all respond
+to the selected theme. The non-sticky header scrolls with the page. Bricolage
+Grotesque and Onest are self-hosted with their OFL licences.
 
-SII, Thales, Radio France and IPSSI logos retain their original colours.
-Local assets and their provenance are recorded in `public/brands/sources.json`.
-SII is the employer, Thales the client, and IPSSI the school.
+Section structures vary: a portrait introduction, a professional timeline on
+graphite, aligned project previews, a compact security case study, open skill
+columns, article rows and a full-width contact section. LabOps and Portal share
+a media aspect ratio so their headings align, including the video controls.
+The opening composition takes inspiration from the
+[EinCode reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X), with
+Corentin as the subject. Project artwork and the actual Portal interface retain
+their own colours.
+
+SII, Thales, Radio France and IPSSI logos retain their original colours. Local
+assets and provenance are recorded in `public/brands/sources.json`. namR uses a
+text wordmark. SII is the employer, Thales the client, and IPSSI the school.
 
 ## Content
 
@@ -51,8 +60,8 @@ LabOps and Portal descriptions are based on their repositories:
 [Cluster API](https://github.com/bingops-com/labops/blob/master/capi/README.md),
 [Portal](https://github.com/bingops-com/portal).
 
-Corentin confirmed his permanent employment at SII and current assignment at
-Thales. This appears in the hero, experience and metadata. Radio France comes
+Corentin confirmed his permanent employment at SII, current assignment at
+Thales, and previous experience at namR and Radio France. Upgrade Dental is excluded. This appears in the hero, experience and metadata. Radio France comes
 from the previous portfolio; the Nice area and IPSSI programme (2023–2025)
 come from the [provided LinkedIn profile](https://www.linkedin.com/in/corentin-guyon/).
 Unconfirmed job titles, experience dates and detailed responsibilities are omitted.
@@ -82,14 +91,14 @@ unused draft.
 captured on 28 October 2026. It navigates through Home, Cluster and Reliability,
 scrolls the cluster page and returns home in about 12 seconds. Its interface
 remains in its original French language, and the data reflects the capture time.
-`portal-demo-poster.jpg` is the starting dashboard image; `portal-demo.gif` is a
-looping downloadable GIF of the same recording. The portfolio serves the smaller
-MP4 inline, with play/pause controls, lazy loading and playback only while visible.
-Reduced-motion and data-saving preferences disable automatic playback; manual
-play remains available. The poster and GIF link remain available if video loading fails.
+`portal-demo-poster.jpg` is the starting dashboard image. The MP4 is shown in the
+Portal project card and detail dialog, with play/pause controls, lazy loading and
+playback only while visible. Reduced-motion and data-saving preferences disable
+automatic playback; manual play remains available. A still preview is shown if
+video loading fails. There is no GIF download link or GIF asset in the portfolio.
 
 To refresh the recording, install Chromium for Playwright and a full FFmpeg build
-with H.264 and GIF support, then run:
+with H.264 support, then run:
 
 ```sh
 npx playwright install ffmpeg
@@ -103,10 +112,6 @@ is held temporarily and removed after encoding. Review the captured content befo
 publishing new media. The previous static capture script remains available as
 `npm run capture:portal`.
 
-The opening section follows the EinCode reference’s personal digital workshop
-composition: dark navy field, a short typing reveal, a compact workbench window,
-and real project links. The workbench contains the Portal recording. The header
-scrolls with the page, and reduced motion disables the heading reveal.
 
 ## Contact
 
@@ -126,7 +131,7 @@ npm run test:e2e
 ```
 
 Browser checks cover desktop and mobile layouts, filtering, keyboard access to
-project details, navigation, theme persistence, unavailable storage, reduced
+project details, navigation, visual theme changes, aligned previews, unavailable storage, reduced
 motion, horizontal overflow and contact. EmailJS requests are intercepted, so
 no real messages are sent. Configured builds test delivery failure, message
 preservation, retry and confirmation; unconfigured builds test the LinkedIn fallback.

@@ -7,7 +7,7 @@ const logos = {
 
 export default function BrandLogo({ name, className = '' }) {
   const logo = logos[name];
-  if (!logo) return <span className={className}>{name}</span>;
+  if (!logo) return <span className={`brand-logo brand-logo-wordmark ${className}`}>{name}</span>;
   return (
     <span className={`brand-logo brand-logo-${logo.className} ${className}`}>
       <img src={logo.src} alt={`${name} logo`} width={logo.width} height={logo.height} />

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiArrowUpRight, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 import profile from "../../portfolio.json";
 
-const links = [["#projects", "Projects"], ["#experience", "Experience"], ["#stacks", "Skills"], ["#articles", "Articles"]];
+const links = [["#experience", "Experience"], ["#projects", "Projects"], ["#stacks", "Skills"], ["#articles", "Articles"]];
 
 function readTheme() {
   try {
@@ -21,6 +21,7 @@ export default function PortfolioNav() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#18191b" : "#f2f3f1");
     document.documentElement.classList.toggle("dark", theme === "dark");
     try { localStorage.setItem("theme", theme); } catch { /* The theme still works without storage. */ }
   }, [theme]);
