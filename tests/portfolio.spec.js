@@ -18,11 +18,18 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   for (const company of ["Radio France", "namR"]) await expect(page.getByRole("heading", { name: company, exact: true })).toBeVisible();
   await expect(page.locator("main")).not.toContainText("Upgrade Dental");
   await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
-  await expect(page.locator(".hero-employment")).toHaveText("Permanent employee at SII, currently on assignment at Thales.");
+  await expect(page.locator(".employment-employer")).toHaveText("SII");
+  await expect(page.locator(".employment-client")).toHaveText("Thales");
+  await expect(page.locator(".hero-employment")).toContainText("Permanent employment");
+  await expect(page.locator(".experience-current .client-assignment")).toContainText("Client assignment");
+  await expect(page.locator(".experience-current .client-assignment")).toContainText("Thales");
+  const cveImage = page.locator(".project-security .project-image");
+  await expect(cveImage).toBeVisible();
   await expect(page.locator('a[href="https://github.com/bingops-com/portal"]').first()).toBeVisible();
   await expect(page.locator("main")).not.toContainText("22-year-old");
   await page.evaluate(() => document.fonts.ready);
   await page.locator("img").evaluateAll((images) => Promise.all(images.map((image) => { image.loading = "eager"; return image.decode().catch(() => {}); })));
+  await expect.poll(() => cveImage.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
   await expect(page.locator(".project-portal video")).toHaveCount(0);
   await expect(page.getByRole("img", { name: /Animated wireframe of Portal/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Monitoring provisioning", exact: true })).toHaveCount(0);
@@ -248,4 +255,18 @@ test("Portal wireframe animates in view and respects reduced motion", async ({ p
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect.poll(() => wireframe.locator(".pw-overview").evaluate((el) => Number(getComputedStyle(el).opacity))).toBe(1);
   expect(await wireframe.locator(".pw-cluster").evaluate((el) => Number(getComputedStyle(el).opacity))).toBe(0);
+});
+
+
+test("the portrait is visible beside the name on mobile", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const portrait = await page.locator(".hero-portrait").boundingBox();
+  const name = await page.getByRole("heading", { level: 1 }).boundingBox();
+  expect(portrait.y).toBeLessThan(name.y + name.height);
+  expect(portrait.x).toBeGreaterThan(name.x + name.width - 1);
+  expect(portrait.width).toBeLessThanOrEqual(120);
+  expect(portrait.y + portrait.height).toBeLessThan(400);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

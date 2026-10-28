@@ -18,7 +18,7 @@ export default function CareerSection() {
                 {experience.role && <p className="entry-role">{experience.role}</p>}
                 {experience.location && <p className="entry-company">{experience.location}</p>}
                 {experience.period && <p className="entry-period">{experience.period}</p>}
-                {experience.client ? <div className="client-assignment"><span>On assignment at</span><BrandLogo name={experience.client} /></div> : experience.description && <p className="entry-description">{experience.description}</p>}
+                {experience.client ? <div className="client-assignment"><BrandLogo name={experience.client} /><div><p className="assignment-label">Client assignment</p><p className="assignment-name">{experience.client}</p></div></div> : experience.description && <p className="entry-description">{experience.description}</p>}
                 {experience.technologies.length > 0 && <ul className="tag-list">{experience.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul>}
               </div>
             </article>

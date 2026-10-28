@@ -1,6 +1,5 @@
 import { FiArrowDown, FiArrowUpRight, FiGithub, FiLinkedin, FiMapPin } from 'react-icons/fi';
 import profile from '../../portfolio.json';
-import BrandLogo from './BrandLogo';
 import TerminalRole from './TerminalRole';
 
 export default function Hero() {
@@ -23,8 +22,10 @@ export default function Hero() {
         </figure>
       </div>
       <div className="hero-bottom page-width">
-        <div className="hero-company-logos"><BrandLogo name="SII" /><span aria-hidden="true">↗</span><BrandLogo name="Thales" /></div>
-        <p className="hero-employment">{profile.employment.status}</p>
+        <dl className="hero-employment" aria-label="Current employment">
+          <div><dt>Employer</dt><dd><strong className="employment-employer">{profile.employment.employer}</strong><span>Permanent employment</span></dd></div>
+          <div><dt>Client assignment</dt><dd><strong className="employment-client">{profile.employment.client}</strong><span>Current assignment</span></dd></div>
+        </dl>
         <a className="hero-scroll" href="#experience">Get to know my background <FiArrowDown aria-hidden="true" /></a>
       </div>
     </section>

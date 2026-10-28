@@ -25,7 +25,8 @@ The portfolio leads with Corentin’s name, portrait, DevOps/cybersecurity focus
 professional background. The hero links to experience first; personal projects
 follow the career section. The portrait is the original 400 × 400 photograph
 provided by Corentin, stored locally at `public/profile/corentin-guyon.jpg`.
-It has a narrow rectangular frame. Provenance is recorded in
+It has a narrow rectangular frame and sits beside the name on small screens.
+Provenance is recorded in
 `public/profile/sources.json`; signed, expiring image URLs are not embedded in the page.
 
 The palette combines graphite `#202124`, pearl `#F2F3F1`, and dark blue `#0A1B44`,
@@ -36,7 +37,7 @@ Grotesque is reserved for wordmarks. Fonts are self-hosted with their OFL licenc
 new font provenance is recorded in `public/fonts/sources.json`.
 
 Section structures vary: a portrait introduction, a professional timeline on
-graphite, two compact project previews, a security research row, open skill
+graphite, two compact project previews, an illustrated security research row, open skill
 columns, article rows and a full-width contact section. Portal’s main preview is
 a code-native wireframe cycling through Overview, Cluster and Reliability; it
 shows layout only, with no fabricated operational metrics. Its animation pauses
@@ -56,7 +57,9 @@ their own colours.
 
 SII, Thales, Radio France and IPSSI logos retain their original colours. Local
 assets and provenance are recorded in `public/brands/sources.json`. namR uses a
-text wordmark. SII is the employer, Thales the client, and IPSSI the school.
+text wordmark. SII is the employer, Thales the client, and IPSSI the school. The hero uses
+separate labelled employer/client facts, and the career entry presents Thales
+as a distinct client assignment under the SII employment.
 
 ## Content
 
