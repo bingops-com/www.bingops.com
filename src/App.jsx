@@ -57,7 +57,7 @@ function App() {
             <div className="experience-list">
               {profile.experiences.map((experience) => (
                 <article className="experience-entry" key={experience.company + experience.role}>
-                  <span className="experience-mark" aria-hidden="true">rf.</span>
+                  <span className="experience-mark" aria-hidden="true">{experience.company.split(/\s+/).map((word) => word[0]).join("").slice(0, 2).toLowerCase()}.</span>
                   <div><p className="entry-type">Expérience professionnelle</p><h3>{experience.role}</h3><p className="entry-company">{experience.company}</p>
                     {experience.period && <p className="entry-period">{experience.period}</p>}
                     {experience.description && <p className="entry-description">{experience.description}</p>}
