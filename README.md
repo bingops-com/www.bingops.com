@@ -14,7 +14,8 @@ npm run dev
 `npm run preview` sert ce build localement.
 
 Dans le workspace Coder, `npm run dev` écoute sur `0.0.0.0:5173` et autorise
-le nom `5173.dev.lab.bingo`. Le serveur apparaît automatiquement dans
+les noms `5173.dev.lab.bingo` et `5173--main--lab--bingops.dev.lab.bingo`
+(le nom long transmis par le proxy Coder). Le serveur apparaît automatiquement dans
 [Dev](https://dev.lab.bingo/) et s’ouvre sur [le port 5173](https://5173.dev.lab.bingo/).
 Pour un autre serveur, saisir son port dans « Ouvrir un port » du dashboard.
 Les aperçus utilisent la session Coder et l’accès privé existant.

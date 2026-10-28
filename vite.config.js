@@ -7,6 +7,9 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
-    allowedHosts: ['5173.dev.lab.bingo'],
+    allowedHosts: [
+      '5173.dev.lab.bingo',
+      '5173--main--lab--bingops.dev.lab.bingo',
+    ],
   },
 })
