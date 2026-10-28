@@ -3,11 +3,12 @@ import { FiArrowUpRight, FiBookOpen, FiGithub, FiX } from "react-icons/fi";
 import projects from "../../projects.json";
 import profile from "../../portfolio.json";
 import ProjectDemo from "./ProjectDemo";
+import PortalWireframe from "./PortalWireframe";
 
 const categories = ["All", ...new Set(projects.map((project) => project.category))];
 
-function ProjectVisual({ project, onExpand, expanded = false }) {
-  if (project.videoURL) return <ProjectDemo project={project} onExpand={onExpand} expanded={expanded} />;
+function ProjectVisual({ project, expanded = false }) {
+  if (project.videoURL) return expanded ? <ProjectDemo project={project} expanded /> : <PortalWireframe />;
   return <img className="project-image" src={project.imageURL} alt={project.imageAlt} loading="lazy" width="960" height="600" />;
 }
 
@@ -38,7 +39,7 @@ export default function ProjectShowcase() {
       </div>
       <div className="project-grid">{visible.map((project) => (
         <article className={"project-card project-" + project.kind} key={project.title}>
-          {project.imageURL && <div className={`project-visual${project.imageType === "illustration" ? " project-illustration" : ""}`}><ProjectVisual project={project} onExpand={() => setSelected(project)} /></div>}
+          {project.imageURL && <div className={`project-visual${project.imageType === "illustration" ? " project-illustration" : ""}`}><ProjectVisual project={project} /></div>}
           <div className="project-card-copy"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p>{project.content}</p><ul className="tag-list">{project.stacks.map((stack) => <li key={stack}>{stack}</li>)}</ul><div className="project-actions"><button type="button" className="text-link" onClick={() => setSelected(project)} aria-label={"Explore " + project.title}>Explore project <FiArrowUpRight aria-hidden="true" /></button><a className="icon-button" href={project.link} target="_blank" rel="noreferrer" aria-label={"Source code for " + project.title + " on GitHub"}><FiGithub aria-hidden="true" /></a></div></div>
         </article>
       ))}</div>

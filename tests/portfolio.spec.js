@@ -23,7 +23,8 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.locator("main")).not.toContainText("22-year-old");
   await page.evaluate(() => document.fonts.ready);
   await page.locator("img").evaluateAll((images) => Promise.all(images.map((image) => { image.loading = "eager"; return image.decode().catch(() => {}); })));
-  await expect(page.locator(".project-portal video")).toHaveAttribute("poster", "/projects/portal-demo-poster.jpg");
+  await expect(page.locator(".project-portal video")).toHaveCount(0);
+  await expect(page.getByRole("img", { name: /Animated wireframe of Portal/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Monitoring provisioning", exact: true })).toHaveCount(0);
   for (const theme of ["light", "dark"]) {
     await page.evaluate((value) => {
@@ -153,7 +154,8 @@ test("normal-flow header leaves the viewport and footer navigation returns to th
 test("Portal demo respects reduced motion and supports manual play and pause", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const demo = page.locator(".project-portal");
+  await page.getByRole("button", { name: "Explore Portal", exact: true }).click();
+  const demo = page.getByRole("dialog");
   const video = demo.locator("video");
   await video.scrollIntoViewIfNeeded();
   await expect(video).not.toHaveAttribute("src");
@@ -164,41 +166,41 @@ test("Portal demo respects reduced motion and supports manual play and pause", a
   await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
 });
 
-test("Portal navigation plays when visible and pauses outside the viewport", async ({ page }) => {
+test("Portal playback is scoped to project details and stops on close", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
-  const video = page.locator(".project-portal video");
-  await expect(video).not.toHaveAttribute("src");
+  await expect(page.locator("video")).toHaveCount(0);
+  await page.getByRole("button", { name: "Explore Portal", exact: true }).click();
+  const video = page.getByRole("dialog").locator("video");
   await video.scrollIntoViewIfNeeded();
   await expect.poll(() => video.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
-  await page.locator("#experience").scrollIntoViewIfNeeded();
-  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
-  await video.scrollIntoViewIfNeeded();
-  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(false);
-  await page.locator(".project-portal").getByRole("button", { name: "Pause Portal demo" }).click();
-  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(true);
+  const media = await video.elementHandle();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("video")).toHaveCount(0);
+  await expect.poll(() => media.evaluate((el) => el.paused)).toBe(true);
 });
 
 test("an unavailable video leaves the Portal poster accessible", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.route("**/portal-demo.mp4", (route) => route.abort());
   await page.goto("/");
-  const demo = page.locator(".project-portal");
+  await page.getByRole("button", { name: "Explore Portal", exact: true }).click();
+  const demo = page.getByRole("dialog");
   await demo.getByRole("button", { name: "Play Portal demo" }).click();
   await expect(demo.locator(".demo-poster")).toBeVisible();
   await expect(demo).toContainText("Video unavailable");
   await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
 });
 
-test("Portal has a large preview and an expanded video viewer", async ({ page }, testInfo) => {
+test("Portal wireframe opens project details with the recorded demo", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const preview = page.locator(".project-portal video");
+  const preview = page.getByRole("img", { name: /Animated wireframe of Portal/ });
   await preview.scrollIntoViewIfNeeded();
-  const initialWidth = await preview.evaluate((video) => video.getBoundingClientRect().width);
-  if (testInfo.project.name === "desktop") expect(initialWidth).toBeGreaterThan(700);
-  const expand = page.getByRole("button", { name: "Enlarge Portal demo" });
-  await expand.click();
+  const initialWidth = await preview.evaluate((el) => el.getBoundingClientRect().width);
+  if (testInfo.project.name === "desktop") expect(initialWidth).toBeLessThan(650);
+  const explore = page.getByRole("button", { name: "Explore Portal", exact: true });
+  await explore.click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
   const video = dialog.locator("video");
@@ -213,29 +215,37 @@ test("Portal has a large preview and an expanded video viewer", async ({ page },
   await expect.poll(() => video.evaluate((el) => el.paused)).toBe(false);
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
-  await expect(expand).toBeFocused();
+  await expect(explore).toBeFocused();
 });
 
-test("the terminal types coloured skills, pauses and respects reduced motion", async ({ page }) => {
+test("the inline heading types coloured tools and soft skills", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   const terminal = page.getByRole("group", { name: "DevOps skills" });
   const technology = terminal.locator(".terminal-tech");
   await expect(technology).toHaveText("Terraform", { timeout: 4000 });
+  await expect(terminal.locator(".terminal-role-line")).toHaveText("Terraform");
   const terraformColour = await technology.evaluate((el) => getComputedStyle(el).color);
   await expect(technology).toHaveText("Kubernetes", { timeout: 10000 });
   const kubernetesColour = await technology.evaluate((el) => getComputedStyle(el).color);
   expect(terraformColour).not.toBe(kubernetesColour);
-  await terminal.getByRole("button", { name: "Pause typing animation" }).click();
-  const paused = await terminal.locator(".terminal-role-line").textContent();
-  await page.waitForTimeout(300);
-  await expect(terminal.locator(".terminal-role-line")).toHaveText(paused);
-  await terminal.getByRole("button", { name: "Resume typing animation" }).click();
-  await expect(terminal.locator(".terminal-role-line")).not.toHaveText(paused, { timeout: 5000 });
-  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(technology).toHaveText("Communication", { timeout: 10000 });
   await expect(terminal.getByRole("button")).toHaveCount(0);
-  const staticText = await terminal.locator(".terminal-role-line").textContent();
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(terminal.locator(".terminal-role-line")).toHaveText("Communication");
   await page.waitForTimeout(200);
-  await expect(terminal.locator(".terminal-role-line")).toHaveText(staticText);
+  await expect(terminal.locator(".terminal-role-line")).toHaveText("Communication");
   expect(await terminal.locator(".typing-caret").evaluate((el) => getComputedStyle(el).animationName)).toBe("none");
+});
+
+test("Portal wireframe animates in view and respects reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const wireframe = page.locator(".portal-wireframe");
+  await wireframe.scrollIntoViewIfNeeded();
+  await expect.poll(() => wireframe.locator(".pw-overview").evaluate((el) => Number(getComputedStyle(el).opacity))).toBeGreaterThan(0.9);
+  await expect.poll(() => wireframe.locator(".pw-cluster").evaluate((el) => Number(getComputedStyle(el).opacity)), { timeout: 7000 }).toBeGreaterThan(0.9);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect.poll(() => wireframe.locator(".pw-overview").evaluate((el) => Number(getComputedStyle(el).opacity))).toBe(1);
+  expect(await wireframe.locator(".pw-cluster").evaluate((el) => Number(getComputedStyle(el).opacity))).toBe(0);
 });

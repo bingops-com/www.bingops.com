@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { FiMaximize2, FiPause, FiPlay } from 'react-icons/fi';
+import { FiPause, FiPlay } from 'react-icons/fi';
 
-export default function ProjectDemo({ project, onExpand, expanded = false }) {
+export default function ProjectDemo({ project, expanded = false }) {
   const videoRef = useRef(null);
   const captionId = useId();
   const [inView, setInView] = useState(false);
@@ -34,7 +34,7 @@ export default function ProjectDemo({ project, onExpand, expanded = false }) {
     if (!video) return;
     const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.25 });
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); video.pause(); };
   }, []);
 
   useEffect(() => {
@@ -76,7 +76,6 @@ export default function ProjectDemo({ project, onExpand, expanded = false }) {
       )}
       <div className="demo-controls">
         {!failed && <button className="text-link demo-toggle" type="button" onClick={togglePlayback} aria-label={playing ? 'Pause Portal demo' : 'Play Portal demo'}>{playing ? <FiPause aria-hidden="true" /> : <FiPlay aria-hidden="true" />}{playing ? 'Pause demo' : 'Play demo'}</button>}
-        {onExpand && <button className="text-link demo-expand" type="button" onClick={onExpand} aria-label="Enlarge Portal demo"><FiMaximize2 aria-hidden="true" /> Enlarge demo</button>}
       </div>
       <figcaption id={captionId}>{failed ? 'Video unavailable. A still preview is shown.' : 'Recorded navigation · Original French interface'}</figcaption>
     </figure>

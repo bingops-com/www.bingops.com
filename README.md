@@ -36,13 +36,19 @@ Grotesque is reserved for wordmarks. Fonts are self-hosted with their OFL licenc
 new font provenance is recorded in `public/fonts/sources.json`.
 
 Section structures vary: a portrait introduction, a professional timeline on
-graphite, a wide Portal video feature, a compact LabOps case study, a security research
-row, open skill columns, article rows and a full-width contact section. Portal
-has a larger native-ratio preview and an “Enlarge demo” button opening a wide
-dialog with native video controls and fullscreen support.
-The skills line types Terraform, Kubernetes, Argo CD, Go and security phrases
-in distinct colours. It has pause/resume controls and a static complete line
-when reduced motion is requested. The portrait responds subtly on hover.
+graphite, two compact project previews, a security research row, open skill
+columns, article rows and a full-width contact section. Portal’s main preview is
+a code-native wireframe cycling through Overview, Cluster and Reliability; it
+shows layout only, with no fabricated operational metrics. Its animation pauses
+outside the viewport and becomes a static overview when reduced motion is requested.
+“Explore project” opens the real recording in a wide detail dialog with native
+video controls and fullscreen support. No video is mounted on the main page.
+
+A large inline skills line types only names: Terraform, Kubernetes, Communication,
+Argo CD, Agile, Go, Teamwork, Python and Problem solving. Technology colours are
+distinct, including purple for Terraform and blue for Kubernetes. There is no
+terminal box, prompt or typing control. Reduced motion shows a complete static
+skill. The portrait has a simple frame and responds subtly on hover.
 The opening composition takes inspiration from the
 [EinCode reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X), with
 Corentin as the subject. Project artwork and the actual Portal interface retain
@@ -98,8 +104,8 @@ captured on 28 October 2026 at 1280 × 900. It navigates through Home, Cluster a
 scrolls the cluster page and returns home in about 12 seconds. Its interface
 remains in its original French language, and the data reflects the capture time.
 `portal-demo-poster.jpg` is the starting dashboard image. The MP4 is shown in the
-wide Portal project feature and expanded detail dialog, with play/pause controls, lazy loading and
-playback only while visible. Reduced-motion and data-saving preferences disable
+expanded Portal detail dialog only, with play/pause controls, lazy loading and
+playback only while visible. Closing the detail dialog pauses and unmounts the video. Reduced-motion and data-saving preferences disable
 automatic playback; manual play remains available. A still preview is shown if
 video loading fails. There is no GIF download link or GIF asset in the portfolio.
 
@@ -137,7 +143,7 @@ npm run test:e2e
 ```
 
 Browser checks cover desktop and mobile layouts, filtering, keyboard access to
-project details, navigation, visual theme changes, expanded video viewing, typed skills, unavailable storage, reduced
+project details, navigation, visual theme changes, project-only video viewing, animated wireframes, typed tools and soft skills, unavailable storage, reduced
 motion, horizontal overflow and contact. EmailJS requests are intercepted, so
 no real messages are sent. Configured builds test delivery failure, message
 preservation, retry and confirmation; unconfigured builds test the LinkedIn fallback.
