@@ -5,12 +5,13 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("CorentinGuyon");
-  await expect(page.locator(".hero-role")).toHaveText("DevOps & cybersecurity");
+  await expect(page.getByRole("group", { name: "DevOps skills" })).toBeVisible();
+  await expect(page.locator(".hero-stage")).not.toContainText("Hi, I’m");
   const portrait = page.getByRole("img", { name: "Corentin Guyon", exact: true });
   await expect.poll(() => portrait.evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
   await expect(page.locator(".hero-stage video")).toHaveCount(0);
   await expect(page.locator(".project-card")).toHaveCount(3);
-  await expect(page.locator(".project-card h3")).toContainText(["LabOps", "Portal"]);
+  await expect(page.locator(".project-card h3")).toContainText(["Portal", "LabOps"]);
   await expect(page.locator(".article-card")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "SII", exact: true })).toBeVisible();
   await expect(page.locator(".education-entry")).toContainText("IPSSI");
@@ -189,16 +190,52 @@ test("an unavailable video leaves the Portal poster accessible", async ({ page }
   await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
 });
 
-test("LabOps and Portal align their media and headings", async ({ page }) => {
+test("Portal has a large preview and an expanded video viewer", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  for (const theme of ["light", "dark"]) {
-    await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
-    const geometry = await page.locator(".project-labops, .project-portal").evaluateAll((cards) => cards.map((card) => ({
-      mediaHeight: card.querySelector(".project-visual").getBoundingClientRect().height,
-      headingOffset: card.querySelector("h3").getBoundingClientRect().top - card.getBoundingClientRect().top,
-    })));
-    expect(Math.abs(geometry[0].mediaHeight - geometry[1].mediaHeight)).toBeLessThanOrEqual(1);
-    expect(Math.abs(geometry[0].headingOffset - geometry[1].headingOffset)).toBeLessThanOrEqual(1);
-  }
+  const preview = page.locator(".project-portal video");
+  await preview.scrollIntoViewIfNeeded();
+  const initialWidth = await preview.evaluate((video) => video.getBoundingClientRect().width);
+  if (testInfo.project.name === "desktop") expect(initialWidth).toBeGreaterThan(700);
+  const expand = page.getByRole("button", { name: "Enlarge Portal demo" });
+  await expand.click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  const video = dialog.locator("video");
+  expect(await video.evaluate((el) => el.controls)).toBe(true);
+  if (testInfo.project.name === "desktop") expect(await video.evaluate((el) => el.getBoundingClientRect().width)).toBeGreaterThan(initialWidth * 1.3);
+  await dialog.getByRole("button", { name: "Play Portal demo" }).click();
+  await expect.poll(() => video.evaluate((el) => el.currentTime)).toBeGreaterThan(0.1);
+  expect(await video.evaluate((el) => el.videoWidth)).toBe(1280);
+  await video.evaluate((el) => el.pause());
+  await expect(dialog.getByRole("button", { name: "Play Portal demo" })).toBeVisible();
+  await dialog.getByRole("button", { name: "Play Portal demo" }).click();
+  await expect.poll(() => video.evaluate((el) => el.paused)).toBe(false);
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(expand).toBeFocused();
+});
+
+test("the terminal types coloured skills, pauses and respects reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const terminal = page.getByRole("group", { name: "DevOps skills" });
+  const technology = terminal.locator(".terminal-tech");
+  await expect(technology).toHaveText("Terraform", { timeout: 4000 });
+  const terraformColour = await technology.evaluate((el) => getComputedStyle(el).color);
+  await expect(technology).toHaveText("Kubernetes", { timeout: 10000 });
+  const kubernetesColour = await technology.evaluate((el) => getComputedStyle(el).color);
+  expect(terraformColour).not.toBe(kubernetesColour);
+  await terminal.getByRole("button", { name: "Pause typing animation" }).click();
+  const paused = await terminal.locator(".terminal-role-line").textContent();
+  await page.waitForTimeout(300);
+  await expect(terminal.locator(".terminal-role-line")).toHaveText(paused);
+  await terminal.getByRole("button", { name: "Resume typing animation" }).click();
+  await expect(terminal.locator(".terminal-role-line")).not.toHaveText(paused, { timeout: 5000 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(terminal.getByRole("button")).toHaveCount(0);
+  const staticText = await terminal.locator(".terminal-role-line").textContent();
+  await page.waitForTimeout(200);
+  await expect(terminal.locator(".terminal-role-line")).toHaveText(staticText);
+  expect(await terminal.locator(".typing-caret").evaluate((el) => getComputedStyle(el).animationName)).toBe("none");
 });

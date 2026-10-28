@@ -30,14 +30,19 @@ It has a narrow rectangular frame. Provenance is recorded in
 
 The palette combines graphite `#202124`, pearl `#F2F3F1`, and dark blue `#0A1B44`,
 with separate dark theme tokens. The header, hero and contact section all respond
-to the selected theme. The non-sticky header scrolls with the page. Onest is used for body copy and
-headings, with moderate weights and spacing. Bricolage Grotesque is reserved for
-wordmarks. Both fonts are self-hosted with their OFL licences.
+to the selected theme. The non-sticky header scrolls with the page. IBM Plex Sans is used for headings,
+JetBrains Mono for the animated skills line, and Onest for body copy. Bricolage
+Grotesque is reserved for wordmarks. Fonts are self-hosted with their OFL licences;
+new font provenance is recorded in `public/fonts/sources.json`.
 
 Section structures vary: a portrait introduction, a professional timeline on
-graphite, aligned project previews, a compact security case study, open skill
-columns, article rows and a full-width contact section. LabOps and Portal share
-a media aspect ratio so their headings align, including the video controls.
+graphite, a wide Portal video feature, a compact LabOps case study, a security research
+row, open skill columns, article rows and a full-width contact section. Portal
+has a larger native-ratio preview and an “Enlarge demo” button opening a wide
+dialog with native video controls and fullscreen support.
+The skills line types Terraform, Kubernetes, Argo CD, Go and security phrases
+in distinct colours. It has pause/resume controls and a static complete line
+when reduced motion is requested. The portrait responds subtly on hover.
 The opening composition takes inspiration from the
 [EinCode reference](https://v0.app/templates/eincode-digital-lab-NjOUgG6VT7X), with
 Corentin as the subject. Project artwork and the actual Portal interface retain
@@ -89,11 +94,11 @@ unused draft.
 ### Portal navigation recording
 
 `public/projects/portal-demo.mp4` is a real, muted recording of the running Portal,
-captured on 28 October 2026. It navigates through Home, Cluster and Reliability,
+captured on 28 October 2026 at 1280 × 900. It navigates through Home, Cluster and Reliability,
 scrolls the cluster page and returns home in about 12 seconds. Its interface
 remains in its original French language, and the data reflects the capture time.
 `portal-demo-poster.jpg` is the starting dashboard image. The MP4 is shown in the
-Portal project card and detail dialog, with play/pause controls, lazy loading and
+wide Portal project feature and expanded detail dialog, with play/pause controls, lazy loading and
 playback only while visible. Reduced-motion and data-saving preferences disable
 automatic playback; manual play remains available. A still preview is shown if
 video loading fails. There is no GIF download link or GIF asset in the portfolio.
@@ -102,14 +107,14 @@ To refresh the recording, install Chromium for Playwright and a full FFmpeg buil
 with H.264 support, then run:
 
 ```sh
-npx playwright install ffmpeg
 CHROMIUM=/usr/bin/chromium FFMPEG=/path/to/ffmpeg npm run capture:portal-demo
 ```
 
 The script uses the internal cluster service by default; set `PORTAL_CAPTURE_URL`
 for another accessible address. It starts an ephemeral unauthenticated browser
-session and records navigation without changing Portal configuration. Source video
-is held temporarily and removed after encoding. Review the captured content before
+session and records navigation without changing Portal configuration. Lossless PNG frames are captured with their original timestamps, then encoded
+once to H.264 at CRF 18 to keep interface text sharp. Temporary source frames
+are removed after encoding. Review the captured content before
 publishing new media. The previous static capture script remains available as
 `npm run capture:portal`.
 
@@ -132,7 +137,7 @@ npm run test:e2e
 ```
 
 Browser checks cover desktop and mobile layouts, filtering, keyboard access to
-project details, navigation, visual theme changes, aligned previews, unavailable storage, reduced
+project details, navigation, visual theme changes, expanded video viewing, typed skills, unavailable storage, reduced
 motion, horizontal overflow and contact. EmailJS requests are intercepted, so
 no real messages are sent. Configured builds test delivery failure, message
 preservation, retry and confirmation; unconfigured builds test the LinkedIn fallback.

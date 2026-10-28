@@ -1,15 +1,15 @@
 import { FiArrowDown, FiArrowUpRight, FiGithub, FiLinkedin, FiMapPin } from 'react-icons/fi';
 import profile from '../../portfolio.json';
 import BrandLogo from './BrandLogo';
+import TerminalRole from './TerminalRole';
 
 export default function Hero() {
   return (
     <section className="hero-stage" aria-labelledby="hero-title">
       <div className="hero page-width">
         <div className="hero-copy">
-          <p className="intro-name">Hi, I’m</p>
           <h1 id="hero-title">Corentin<br />Guyon</h1>
-          <p className="hero-role">DevOps &amp; cybersecurity</p>
+          <TerminalRole />
           <p className="hero-description">I bring infrastructure, development and security together. I automate deployments, build practical tools and share what I learn.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#experience">My experience <FiArrowDown aria-hidden="true" /></a>

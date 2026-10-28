@@ -1,29 +1,5 @@
 [
   {
-    "title": "LabOps",
-    "category": "Infrastructure",
-    "kind": "labops",
-    "content": "My lab infrastructure, versioned from end to end. Terraform provisions Proxmox and Talos, Cluster API manages the workload cluster, and Argo CD deploys applications.",
-    "stacks": [
-      "Kubernetes",
-      "Talos",
-      "Terraform",
-      "Cluster API",
-      "Argo CD",
-      "Proxmox"
-    ],
-    "link": "https://github.com/bingops-com/labops",
-    "documentation": "https://github.com/bingops-com/labops/blob/master/docs/rebuild.md",
-    "features": [
-      "An explicit lifecycle: Terraform for the management cluster, Cluster API for workloads.",
-      "Applications synced from Git with Argo CD, Helm and Kustomize.",
-      "Prometheus and Grafana for observability, Bitwarden for secrets, and PostgreSQL backups on R2."
-    ],
-    "imageURL": "/projects/labops-platform-v2.webp",
-    "imageAlt": "Conceptual LabOps platform illustration: Git and Argo CD deliver applications to a Kubernetes cluster on Terraform and Talos infrastructure, with observability.",
-    "imageType": "illustration"
-  },
-  {
     "title": "Portal",
     "category": "Applications",
     "kind": "portal",
@@ -46,6 +22,30 @@
     "imageURL": "/projects/portal-demo-poster.jpg",
     "imageAlt": "Portal dashboard showing the lab map, incidents and resource metrics in its original French interface.",
     "videoURL": "/projects/portal-demo.mp4"
+  },
+  {
+    "title": "LabOps",
+    "category": "Infrastructure",
+    "kind": "labops",
+    "content": "My lab infrastructure, versioned from end to end. Terraform provisions Proxmox and Talos, Cluster API manages the workload cluster, and Argo CD deploys applications.",
+    "stacks": [
+      "Kubernetes",
+      "Talos",
+      "Terraform",
+      "Cluster API",
+      "Argo CD",
+      "Proxmox"
+    ],
+    "link": "https://github.com/bingops-com/labops",
+    "documentation": "https://github.com/bingops-com/labops/blob/master/docs/rebuild.md",
+    "features": [
+      "An explicit lifecycle: Terraform for the management cluster, Cluster API for workloads.",
+      "Applications synced from Git with Argo CD, Helm and Kustomize.",
+      "Prometheus and Grafana for observability, Bitwarden for secrets, and PostgreSQL backups on R2."
+    ],
+    "imageURL": "/projects/labops-platform-v2.webp",
+    "imageAlt": "Conceptual LabOps platform illustration: Git and Argo CD deliver applications to a Kubernetes cluster on Terraform and Talos infrastructure, with observability.",
+    "imageType": "illustration"
   },
   {
     "title": "CVE-2025-1974",

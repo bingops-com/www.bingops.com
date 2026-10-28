@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { FiPause, FiPlay } from 'react-icons/fi';
+import { FiMaximize2, FiPause, FiPlay } from 'react-icons/fi';
 
-export default function ProjectDemo({ project }) {
+export default function ProjectDemo({ project, onExpand, expanded = false }) {
   const videoRef = useRef(null);
   const captionId = useId();
   const [inView, setInView] = useState(false);
@@ -46,6 +46,16 @@ export default function ProjectDemo({ project }) {
     } else video.pause();
   }, [autoAllowed, failed, inView, loaded, manualPlay, userPaused]);
 
+  function handlePlay() {
+    setPlaying(true);
+    if (expanded) { setManualPlay(true); setUserPaused(false); }
+  }
+
+  function handlePause() {
+    setPlaying(false);
+    if (expanded && inView) { setManualPlay(false); setUserPaused(true); }
+  }
+
   function togglePlayback() {
     if (playing) {
       setManualPlay(false);
@@ -55,16 +65,18 @@ export default function ProjectDemo({ project }) {
       setUserPaused(false);
       setManualPlay(true);
       setLoaded(true);
+      if (loaded) videoRef.current?.play().catch(() => setPlaying(false));
     }
   }
 
   return (
     <figure className="project-demo">
-      {failed ? <img className="demo-poster" src={project.imageURL} alt={project.imageAlt} width="1440" height="1000" /> : (
-        <video ref={videoRef} className="project-demo-video" src={loaded ? project.videoURL : undefined} poster={project.imageURL} muted loop playsInline preload="none" width="1440" height="1000" aria-label="Portal navigation demo" aria-describedby={captionId} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onError={() => setFailed(true)} />
+      {failed ? <img className="demo-poster" src={project.imageURL} alt={project.imageAlt} width="1280" height="900" /> : (
+        <video ref={videoRef} className="project-demo-video" src={loaded ? project.videoURL : undefined} poster={project.imageURL} muted loop playsInline controls={expanded} preload="none" width="1280" height="900" aria-label="Portal navigation demo" aria-describedby={captionId} onPlay={handlePlay} onPause={handlePause} onError={() => setFailed(true)} />
       )}
       <div className="demo-controls">
         {!failed && <button className="text-link demo-toggle" type="button" onClick={togglePlayback} aria-label={playing ? 'Pause Portal demo' : 'Play Portal demo'}>{playing ? <FiPause aria-hidden="true" /> : <FiPlay aria-hidden="true" />}{playing ? 'Pause demo' : 'Play demo'}</button>}
+        {onExpand && <button className="text-link demo-expand" type="button" onClick={onExpand} aria-label="Enlarge Portal demo"><FiMaximize2 aria-hidden="true" /> Enlarge demo</button>}
       </div>
       <figcaption id={captionId}>{failed ? 'Video unavailable. A still preview is shown.' : 'Recorded navigation · Original French interface'}</figcaption>
     </figure>
