@@ -84,6 +84,10 @@ test("le formulaire conserve le message après un échec et confirme l’envoi r
   let requests = 0;
   await page.route("https://api.emailjs.com/**", async (route) => {
     requests += 1;
+    const body = route.request().postData();
+    expect(body).toContain("Alex Martin");
+    expect(body).toContain("alex@example.com");
+    expect(body).toContain(message);
     await route.fulfill({ status: requests === 1 ? 500 : 200, contentType: "text/plain", body: requests === 1 ? "Unavailable" : "OK" });
   });
   await page.getByLabel("Ton nom", { exact: true }).fill("Alex Martin");
