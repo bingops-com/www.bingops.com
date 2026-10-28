@@ -32,6 +32,7 @@ function App() {
               <a className="text-link" href={profile.github} target="_blank" rel="noreferrer">Mon GitHub <FiGithub aria-hidden="true" /></a>
             </div>
             <p className="hero-location"><FiMapPin aria-hidden="true" /> {profile.location}</p>
+            <p className="hero-employment"><span className="employment-dot" aria-hidden="true" /><span>{profile.employment.status}</span></p>
           </div>
           <InfrastructureMap />
         </section>
@@ -58,7 +59,7 @@ function App() {
               {profile.experiences.map((experience) => (
                 <article className="experience-entry" key={experience.company + experience.role}>
                   <span className="experience-mark" aria-hidden="true">{experience.company.split(/\s+/).map((word) => word[0]).join("").slice(0, 2).toLowerCase()}.</span>
-                  <div><p className="entry-type">Expérience professionnelle</p><h3>{experience.role || experience.company}</h3><p className="entry-company">{experience.role ? experience.company : experience.location}</p>
+                  <div><p className="entry-type">Expérience professionnelle</p><h3>{experience.role || experience.company}</h3><p className="entry-company">{experience.contract || (experience.role ? experience.company : experience.location)}</p>
                     {experience.period && <p className="entry-period">{experience.period}</p>}
                     {experience.description && <p className="entry-description">{experience.description}</p>}
                     {experience.technologies.length > 0 && <ul className="tag-list">{experience.technologies.map((tech) => <li key={tech}>{tech}</li>)}</ul>}

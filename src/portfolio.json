@@ -7,11 +7,13 @@
   "blog": "https://blog.bingops.com",
   "experiences": [
     {
-      "company": "Thales",
+      "company": "SII",
       "role": null,
+      "contract": "CDI",
+      "client": "Thales",
       "location": "Sophia Antipolis, France",
       "period": null,
-      "description": null,
+      "description": "Actuellement en mission chez Thales.",
       "technologies": []
     },
     {
@@ -78,5 +80,11 @@
         "Nmap"
       ]
     }
-  ]
+  ],
+  "employment": {
+    "employer": "SII",
+    "contract": "CDI",
+    "client": "Thales",
+    "status": "En CDI chez SII, actuellement en mission chez Thales."
+  }
 }

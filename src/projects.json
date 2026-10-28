@@ -42,8 +42,8 @@
       "Des pages et widgets réorganisables, une palette de commandes et un mode kiosque.",
       "Un accès en édition protégé par OpenID Connect avec PKCE."
     ],
-    "imageURL": null,
-    "imageAlt": ""
+    "imageURL": "/projects/portal.jpg",
+    "imageAlt": "Capture réelle de Portal : état du cluster, carte du lab, incidents et métriques de ressources."
   },
   {
     "title": "Monitoring provisioning",

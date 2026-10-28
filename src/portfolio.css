@@ -68,6 +68,8 @@ body { margin: 0; background: var(--page); color: var(--ink); font-family: "IBM 
 .hero-description { max-width: 440px; color: var(--muted); font-size: 1.1rem; margin-top: 28px !important; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 34px; }
 .hero-location { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--muted); margin-top: 34px !important; }
+.hero-employment { display: flex; align-items: baseline; gap: 10px; max-width: 460px; margin-top: 12px !important; font-size: .875rem; color: var(--ink); }
+.employment-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .infra-map { background: var(--surface); border: 1px solid var(--line); border-radius: 16px 16px 64px 16px; position: relative; padding: 28px; }
 .infra-map-heading { display: flex; align-items: center; gap: 10px; font-size: .875rem; font-weight: 500; }
 .map-symbol { color: var(--accent); font-size: 1.2rem; }

@@ -13,6 +13,12 @@ npm run dev
 `npm run build` produit le site statique dans `dist/`.
 `npm run preview` sert ce build localement.
 
+Dans le workspace Coder, `npm run dev` écoute sur `0.0.0.0:5173` et autorise
+le nom `5173.dev.lab.bingo`. Le serveur apparaît automatiquement dans
+[Dev](https://dev.lab.bingo/) et s’ouvre sur [le port 5173](https://5173.dev.lab.bingo/).
+Pour un autre serveur, saisir son port dans « Ouvrir un port » du dashboard.
+Les aperçus utilisent la session Coder et l’accès privé existant.
+
 ## Contenu
 
 - `src/portfolio.json` : profil, expériences, formation, compétences et liens.
@@ -27,17 +33,30 @@ Les descriptions de LabOps et Portal proviennent de leurs dépôts :
 [Cluster API](https://github.com/bingops-com/labops/blob/master/capi/README.md),
 [Portal](https://github.com/bingops-com/portal).
 
-Le parcours reprend Radio France depuis la version précédente et les éléments
-publics indexés du [profil LinkedIn fourni](https://fr.linkedin.com/in/corentin-guyon) :
-Thales à Sophia Antipolis, localisation Nice et périphérie, et IPSSI (2023–2025).
-L’intitulé du poste Thales, ses dates, les missions et résultats restent à compléter
-depuis un CV ou des informations confirmées par Corentin. Les champs absents sont
-omis à l’affichage ; aucun rôle ou résultat n’est inventé.
+Le statut actuel est confirmé par Corentin : en CDI chez SII, actuellement en
+mission chez Thales. Il figure dans l’accueil, le parcours et les métadonnées.
+Radio France provient de la version précédente ; la région de Nice et IPSSI
+(2023–2025) proviennent du [profil LinkedIn fourni](https://fr.linkedin.com/in/corentin-guyon).
+L’intitulé du poste, les dates d’expériences et les missions détaillées restent
+à compléter quand ils seront connus ; les champs absents sont omis.
 
-Portal dispose d’un schéma fonctionnel explicitement légendé. Pour utiliser une
-vraie capture, ajouter `public/projects/portal.webp`, puis renseigner
-`imageURL: "/projects/portal.webp"` et un `imageAlt` descriptif dans son entrée.
-La capture remplace le schéma dans la carte et dans la fiche détaillée.
+### Capture de Portal
+
+`public/projects/portal.jpg` est une capture réelle du Portal en fonctionnement,
+réalisée le 28 octobre 2026. Elle remplace le schéma dans la carte et la fiche
+projet. Les indicateurs visibles correspondent à cet instant.
+
+Pour renouveler la capture depuis un environnement autorisé à lire le portail :
+
+```sh
+CHROMIUM=/usr/bin/chromium npm run capture:portal
+```
+
+Le script utilise par défaut le service interne du cluster. Pour une autre
+adresse accessible, définir `PORTAL_CAPTURE_URL`. Il ouvre une nouvelle session
+éphémère en thème clair, attend les widgets et capture le viewport 1600 × 1150.
+Il ne modifie aucune configuration de Portal. Ne pas utiliser une URL contenant
+un jeton ; vérifier le contenu visible avant de publier une nouvelle capture.
 
 ## Contact
 

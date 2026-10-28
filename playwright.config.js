@@ -1,4 +1,5 @@
 import { defineConfig } from "@playwright/test";
+import { env } from "node:process";
 
 export default defineConfig({
   testDir: "./tests",
@@ -9,6 +10,7 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:4173",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
+    launchOptions: env.CHROMIUM ? { executablePath: env.CHROMIUM, args: ["--no-sandbox"] } : {},
   },
   webServer: {
     command: "npm run preview -- --host 127.0.0.1 --port 4173 --strictPort",
