@@ -5,21 +5,23 @@ const linkedInContactURL = profile.linkedinMessage || profile.linkedin;
 
 export default function LinkedInContact() {
   return (
-    <div className="contact-form contact-fallback contact-linkedin">
-      <h3>Connect on LinkedIn.</h3>
-      <p>
-        Tell me about your project, your questions or what you have been
-        experimenting with.
-      </p>
-      <a
-        className="button button-primary"
-        href={linkedInContactURL}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <FiLinkedin aria-hidden="true" /> Message me on LinkedIn{" "}
+    <a
+      className="contact-network-link"
+      href={linkedInContactURL}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Message me on LinkedIn"
+    >
+      <span className="contact-network-icon">
+        <FiLinkedin aria-hidden="true" />
+      </span>
+      <span className="contact-network-copy">
+        <span>LinkedIn</span>
+        <strong>{profile.name}</strong>
+      </span>
+      <span className="contact-network-arrow">
         <FiArrowUpRight aria-hidden="true" />
-      </a>
-    </div>
+      </span>
+    </a>
   );
 }

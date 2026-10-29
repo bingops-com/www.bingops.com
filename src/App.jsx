@@ -56,7 +56,7 @@ function App() {
 
         <section id="contact" className="contact-section section-space" aria-labelledby="contact-title">
           <div className="page-width contact-layout" data-reveal>
-            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s connect.<FiArrowUpRight className="contact-arrow" aria-hidden="true" /></h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
+            <div className="contact-copy"><h2 id="contact-title">Let’s connect.</h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
             <LinkedInContact />
           </div>
         </section>

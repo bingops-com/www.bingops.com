@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { FiArrowUpRight } from "react-icons/fi";
 import profile from "../../portfolio.json";
 import BrandLogo from "./BrandLogo";
 import ExperienceContributions from "./ExperienceContributions";
@@ -26,14 +25,6 @@ export default function CareerSection() {
               background.
             </h2>
           </div>
-          <a
-            className="text-link"
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-          >
-            View my LinkedIn <FiArrowUpRight aria-hidden="true" />
-          </a>
         </div>
         <p className="career-summary">
           DevOps at Radio France, systems administration at namR, and now a
@@ -61,7 +52,9 @@ export default function CareerSection() {
               >
                 {experience.period && (
                   <p className="career-date" aria-label={experience.period}>
-                    {experience.period.split(" – ").map((date) => <span key={date}>{date}</span>)}
+                    {experience.period.split(" – ").map((date) => (
+                      <span key={date}>{date}</span>
+                    ))}
                   </p>
                 )}
                 <article

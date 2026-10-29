@@ -165,8 +165,10 @@ publishing new media. The previous static capture script remains available as
 
 ## Contact
 
-The contact section keeps its two-column layout (stacked on mobile). “Let’s
-connect” and the main contact action lead to Corentin’s LinkedIn profile. The
+The contact section uses an open navy composition with introductory text and a
+full-width LinkedIn action row, stacked on mobile. No inset contact card or
+standalone decorative arrow is used. “Let’s connect” and the main contact action
+lead to Corentin’s LinkedIn profile. The
 professional email remains visible. The active portfolio uses LinkedIn contact
 regardless of legacy EmailJS environment variables.
 

@@ -133,7 +133,7 @@ test("mobile navigation closes and links to the real blog", async ({ page }) => 
   await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
 });
 
-test("contact actions open LinkedIn and preserve the contact layout", async ({ page, context }) => {
+test("contact actions open LinkedIn from the open contact section", async ({ page, context }) => {
   await page.goto("/#contact");
   await expect(page.getByRole("heading", { name: "Let’s connect.", exact: true })).toBeVisible();
   await expect(page.locator(".contact-copy .contact-address")).toHaveText("travail.corentinguyon@gmail.com");
