@@ -85,7 +85,8 @@ Thales. His supplied CV provides the work-study roles, dates and responsibilitie
 at Radio France (Oct 2023–Sep 2025) and namR (Sep 2022–Sep 2023), plus the two
 IPSSI programmes. The major is “Cybersecurity & Cloud computing”; the Bachelor
 keeps its requested official title, “Administration Système & Sécurité Réseaux / secOps”.
-Upgrade Dental is excluded. The current SII start date and exact job title remain
+Upgrade Dental is excluded. Corentin confirmed his SII start date as February
+2026; the timeline displays “Feb 2026 – Today”. The exact SII job title remains
 unspecified. The CV’s older job-search introduction is superseded by his current
 employment. The professional email comes from the same supplied CV.
 Linked blog posts and the actual Portal interface may be in French; portfolio

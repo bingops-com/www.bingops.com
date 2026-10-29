@@ -31,6 +31,7 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.locator("main")).not.toContainText("Upgrade Dental");
   await expect(page.getByRole("link", { name: "Download GIF" })).toHaveCount(0);
   await expect(page.locator(".employment-employer")).toHaveText("SII");
+  await expect(page.locator(".career-period-current .career-date")).toHaveAttribute("aria-label", "Feb 2026 – Today");
   await expect(page.locator(".employment-client")).toHaveText("Thales");
   await expect(page.locator(".hero-employment")).toContainText("Permanent employment");
   await expect(page.locator(".experience-current .client-assignment")).toContainText("Client assignment");

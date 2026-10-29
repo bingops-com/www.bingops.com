@@ -94,7 +94,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .experience-entry { position: relative; display: flex; gap: 22px; padding: 32px 0; min-width: 0; }
 .career-period:first-child .experience-entry { padding-top: 0; }
 .experience-entry::before { content: ''; position: absolute; right: -80px; top: 47px; width: 68px; height: 1px; background: #7195c4; }
-.experience-current::before { top: 14px; background: var(--career-green); }
+.experience-current::before { top: 26px; background: var(--career-green); }
 .experience-content { flex: 1; min-width: 0; }
 .experience-content h3 { font-size: 1.9rem; }
 .entry-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -507,6 +507,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 
 /* One shared period connects a role and its degree. */
 .career-date { position: absolute; z-index: 2; top: 32px; left: 50%; transform: translateX(-50%); width: 112px; padding: 7px 9px; border: 1px solid #647fa5; border-radius: 8px; background: var(--career-bg); color: var(--career-blue); text-align: center; font-size: .75rem; font-weight: 600; line-height: 1.5; }
+.career-period-current .career-date { top: 0; border-color: #5c987c; color: var(--career-green); }
 .career-date span { display: block; }
 .career-date span + span::before { content: '– '; }
 .entry-role .entry-arrangement { color: var(--career-muted); font-size: .75rem; font-weight: 400; white-space: nowrap; }
