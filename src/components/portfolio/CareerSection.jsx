@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import profile from "../../portfolio.json";
 import BrandLogo from "./BrandLogo";
+import ExperienceContributions from "./ExperienceContributions";
 import useScrollReveal from "../../hooks/useScrollReveal";
 
 export default function CareerSection() {
@@ -58,6 +59,18 @@ export default function CareerSection() {
                     : "Current employment"
                 }
               >
+                <p
+                  className="career-date"
+                  aria-label={experience.period || "Present"}
+                >
+                  {experience.period ? (
+                    experience.period
+                      .split(" – ")
+                      .map((date) => <span key={date}>{date}</span>)
+                  ) : (
+                    <span>Present</span>
+                  )}
+                </p>
                 <article
                   className={`experience-entry${experience.contract ? " experience-current" : ""}`}
                   key={experience.company}
@@ -76,18 +89,18 @@ export default function CareerSection() {
                     </div>
                     <h3>{experience.company}</h3>
                     {experience.role && (
-                      <p className="entry-role">{experience.role}</p>
-                    )}
-                    {experience.arrangement && (
-                      <p className="entry-type entry-arrangement">
-                        {experience.arrangement}
+                      <p className="entry-role">
+                        {experience.role}
+                        {experience.arrangement && (
+                          <span className="entry-arrangement">
+                            {" "}
+                            · {experience.arrangement}
+                          </span>
+                        )}
                       </p>
                     )}
                     {experience.location && (
                       <p className="entry-company">{experience.location}</p>
-                    )}
-                    {experience.period && (
-                      <p className="entry-period">{experience.period}</p>
                     )}
                     {experience.client ? (
                       <div className="client-assignment">
@@ -105,20 +118,11 @@ export default function CareerSection() {
                       )
                     )}
                     {experience.highlights && (
-                      <ul className="experience-highlights">
-                        {experience.highlights.map((highlight) => (
-                          <li key={highlight}>{highlight}</li>
-                        ))}
-                      </ul>
-                    )}
-                    {experience.technologies.length > 0 && (
-                      <ul className="tag-list">
-                        {experience.technologies.map((tech) => (
-                          <li key={tech} data-technology={tech}>
-                            {tech}
-                          </li>
-                        ))}
-                      </ul>
+                      <ExperienceContributions
+                        company={experience.company}
+                        highlights={experience.highlights}
+                        technologies={experience.technologies}
+                      />
                     )}
                   </div>
                 </article>
@@ -136,9 +140,7 @@ export default function CareerSection() {
                       >
                         {education.title}
                       </h3>
-                      <p>
-                        {education.school} / {education.period}
-                      </p>
+                      <p>{education.school}</p>
                       <p className="education-location">{education.location}</p>
                       <p className="education-work-study">
                         Work-study at {experience.company}

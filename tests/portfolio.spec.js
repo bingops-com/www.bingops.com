@@ -21,11 +21,11 @@ test("projects, articles and content work on every screen", async ({ page }, tes
   await expect(page.getByRole("heading", { name: "Administration Système & Sécurité Réseaux / secOps", exact: true })).toBeVisible();
   const radio = page.locator(".experience-entry").filter({ has: page.getByRole("heading", { name: "Radio France", exact: true }) });
   await expect(radio).toContainText("DevOps Engineer");
-  await expect(radio).toContainText("Oct 2023 – Sep 2025");
-  await expect(radio).toContainText("Molecule and Goss");
+  await expect(page.locator(".career-period").filter({ has: radio }).locator(".career-date")).toHaveAttribute("aria-label", "Oct 2023 – Sep 2025");
+  await expect(radio).toContainText("Kubernetes clusters using Helm");
   const namr = page.locator(".experience-entry").filter({ has: page.getByRole("heading", { name: "namR", exact: true }) });
   await expect(namr).toContainText("Systems Administrator");
-  await expect(namr).toContainText("Sep 2022 – Sep 2023");
+  await expect(page.locator(".career-period").filter({ has: namr }).locator(".career-date")).toHaveAttribute("aria-label", "Sep 2022 – Sep 2023");
   await expect(namr).toContainText("Greenbone");
   for (const company of ["Radio France", "namR"]) await expect(page.getByRole("heading", { name: company, exact: true })).toBeVisible();
   await expect(page.locator("main")).not.toContainText("Upgrade Dental");
@@ -133,35 +133,49 @@ test("mobile navigation closes and links to the real blog", async ({ page }) => 
   await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
 });
 
-test("contact form preserves failed messages and confirms successful delivery", async ({ page }) => {
+test("contact actions open LinkedIn and preserve the contact layout", async ({ page, context }) => {
   await page.goto("/#contact");
-  const submit = page.getByRole("button", { name: "Send message" });
-  if (await submit.count() === 0) {
-    await expect(page.locator(".contact-fallback")).toBeVisible();
-    await expect(page.locator(".contact-fallback a")).toHaveAttribute("href", "mailto:travail.corentinguyon@gmail.com");
-    await expect(page.locator("#contact a")).toHaveCount(1);
-    return;
+  await expect(page.getByRole("heading", { name: "Let’s connect.", exact: true })).toBeVisible();
+  await expect(page.locator(".contact-copy .contact-address")).toHaveText("travail.corentinguyon@gmail.com");
+  const button = page.getByRole("link", { name: "Message me on LinkedIn", exact: true });
+  await expect(button).toHaveAttribute("href", "https://www.linkedin.com/in/corentin-guyon/");
+  await expect(button).toHaveAttribute("target", "_blank");
+  await expect(page.locator(".header-contact")).toHaveAttribute("href", "https://www.linkedin.com/in/corentin-guyon/");
+  await expect(page.locator(".header-contact")).toContainText("Let’s connect");
+  await context.route("https://www.linkedin.com/**", route => route.fulfill({ contentType: "text/html", body: "<title>LinkedIn destination</title>" }));
+  const popupPromise = page.waitForEvent("popup");
+  await button.click();
+  const popup = await popupPromise;
+  await expect(popup).toHaveURL("https://www.linkedin.com/in/corentin-guyon/");
+  await popup.close();
+});
+
+test("experience details expand with keyboard and retain all contributions", async ({ page }) => {
+  await page.goto("/#experience");
+  const period = page.getByRole("group", { name: /education and work-study at Radio France$/ });
+  await period.scrollIntoViewIfNeeded();
+  const details = period.locator(".experience-contributions");
+  const toggle = details.locator(".experience-details-toggle");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(details.locator(".experience-highlights > li")).toHaveCount(2);
+  const contribution = details.getByText("Tested Ansible roles and Docker images with Molecule and Goss.", { exact: true });
+  await expect(contribution).not.toBeVisible();
+  await toggle.focus();
+  await page.keyboard.press("Enter");
+  await expect(contribution).toBeVisible();
+  await expect(toggle).toContainText("Hide details");
+  await expect(details.locator(".experience-highlights > li")).toHaveCount(4);
+  await page.keyboard.press("Enter");
+  await expect(contribution).not.toBeVisible();
+  if (page.viewportSize().width <= 620) {
+    const logo = await period.locator(".experience-logo").boundingBox();
+    const company = await period.getByRole("heading", { name: "Radio France", exact: true }).boundingBox();
+    expect(company.x).toBeGreaterThan(logo.x + logo.width);
+    expect(company.y).toBeLessThan(logo.y + logo.height + 8);
+    for (const selector of [".hero-socials a", ".footer-navigation a", ".portfolio-footer nav a"]) {
+      for (const link of await page.locator(selector).all()) expect((await link.boundingBox()).height).toBeGreaterThanOrEqual(44);
+    }
   }
-  const message = "Hi Corentin, let’s talk about Kubernetes and your Portal project.";
-  let requests = 0;
-  await page.route("https://api.emailjs.com/**", async (route) => {
-    requests += 1;
-    const body = route.request().postData();
-    expect(body).toContain("Alex Martin");
-    expect(body).toContain("alex@example.com");
-    expect(body).toContain(message);
-    await route.fulfill({ status: requests === 1 ? 500 : 200, contentType: "text/plain", body: requests === 1 ? "Unavailable" : "OK" });
-  });
-  await page.getByLabel("Your name", { exact: true }).fill("Alex Martin");
-  await page.getByLabel("Email address").fill("alex@example.com");
-  await page.getByLabel("Your message", { exact: true }).fill(message);
-  await submit.click();
-  await expect(page.getByRole("alert")).toContainText("Sending failed");
-  await expect(page.getByLabel("Your message", { exact: true })).toHaveValue(message);
-  await submit.click();
-  await expect(page.getByRole("status").filter({ hasText: "Message sent" })).toBeVisible();
-  await expect(page.getByLabel("Your message", { exact: true })).toHaveValue("");
-  expect(requests).toBe(2);
 });
 
 test("accessibility preferences and blocked storage preserve content access", async ({ page }) => {

@@ -48,7 +48,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .button:hover { transform: translateY(-2px); }
 .portfolio .button-primary, .portfolio .button-small { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .button-small { min-height: 43px; padding: 10px 16px; font-size: .8rem; }
-.icon-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 43px; height: 43px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 1.1rem; }
+.icon-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 1.1rem; }
 .icon-button:hover { background: var(--tint); }
 .menu-toggle, .main-nav .mobile-contact { display: none; }
 .text-link { display: inline-flex; align-items: center; gap: 10px; font-size: .85rem; font-weight: 600; background: transparent; border: 0; padding: 0; text-align: left; }
@@ -87,15 +87,13 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .experience-section :focus-visible { outline-color: #b7ccf5; }
 .experience-layout { position: relative; }
 .experience-layout::before { content: ''; position: absolute; top: 14px; bottom: 32px; left: calc(50% - 1px); width: 2px; background: var(--career-line); }
-.career-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 96px; margin-bottom: 24px; color: var(--career-blue); font-size: .8rem; font-weight: 600; }
+.career-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 160px; margin-bottom: 24px; color: var(--career-blue); font-size: .8rem; font-weight: 600; }
 .career-columns span:last-child { color: var(--career-violet); }
-.career-period { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 96px; }
-.career-period::before { z-index: 1; content: ''; position: absolute; top: 42px; left: 50%; width: 11px; height: 11px; border-radius: 50%; transform: translateX(-50%); background: var(--career-blue); box-shadow: 0 0 0 5px var(--career-bg), 0 0 0 6px #607ca0; }
-.career-period-current::before { top: 8px; background: var(--career-green); box-shadow: 0 0 0 5px var(--career-bg), 0 0 0 6px #5c987c; }
+.career-period { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 160px; }
 .career-summary { color: var(--career-muted); max-width: 680px; margin-bottom: 45px !important; font-size: 1rem; }
 .experience-entry { position: relative; display: flex; gap: 22px; padding: 32px 0; min-width: 0; }
 .career-period:first-child .experience-entry { padding-top: 0; }
-.experience-entry::before { content: ''; position: absolute; right: -48px; top: 47px; width: 36px; height: 1px; background: #7195c4; }
+.experience-entry::before { content: ''; position: absolute; right: -80px; top: 47px; width: 68px; height: 1px; background: #7195c4; }
 .experience-current::before { top: 14px; background: var(--career-green); }
 .experience-content { flex: 1; min-width: 0; }
 .experience-content h3 { font-size: 1.9rem; }
@@ -206,7 +204,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .page-width { width: calc(100% - 64px); }
   .main-nav { gap: 18px; }
   .hero { gap: 50px; }
-  .career-period, .career-columns { column-gap: 64px; }
+  .career-period, .career-columns { column-gap: 128px; }
   .contact-layout { gap: 50px; }
   .skills-grid { gap: 23px; }
   .skill-group { padding-left: 18px; }
@@ -223,7 +221,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .hero-description { font-size: .88rem; }
   .hero-bottom { flex-wrap: wrap; }
   .hero-scroll { display: none; }
-  .career-period, .career-columns { column-gap: 48px; }
+  .career-period, .career-columns { column-gap: 112px; }
     .education-entry { flex-direction: column; gap: 18px; }
   .experience-entry { gap: 18px; flex-direction: column; }
   .experience-content { width: 100%; }
@@ -423,31 +421,28 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 
 
 /* The central spine pairs a role on the left with its degree on the right. */
-.education-entry::after { content: ''; position: absolute; left: -48px; top: 47px; width: 32px; height: 1px; background: #9f86c8; }
+.education-entry::after { content: ''; position: absolute; left: -80px; top: 47px; width: 64px; height: 1px; background: #9f86c8; }
 .career-period::after { content: ''; position: absolute; left: calc(50% - 1px); top: 0; bottom: 0; width: 2px; background: #7195c4; transform: scaleY(0); transform-origin: top; }
 .career-period-current::after { background: #75b596; }
 .experience-current .entry-type { color: var(--career-green); }
-.experience-content .entry-period { display: inline-block; color: var(--career-blue); background: #263a55; padding: 3px 10px; border-radius: 4px; font-weight: 600; }
 .education-entry .entry-type { color: var(--career-violet); }
 .education-entry div > p.education-work-study { color: var(--career-blue); margin-top: 16px; }
 .experience-content .tag-list li[data-technology='Terraform'] { color: #cfbaff; border-color: #77618f; background: #30263e; }
 .experience-content .tag-list li[data-technology='Kubernetes'], .experience-content .tag-list li[data-technology='Helm'] { color: var(--career-blue); border-color: #4e6c93; background: #263a55; }
 .experience-content .tag-list li[data-technology='GitLab CI/CD'] { color: #ffd3a5; border-color: #987248; }
-.career-period.is-revealed::after { transform: scaleY(1); transition: transform 1s ease-out; }
+.career-period.is-revealed::after { transform: scaleY(1); transition: transform .45s ease-out; }
 @media (max-width: 1100px) {
-  .experience-entry::before { right: -32px; width: 24px; }
-  .education-entry::after { left: -32px; width: 20px; }
+  .experience-entry::before { right: -64px; width: 52px; }
+  .education-entry::after { left: -64px; width: 48px; }
 }
 @media (max-width: 900px) {
-  .experience-entry::before { right: -24px; width: 18px; }
-  .education-entry::after { left: -24px; width: 16px; }
+  .experience-entry::before { right: -56px; width: 44px; }
+  .education-entry::after { left: -56px; width: 40px; }
 }
 @media (max-width: 620px) {
   .career-columns { display: none; }
   .experience-layout::before { left: 0; }
   .career-period { grid-template-columns: 1fr; padding-left: 26px; }
-  .career-period::before { left: 1px; top: 36px; }
-  .career-period-current::before { top: 9px; }
   .career-period::after { left: 0; }
   .experience-entry { padding: 0; }
   .experience-entry::before { right: auto; left: -26px; top: 13px; width: 16px; }
@@ -467,7 +462,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .section-context { color: var(--blue); font-weight: 600; }
 .project-card { --project-color: var(--blue); --project-wash: var(--blue-wash); border-top: 4px solid var(--project-color); }
 .project-portal { --project-color: var(--teal); --project-wash: var(--teal-wash); }
-.project-security { --project-color: var(--violet); --project-wash: var(--violet-wash); background: var(--violet-wash); border-top-color: var(--violet); }
+.project-security { --project-color: var(--violet); --project-wash: var(--violet-wash); background: var(--surface); border-top-color: var(--violet); }
 .project-card .project-category { display: inline-flex; align-items: center; gap: 8px; color: var(--project-color); font-weight: 650; }
 .project-card .project-category::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
 .project-card .project-actions > .text-link { color: var(--project-color); background: var(--project-wash); padding: 10px 14px; border-radius: 5px; }
@@ -497,10 +492,10 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .contact-layout:hover .contact-arrow { transform: translate(6px, -6px); }
 .contact-form { border-top: 4px solid #7ad9c3; }
 .contact-form .button-primary { background: #2857d8; color: #fff; border-color: #2857d8; }
-.scroll-reveal { transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
-.scroll-reveal[data-reveal-state='pending'] { opacity: 0; transform: translateY(28px); pointer-events: none; }
+.scroll-reveal { transition: opacity .4s ease, transform .4s cubic-bezier(.2,.7,.2,1); }
+.scroll-reveal[data-reveal-state='pending'] { opacity: 0; transform: translateY(16px); pointer-events: none; }
 .scroll-reveal[data-reveal-state='shown'] { opacity: 1; transform: translateY(0); }
-.project-card.scroll-reveal[data-reveal-state] { transform: none; transition: opacity .65s ease; }
+.project-card.scroll-reveal[data-reveal-state] { transform: none; transition: opacity .4s ease; }
 @media (max-width: 620px) {
   .portrait-frame { box-shadow: none; }
   .hero-employment { gap: 18px; }
@@ -513,3 +508,43 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 
 .experience-section .tag-list li[data-technology='Terraform'] { background: #30263e; }
 .experience-section .tag-list li[data-technology='Kubernetes'] { background: #263a55; }
+
+/* One shared period connects a role and its degree. */
+.career-date { position: absolute; z-index: 2; top: 32px; left: 50%; transform: translateX(-50%); width: 112px; padding: 7px 9px; border: 1px solid #647fa5; border-radius: 8px; background: var(--career-bg); color: var(--career-blue); text-align: center; font-size: .75rem; font-weight: 600; line-height: 1.5; }
+.career-date span { display: block; }
+.career-date span + span::before { content: '– '; }
+.career-period-current .career-date { top: 0; width: auto; min-width: 90px; border-color: #5c987c; color: var(--career-green); }
+.entry-role .entry-arrangement { color: var(--career-muted); font-size: .75rem; font-weight: 400; white-space: nowrap; }
+.experience-details-toggle { min-height: 44px; margin-top: 12px; padding: 8px 0; color: var(--career-blue); font-size: .8rem; }
+.experience-details-toggle svg { transition: transform .2s; }
+.experience-details-toggle[aria-expanded='true'] svg { transform: rotate(180deg); }
+.experience-contributions .tag-list { margin-top: 16px; }
+.experience-highlights { margin-bottom: 8px; }
+@media (max-width: 900px) and (min-width: 621px) { .career-date { width: 88px; font-size: .7rem; } }
+@media (max-width: 620px) {
+  .career-period { gap: 16px; }
+  .career-date, .career-period-current .career-date { position: relative; top: auto; left: auto; transform: none; width: fit-content; min-width: 0; margin-bottom: 2px; text-align: left; }
+  .career-date span { display: inline; }
+  .career-date span + span::before { content: ' – '; }
+  .experience-entry { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: start; gap: 8px 14px; }
+  .experience-entry > .experience-logo { width: 64px; height: 48px; padding: 8px; grid-column: 1; grid-row: 1 / 4; }
+  .experience-content { display: contents; }
+  .experience-content > * { grid-column: 1 / -1; }
+  .experience-content > .entry-heading, .experience-content > h3, .experience-content > .entry-role { grid-column: 2; }
+  .experience-current .entry-company { grid-column: 2; }
+  .experience-content .entry-heading { margin-bottom: 0; }
+  .experience-content .entry-type { margin-bottom: 0 !important; }
+  .experience-content .entry-role { margin-top: 0 !important; font-size: .9rem; }
+  .experience-content h3 { font-size: 1.5rem; }
+  .experience-content .entry-company { margin-top: 4px !important; }
+  .experience-highlights { margin-top: 12px; }
+  .experience-details-toggle { margin-top: 4px; }
+  .experience-entry::before { top: 13px; }
+  .education-entry { padding-top: 16px; }
+  .hero-socials a, .hero-actions > .text-link, .footer-navigation a, .portfolio-footer nav a, .section-heading > .text-link { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; }
+  .hero-socials { margin-top: 14px; }
+  .footer-navigation nav, .portfolio-footer nav { gap: 4px 18px; }
+  .section-heading > .text-link { margin-block: -6px; }
+}
+
+@media (max-width: 620px) { .experience-logo.brand-logo-wordmark { font-size: 1.2rem; } }

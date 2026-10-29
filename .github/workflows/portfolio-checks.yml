@@ -26,24 +26,12 @@ jobs:
         run: npm install
       - name: Lint
         run: npm run lint
-      - name: Build with contact test configuration
+      - name: Build
         run: npm run build
-        env:
-          VITE_EMAILJS_SERVICE_ID: portfolio_test_service
-          VITE_EMAILJS_TEMPLATE_ID: portfolio_test_template
-          VITE_EMAILJS_PUBLIC_KEY: portfolio_test_public_key
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Test desktop and mobile
         run: npm run test:e2e
-      - name: Build without contact configuration
-        run: npm run build
-        env:
-          VITE_EMAILJS_SERVICE_ID: ''
-          VITE_EMAILJS_TEMPLATE_ID: ''
-          VITE_EMAILJS_PUBLIC_KEY: ''
-      - name: Verify the contact fallback
-        run: npm run test:e2e -- --grep "projects, articles|contact form" --output=test-results-fallback --reporter=line
       - name: Upload browser report and screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,5 +40,4 @@ jobs:
           path: |
             playwright-report/
             test-results/
-            test-results-fallback/
           retention-days: 14

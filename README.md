@@ -93,21 +93,27 @@ are inferred. The navy CG favicon is a local SVG monogram, with PNG and ICO vari
 
 The career tree uses a central vertical spine, with professional experience on
 the left and the relevant IPSSI programme aligned on the right: Master’s-level
-programme with Radio France, Bachelor with namR. Mobile shows each role before its degree. The
+programme with Radio France, Bachelor with namR. Dates appear once on the central
+axis. Each role shows two main contributions; View details expands the same list
+with the remaining contributions and technology tags, with Hide details at the end. Mobile shows
+each role before its degree and keeps the company logo beside its name. The
 current SII entry labels Thales separately as the client.
 
 Scroll-triggered reveals keep upcoming periods, project previews, skills, articles
 and the contact content visually hidden until they enter the viewport. Keyboard
 focus also reveals content; reduced motion and unavailable IntersectionObserver
-show everything immediately. Reveals run once. Project previews fade without
-moving their interactive controls. The shared hook handles newly filtered cards.
+show everything immediately. Reveals run once, anticipate entry by 64 px and last
+400 ms. Project previews fade without moving their interactive controls. The shared
+hook handles newly filtered cards. Mobile profile/footer links have at least 44 px
+touch targets.
 
 Graphite, pearl and navy remain the base. Cobalt highlights the name and primary
 actions, violet identifies security and education, and teal marks applications,
 observability and contact. The specialties banner has a neutral background with
 coloured icons. The four Toolkit visuals use distinct blue, violet, teal and rose
 accents. Buttons and the portrait frame have no shadows. LabOps precedes Portal
-in the project list.
+in the project list. The security project uses a neutral card background, with
+violet limited to its category and accents.
 
 ### Project illustrations
 
@@ -156,11 +162,15 @@ publishing new media. The previous static capture script remains available as
 
 ## Contact
 
-Copy `.env.example` to `.env` and configure all three public EmailJS variables
-before building to enable the form. The EmailJS template must accept `user_name`,
-`user_email` and `message`. Without complete configuration, the page links directly
-to `mailto:travail.corentinguyon@gmail.com`. The existing LabOps Docker build does
-not pass these variables, so that build uses the email contact option.
+The contact section keeps its two-column layout (stacked on mobile). “Let’s
+connect” and the main contact action lead to Corentin’s LinkedIn profile. The
+professional email remains visible. The active portfolio uses LinkedIn contact
+regardless of legacy EmailJS environment variables.
+
+A verified LinkedIn message URL can be supplied as `linkedinMessage` in
+`src/portfolio.json`; otherwise the profile URL is used. LinkedIn messaging access
+depends on the visitor’s connection and account permissions. Do not construct an
+unverified recipient identifier from the public profile slug.
 
 ## Verification
 
@@ -173,11 +183,10 @@ npm run test:e2e
 
 Browser checks cover desktop and mobile layouts, filtering, keyboard access to
 project details, navigation, visual theme changes, project-only video viewing, animated wireframes, typed tools and soft skills, unavailable storage, reduced
-motion, horizontal overflow and contact. EmailJS requests are intercepted, so
-no real messages are sent. Configured builds test delivery failure, message
-preservation, retry and confirmation; unconfigured builds test the single email action.
+motion, horizontal overflow, keyboard-operated experience details and contact.
+LinkedIn navigation is intercepted, so the browser checks make no external contact.
 
-`portfolio-checks.yml` tests builds with and without contact configuration.
+`portfolio-checks.yml` builds and tests the current LinkedIn contact flow.
 The `portfolio-browser-review` artifact contains reports and desktop/mobile
 screenshots in both themes.
 

@@ -4,7 +4,7 @@ import PortfolioNav from "./components/portfolio/PortfolioNav";
 import Hero from "./components/portfolio/Hero";
 import CareerSection from "./components/portfolio/CareerSection";
 import ProjectShowcase from "./components/portfolio/ProjectShowcase";
-import ContactForm from "./components/ContactForm";
+import LinkedInContact from "./components/portfolio/LinkedInContact";
 import profile from "./portfolio.json";
 import articles from "./articles.json";
 import {
@@ -56,8 +56,8 @@ function App() {
 
         <section id="contact" className="contact-section section-space" aria-labelledby="contact-title">
           <div className="page-width contact-layout" data-reveal>
-            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s talk.<FiArrowUpRight className="contact-arrow" aria-hidden="true" /></h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
-            <ContactForm />
+            <div className="contact-copy"><p className="section-context">Get in touch</p><h2 id="contact-title">Let’s connect.<FiArrowUpRight className="contact-arrow" aria-hidden="true" /></h2><p>Have a question about my work or a project to discuss? I’d be happy to hear from you.</p><p className="contact-address">{profile.email}</p></div>
+            <LinkedInContact />
           </div>
         </section>
       </main>

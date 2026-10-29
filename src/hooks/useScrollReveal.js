@@ -29,7 +29,7 @@ export default function useScrollReveal(
             if (entry.isIntersecting) show(entry.target);
           });
         },
-        { threshold: 0, rootMargin: "0px 0px -48px 0px" },
+        { threshold: 0, rootMargin: "0px 0px 64px 0px" },
       );
       targets.forEach((element) => {
         element.classList.add("scroll-reveal");
