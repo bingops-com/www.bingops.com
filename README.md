@@ -33,7 +33,8 @@ Provenance is recorded in
 `public/profile/sources.json`; signed, expiring image URLs are not embedded in the page.
 
 The palette combines graphite `#202124`, pearl `#F2F3F1`, and dark blue `#0A1B44`,
-with separate dark theme tokens. The header, hero and contact section all respond
+with separate dark theme tokens. First visits default to light, regardless of
+the operating-system preference; an explicitly saved theme is respected. The header, hero and contact section all respond
 to the selected theme. The non-sticky header scrolls with the page. IBM Plex Sans is used for headings,
 JetBrains Mono for the animated skills line, and Onest for body copy. Bricolage
 Grotesque is reserved for wordmarks. Fonts are self-hosted with their OFL licences;
@@ -97,8 +98,8 @@ are inferred. The navy CG favicon is a local SVG monogram, with PNG and ICO vari
 The career tree uses a central vertical spine, with professional experience on
 the left and the relevant IPSSI programme aligned on the right: Master’s-level
 programme with Radio France, Bachelor with namR. Dates appear once on the central
-axis. Each role shows two main contributions; View details expands the same list
-with the remaining contributions and technology tags, with Hide details at the end. Mobile shows
+axis. All responsibilities and technology tags remain visible in one continuous list;
+there is no View details / Hide details control. Mobile shows
 each role before its degree and keeps the company logo beside its name. The
 current SII entry labels Thales separately as the client.
 
@@ -188,7 +189,7 @@ npm run test:e2e
 
 Browser checks cover desktop and mobile layouts, filtering, keyboard access to
 project details, navigation, visual theme changes, project-only video viewing, animated wireframes, typed tools and soft skills, unavailable storage, reduced
-motion, horizontal overflow, keyboard-operated experience details and contact.
+motion, horizontal overflow, complete experience contributions and contact.
 LinkedIn navigation is intercepted, so the browser checks make no external contact.
 
 `portfolio-checks.yml` builds and tests the current LinkedIn contact flow.

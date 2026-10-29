@@ -98,9 +98,10 @@ test("project filters and accessible details restore focus on Escape", async ({ 
   await expect(page.locator(".project-card")).toHaveCount(3);
 });
 
-test("theme persists and tolerates an invalid legacy preference", async ({ page }) => {
-  await page.emulateMedia({ colorScheme: "light" });
+test("light is the default despite a dark system preference and saved themes persist", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   const backgrounds = () => page.evaluate(() => ["body", ".portfolio-header", ".hero-stage", ".contact-section"].map((selector) => getComputedStyle(document.querySelector(selector)).backgroundColor));
   const lightBackgrounds = await backgrounds();
   await page.getByRole("button", { name: "Switch to dark theme" }).click();
@@ -150,23 +151,14 @@ test("contact actions open LinkedIn from the open contact section", async ({ pag
   await popup.close();
 });
 
-test("experience details expand with keyboard and retain all contributions", async ({ page }) => {
+test("experience contributions stay visible in one continuous list", async ({ page }) => {
   await page.goto("/#experience");
   const period = page.getByRole("group", { name: /education and work-study at Radio France$/ });
   await period.scrollIntoViewIfNeeded();
-  const details = period.locator(".experience-contributions");
-  const toggle = details.locator(".experience-details-toggle");
-  await expect(toggle).toHaveAttribute("aria-expanded", "false");
-  await expect(details.locator(".experience-highlights > li")).toHaveCount(2);
-  const contribution = details.getByText("Tested Ansible roles and Docker images with Molecule and Goss.", { exact: true });
-  await expect(contribution).not.toBeVisible();
-  await toggle.focus();
-  await page.keyboard.press("Enter");
-  await expect(contribution).toBeVisible();
-  await expect(toggle).toContainText("Hide details");
-  await expect(details.locator(".experience-highlights > li")).toHaveCount(4);
-  await page.keyboard.press("Enter");
-  await expect(contribution).not.toBeVisible();
+  const contributions = period.getByRole("list", { name: "Responsibilities at Radio France" });
+  await expect(contributions.getByRole("listitem")).toHaveCount(4);
+  for (const contribution of await contributions.getByRole("listitem").all()) await expect(contribution).toBeVisible();
+  await expect(period.getByRole("button", { name: /details/i })).toHaveCount(0);
   if (page.viewportSize().width <= 620) {
     const logo = await period.locator(".experience-logo").boundingBox();
     const company = await period.getByRole("heading", { name: "Radio France", exact: true }).boundingBox();
@@ -179,7 +171,7 @@ test("experience details expand with keyboard and retain all contributions", asy
 });
 
 test("accessibility preferences and blocked storage preserve content access", async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "light" });
+  await page.emulateMedia({ reducedMotion: "reduce", colorScheme: "dark" });
   await page.addInitScript(() => {
     Object.defineProperty(window, "localStorage", { get() { throw new DOMException("Storage disabled", "SecurityError"); } });
   });
@@ -187,6 +179,7 @@ test("accessibility preferences and blocked storage preserve content access", as
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Skip to content" })).toBeFocused();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.getByRole("button", { name: "Switch to dark theme" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");

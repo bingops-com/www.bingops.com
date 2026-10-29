@@ -510,9 +510,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .career-date span { display: block; }
 .career-date span + span::before { content: '– '; }
 .entry-role .entry-arrangement { color: var(--career-muted); font-size: .75rem; font-weight: 400; white-space: nowrap; }
-.experience-details-toggle { min-height: 44px; margin-top: 12px; padding: 8px 0; color: var(--career-blue); font-size: .8rem; }
-.experience-details-toggle svg { transition: transform .2s; }
-.experience-details-toggle[aria-expanded='true'] svg { transform: rotate(180deg); }
 .experience-contributions .tag-list { margin-top: 16px; }
 .experience-highlights { margin-bottom: 8px; }
 @media (max-width: 900px) and (min-width: 621px) { .career-date { width: 88px; font-size: .7rem; } }
@@ -533,7 +530,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .experience-content h3 { font-size: 1.5rem; }
   .experience-content .entry-company { margin-top: 4px !important; }
   .experience-highlights { margin-top: 12px; }
-  .experience-details-toggle { margin-top: 4px; }
   .experience-entry::before { top: 13px; }
   .education-entry { padding-top: 16px; }
   .hero-socials a, .hero-actions > .text-link, .footer-navigation a, .portfolio-footer nav a, .section-heading > .text-link { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; }

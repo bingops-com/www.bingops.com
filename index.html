@@ -24,12 +24,12 @@
       var savedTheme = localStorage.getItem("theme");
       var legacyTheme = localStorage.getItem("darkMode");
       var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme :
-        legacyTheme === "true" ? "dark" : legacyTheme === "false" ? "light" :
-        window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        legacyTheme === "true" ? "dark" : "light";
       document.documentElement.dataset.theme = initialTheme;
       document.documentElement.classList.toggle("dark", initialTheme === "dark");
     } catch (_) {
-      document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = "light";
+      document.documentElement.classList.remove("dark");
     }
   </script>
   <link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin />

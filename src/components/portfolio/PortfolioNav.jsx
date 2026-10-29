@@ -12,7 +12,7 @@ function readTheme() {
     if (legacy === "true") return "dark";
     if (legacy === "false") return "light";
   } catch { /* Storage may be disabled by the browser. */ }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "light";
 }
 
 export default function PortfolioNav() {
