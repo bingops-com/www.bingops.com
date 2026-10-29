@@ -61,9 +61,8 @@ their own colours.
 
 SII, Thales, Radio France and IPSSI logos retain their original colours. Local
 assets and provenance are recorded in `public/brands/sources.json`. namR uses a
-text wordmark. SII is the employer, Thales the client, and IPSSI the school. The hero uses
-separate labelled employer/client facts, and the career entry presents Thales
-as a distinct client assignment under the SII employment.
+text wordmark. SII is the employer, Thales the client, and IPSSI the school. The
+career entry presents Thales as a distinct client assignment under the SII employment.
 
 ## Content
 
@@ -205,10 +204,24 @@ in a dedicated commit before the redesign.
 
 ## Deployment
 
-Delivery follows the existing process: PR to `main`, review, then image building
-in LabOps. This branch does not change infrastructure manifests.
+Merging to `main` dispatches the www image build in LabOps. Publishing an image
+does not roll production automatically: the immutable tag in
+`apps/workloads/portfolio/clusters/labprod/kustomization.yaml` in LabOps must be
+updated through a deployment PR. Argo CD then reconciles the production workload.
 
 ## Credits
 
 The original portfolio was based on a Figma design by
 [Sagar Shah](https://www.figma.com/@shahsagarm).
+
+Technology tags in projects, project dialogs and professional experience share
+`TechnologyTag` and `src/technologyColors.json`. Brand hues come from
+[Simple Icons metadata](https://github.com/simple-icons/simple-icons/blob/develop/data/simple-icons.json)
+and the upstream Cluster API, Molecule and Greenbone logos. Text shades are
+adapted for readable contrast on light/dark surfaces. Goss uses a neutral tone
+because its repository does not specify a brand palette. The employer/client
+strip below the hero is removed; SII and Thales remain in the career timeline.
+
+CI uses Chrome for the H.264 Portal recording. Playwright's bundled Chromium does
+not support all proprietary media codecs; locally use `CHROMIUM_CHANNEL=chrome`
+or `CHROMIUM=/usr/bin/chromium` with an H.264-capable browser.

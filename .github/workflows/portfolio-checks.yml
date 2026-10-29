@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [feat/portfolio-refresh]
+    branches: [main]
 
 concurrency:
   group: portfolio-${{ github.head_ref || github.ref_name }}
@@ -28,10 +28,12 @@ jobs:
         run: npm run lint
       - name: Build
         run: npm run build
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Chrome with H.264 support
+        run: npx playwright install --with-deps chrome
       - name: Test desktop and mobile
         run: npm run test:e2e
+        env:
+          CHROMIUM_CHANNEL: chrome
       - name: Upload browser report and screenshots
         if: always()
         uses: actions/upload-artifact@v4

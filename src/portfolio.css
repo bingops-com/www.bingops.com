@@ -427,9 +427,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .experience-current .entry-type { color: var(--career-green); }
 .education-entry .entry-type { color: var(--career-violet); }
 .education-entry div > p.education-work-study { color: var(--career-blue); margin-top: 16px; }
-.experience-content .tag-list li[data-technology='Terraform'] { color: #cfbaff; border-color: #77618f; background: #30263e; }
-.experience-content .tag-list li[data-technology='Kubernetes'], .experience-content .tag-list li[data-technology='Helm'] { color: var(--career-blue); border-color: #4e6c93; background: #263a55; }
-.experience-content .tag-list li[data-technology='GitLab CI/CD'] { color: #ffd3a5; border-color: #987248; }
 .career-period.is-revealed::after { transform: scaleY(1); transition: transform .45s ease-out; }
 @media (max-width: 1100px) {
   .experience-entry::before { right: -64px; width: 52px; }
@@ -469,8 +466,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .project-card .project-actions svg { transition: transform .2s; }
 .project-card .project-actions > .text-link:hover svg { transform: translate(3px, -3px); }
 .project-filters .is-active { background: var(--blue); border-color: var(--blue); color: var(--surface); }
-.tag-list li[data-technology='Terraform'] { color: var(--violet); background: var(--violet-wash); }
-.tag-list li[data-technology='Kubernetes'], .tag-list li[data-technology='Python'] { color: var(--blue); background: var(--blue-wash); }
 .skill-group { --skill-color: var(--blue); --skill-wash: var(--blue-wash); border-left: 0; padding: 0; }
 .skill-group:nth-child(2) { --skill-color: var(--violet); --skill-wash: var(--violet-wash); }
 .skill-group:nth-child(3) { --skill-color: var(--teal); --skill-wash: var(--teal-wash); }
@@ -502,8 +497,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .scroll-reveal[data-reveal-state='pending'] { opacity: 1; transform: none; pointer-events: auto; }
 }
 
-.experience-section .tag-list li[data-technology='Terraform'] { background: #30263e; }
-.experience-section .tag-list li[data-technology='Kubernetes'] { background: #263a55; }
 
 /* One shared period connects a role and its degree. */
 .career-date { position: absolute; z-index: 2; top: 32px; left: 50%; transform: translateX(-50%); width: 112px; padding: 7px 9px; border: 1px solid #647fa5; border-radius: 8px; background: var(--career-bg); color: var(--career-blue); text-align: center; font-size: .75rem; font-weight: 600; line-height: 1.5; }
@@ -583,3 +576,7 @@ body { margin: 0; background: var(--page); color: var(--ink); }
   .contact-network-copy strong { font-size: 1.2rem; }
   .contact-network-arrow { width: 44px; height: 44px; }
 }
+
+.portfolio .tag-list li.technology-tag { --tag-surface: var(--surface); color: var(--technology-light, var(--muted)); background: color-mix(in srgb, var(--technology-brand, #59636f) 10%, var(--tag-surface)); border: 1px solid color-mix(in srgb, var(--technology-brand, #59636f) 35%, var(--tag-surface)); }
+:root[data-theme='dark'] .portfolio .tag-list li.technology-tag, .portfolio .experience-section .tag-list li.technology-tag { color: var(--technology-dark, var(--career-muted)); background: color-mix(in srgb, var(--technology-brand, #59636f) 14%, var(--tag-surface)); }
+.portfolio .experience-section .tag-list li.technology-tag { --tag-surface: var(--career-bg); }

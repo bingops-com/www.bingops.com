@@ -21,13 +21,6 @@ export default function Hero() {
           <figcaption><span>Infrastructure. Development. Security.</span><span><FiMapPin aria-hidden="true" /> {profile.location}</span></figcaption>
         </figure>
       </div>
-      <div className="hero-bottom page-width">
-        <dl className="hero-employment" aria-label="Current employment">
-          <div><dt>Employer</dt><dd><strong className="employment-employer">{profile.employment.employer}</strong><span>Permanent employment</span></dd></div>
-          <div><dt>Client assignment</dt><dd><strong className="employment-client">{profile.employment.client}</strong><span>Current assignment</span></dd></div>
-        </dl>
-        <a className="hero-scroll" href="#experience">Get to know my background <FiArrowDown aria-hidden="true" /></a>
-      </div>
     </section>
   );
 }

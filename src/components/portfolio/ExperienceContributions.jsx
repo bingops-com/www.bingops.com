@@ -1,3 +1,5 @@
+import TechnologyTag from "./TechnologyTag";
+
 export default function ExperienceContributions({
   company,
   highlights,
@@ -15,9 +17,7 @@ export default function ExperienceContributions({
       </ul>
       <ul className="tag-list">
         {technologies.map((tech) => (
-          <li key={tech} data-technology={tech}>
-            {tech}
-          </li>
+          <TechnologyTag key={tech} name={tech} />
         ))}
       </ul>
     </div>
