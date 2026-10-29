@@ -59,18 +59,11 @@ export default function CareerSection() {
                     : "Current employment"
                 }
               >
-                <p
-                  className="career-date"
-                  aria-label={experience.period || "Present"}
-                >
-                  {experience.period ? (
-                    experience.period
-                      .split(" – ")
-                      .map((date) => <span key={date}>{date}</span>)
-                  ) : (
-                    <span>Present</span>
-                  )}
-                </p>
+                {experience.period && (
+                  <p className="career-date" aria-label={experience.period}>
+                    {experience.period.split(" – ").map((date) => <span key={date}>{date}</span>)}
+                  </p>
+                )}
                 <article
                   className={`experience-entry${experience.contract ? " experience-current" : ""}`}
                   key={experience.company}
