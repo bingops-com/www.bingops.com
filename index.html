@@ -1,24 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<link rel="icon" type="image/png" href="icon.png" />
-	<link rel="shortcut icon" type="image/x-icon" href="icon.ico">
-	<link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
-	<meta name="description" content="Bingo portfolio. I am a 22-year-old Junior DevOps at Radio France, currently pursuing a master's degree in Cybersecurity & Cloud Computing. With 7 years of experience in computer science, my passion lies in cybersecurity and pentesting.">
-	<meta name="keywords" content="BingOps, Bingo Portfolio, DevOps Engineer, Cybersecurity Expert, DevOps Projects, Cybersecurity Insights, IT Automation, Security Automation, Cloud Infrastructure, Continuous Integration, Continuous Deployment, System Administration, Network Security, Ethical Hacking, Vulnerability Assessment, Cloud Services, DevOps Best Practices, Cybersecurity Trends, Security Tools, Open Source Security, Infrastructure as Code, Configuration Management, Docker, Kubernetes, CI/CD Pipelines, Scripting, Linux Administration, Cloud Security, Personal DevOps Blog, DevOps Learning Resources, Cybersecurity Resources">
-	<meta name="author" content="BingOps">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Corentin's portfolio</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="/icon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="canonical" href="https://www.bingops.com/" />
+  <meta name="description" content="Corentin Guyon — DevOps and cybersecurity. Permanent employee at SII, on assignment at Thales. Explore LabOps, Portal and my open source projects." />
+  <meta name="author" content="Corentin Guyon" />
+  <meta name="theme-color" content="#f2f3f1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:title" content="Corentin Guyon — DevOps & Cybersecurity" />
+  <meta property="og:description" content="Permanent employee at SII, on assignment at Thales. From infrastructure to code: LabOps, Portal and my open source projects." />
+  <meta property="og:url" content="https://www.bingops.com/" />
+  <meta property="og:image" content="https://www.bingops.com/icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <title>Corentin Guyon — DevOps & Cybersecurity | BingOps</title>
+  <script>
+    try {
+      var savedTheme = localStorage.getItem("theme");
+      var legacyTheme = localStorage.getItem("darkMode");
+      var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme :
+        legacyTheme === "true" ? "dark" : "light";
+      document.documentElement.dataset.theme = initialTheme;
+      document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    } catch (_) {
+      document.documentElement.dataset.theme = "light";
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  <link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin />
 </head>
-
 <body>
-	<div id="root"></div>
-	<script type="module" src="src/main.jsx"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
-
 </html>

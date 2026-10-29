@@ -1,0 +1,112 @@
+{
+  "Ansible": {
+    "brand": "#EE0000",
+    "light": "#ca0000",
+    "dark": "#f56e6e"
+  },
+  "Argo CD": {
+    "brand": "#EF7B4D",
+    "light": "#a05234",
+    "dark": "#f18b62"
+  },
+  "Cluster API": {
+    "brand": "#3870E4",
+    "light": "#3161c6",
+    "dark": "#7a9fed"
+  },
+  "Docker": {
+    "brand": "#2496ED",
+    "light": "#1a6aa8",
+    "dark": "#52acf1"
+  },
+  "GitLab CI/CD": {
+    "brand": "#FC6D26",
+    "light": "#ab4a1a",
+    "dark": "#fc8347"
+  },
+  "Go": {
+    "brand": "#00ADD8",
+    "light": "#00728f",
+    "dark": "#1ab5dc"
+  },
+  "Goss": {
+    "brand": "#59636F",
+    "light": "#59636f",
+    "dark": "#9aa0a7"
+  },
+  "Greenbone": {
+    "brand": "#0E823E",
+    "light": "#0d7538",
+    "dark": "#62ae82"
+  },
+  "Helm": {
+    "brand": "#0F1689",
+    "light": "#0f1689",
+    "dark": "#8e91c8"
+  },
+  "Kubernetes": {
+    "brand": "#326CE5",
+    "light": "#2c60cc",
+    "dark": "#7a9fee"
+  },
+  "Linux": {
+    "brand": "#FCC624",
+    "light": "#836713",
+    "dark": "#fcc624"
+  },
+  "Molecule": {
+    "brand": "#27C0C0",
+    "light": "#187575",
+    "dark": "#27c0c0"
+  },
+  "NGINX": {
+    "brand": "#009639",
+    "light": "#00762d",
+    "dark": "#4cb674"
+  },
+  "OIDC": {
+    "brand": "#F78C40",
+    "light": "#9c5828",
+    "dark": "#f78d42"
+  },
+  "Prometheus": {
+    "brand": "#E6522C",
+    "light": "#b34022",
+    "dark": "#ed8469"
+  },
+  "Proxmox": {
+    "brand": "#E57000",
+    "light": "#a35000",
+    "dark": "#ea8d33"
+  },
+  "Python": {
+    "brand": "#3776AB",
+    "light": "#326a9a",
+    "dark": "#7ba5c8"
+  },
+  "React": {
+    "brand": "#61DAFB",
+    "light": "#337485",
+    "dark": "#61dafb"
+  },
+  "Talos": {
+    "brand": "#FF7300",
+    "light": "#ab4d00",
+    "dark": "#ff841f"
+  },
+  "Terraform": {
+    "brand": "#844FBA",
+    "light": "#804db4",
+    "dark": "#b290d4"
+  },
+  "TypeScript": {
+    "brand": "#3178C6",
+    "light": "#2b68ac",
+    "dark": "#75a5d9"
+  },
+  "Windows": {
+    "brand": "#0078D4",
+    "light": "#0068b8",
+    "dark": "#57a6e3"
+  }
+}

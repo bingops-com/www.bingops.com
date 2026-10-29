@@ -1,0 +1,13 @@
+{
+  "corentin-guyon.jpg": {
+    "source": "User-provided LinkedIn portrait URL",
+    "profile": "https://www.linkedin.com/in/corentin-guyon/",
+    "retrieved": "2026-10-28",
+    "sha256": "32e0ad22a8ba9de46c361c7b212a165f8e99b1679cea27ad8f14e94f99d5ffa4",
+    "dimensions": [
+      400,
+      400
+    ],
+    "processing": "Original photograph, unchanged"
+  }
+}

@@ -1,20 +1,20 @@
 [
   {
-    "title": "Deploying a Project Zomboid Server with Terraform & Ansible",
-    "content": "Setup your own Project Zomboid multiplayer server effortlessly using Terraform and Ansible on your Proxmox, with full customization",
-    "imageURL": "../articles/article-project-zomboid.webp",
-    "link": "https://blog.bingops.com/blog/project-zomboid/"
+    "title": "Deploying a Project Zomboid server with Terraform and Ansible",
+    "content": "From Proxmox provisioning to configuring a multiplayer server.",
+    "link": "https://blog.bingops.com/blog/project-zomboid/",
+    "topic": "Infrastructure"
   },
   {
-    "title": "How I Discovered a Critical Vulnerability in a Leading UK Retail Giant’s System",
-    "content": "A deep dive into how I uncovered a critical SSRF vulnerability leaking AWS credentials in a major UK retailer’s system, with insights into responsible disclosure and real-world exploitation",
-    "imageURL": "../articles/article-bugbounty-ssrf.webp",
-    "link": "https://blog.bingops.com/blog/bugbounty-ssrf/"
+    "title": "From SSRF to exposed AWS credentials",
+    "content": "Investigating a critical vulnerability and reporting it responsibly.",
+    "link": "https://blog.bingops.com/blog/bugbounty-ssrf/",
+    "topic": "Security"
   },
   {
-    "title": "Node - Eval",
-    "content": "A walkthrough of one of Root-Me’s Node.js challenges, showcasing how to exploit an eval vulnerability to gain access to hidden files and ultimately retrieve the flag",
-    "imageURL": "../articles/article-node-eval.webp",
-    "link": "https://blog.bingops.com/blog/node-eval/"
+    "title": "Understanding an eval vulnerability in Node.js",
+    "content": "A Root-Me challenge exploring code execution and file access.",
+    "link": "https://blog.bingops.com/blog/node-eval/",
+    "topic": "Write-up"
   }
 ]

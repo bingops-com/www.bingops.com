@@ -1,0 +1,140 @@
+{
+  "name": "Corentin Guyon",
+  "location": "Nice area, France",
+  "github": "https://github.com/0xBingo",
+  "organization": "https://github.com/bingops-com",
+  "linkedin": "https://www.linkedin.com/in/corentin-guyon/",
+  "blog": "https://blog.bingops.com",
+  "experiences": [
+    {
+      "company": "SII",
+      "role": null,
+      "contract": "Permanent",
+      "client": "Thales",
+      "location": "Sophia Antipolis, France",
+      "period": "Feb 2026 – Today",
+      "description": "Currently on assignment at Thales.",
+      "technologies": []
+    },
+    {
+      "company": "Radio France",
+      "role": "DevOps Engineer",
+      "period": "Oct 2023 – Sep 2025",
+      "description": null,
+      "technologies": [
+        "Kubernetes",
+        "GitLab CI/CD",
+        "Helm",
+        "Docker",
+        "Ansible",
+        "Molecule",
+        "Goss"
+      ],
+      "arrangement": "Work-study",
+      "location": "Paris, France",
+      "highlights": [
+        "Tested and deployed applications across development, preproduction and production Kubernetes clusters using Helm.",
+        "Built GitLab CI/CD components and migrated Docker images from Debian Buster and Bullseye to Bookworm.",
+        "Tested Ansible roles and Docker images with Molecule and Goss.",
+        "Helped developers strengthen application security and maintained infrastructure availability and security."
+      ]
+    },
+    {
+      "company": "namR",
+      "role": "Systems Administrator",
+      "period": "Sep 2022 – Sep 2023",
+      "description": null,
+      "technologies": [
+        "Greenbone",
+        "Docker",
+        "Terraform",
+        "Ansible",
+        "Windows",
+        "Linux"
+      ],
+      "arrangement": "Work-study",
+      "location": "Paris, France",
+      "highlights": [
+        "Set up and configured Greenbone Vulnerability Management for infrastructure security scans.",
+        "Containerised the scanner with Docker and used Terraform and Ansible to provision and manage its cloud instance.",
+        "Prepared Windows and Linux workstations for new team members."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Cybersecurity & Cloud computing",
+      "qualification": "Master’s-level programme",
+      "school": "IPSSI",
+      "period": "Oct 2023 – Sep 2025",
+      "location": "Marne-la-Vallée, France",
+      "workStudyCompany": "Radio France"
+    },
+    {
+      "title": "Administration Système & Sécurité Réseaux / secOps",
+      "qualification": "Bachelor",
+      "school": "IPSSI",
+      "period": "Sep 2022 – Sep 2023",
+      "location": "Marne-la-Vallée, France",
+      "workStudyCompany": "namR"
+    }
+  ],
+  "skills": [
+    {
+      "title": "Build infrastructure",
+      "description": "From provisioning machines to orchestrating applications.",
+      "items": [
+        "Proxmox",
+        "Terraform",
+        "Ansible",
+        "Talos",
+        "Kubernetes",
+        "Cluster API"
+      ]
+    },
+    {
+      "title": "Automate deployments",
+      "description": "Define the desired state in Git and keep the cluster in sync.",
+      "items": [
+        "Git",
+        "Argo CD",
+        "Helm",
+        "Kustomize",
+        "GitHub Actions",
+        "GitLab CI/CD",
+        "Docker"
+      ]
+    },
+    {
+      "title": "Observe systems",
+      "description": "Bring metrics, alerts and logs together to understand system behaviour.",
+      "items": [
+        "Prometheus",
+        "Grafana",
+        "Alertmanager",
+        "Elastic",
+        "Gatus"
+      ]
+    },
+    {
+      "title": "Develop & secure",
+      "description": "Build tools, investigate vulnerabilities and understand how systems are used.",
+      "items": [
+        "Go",
+        "Python",
+        "React",
+        "TypeScript",
+        "Burp Suite",
+        "Nmap"
+      ]
+    }
+  ],
+  "employment": {
+    "employer": "SII",
+    "contract": "Permanent",
+    "client": "Thales",
+    "status": "Permanent employee at SII, currently on assignment at Thales."
+  },
+  "email": "travail.corentinguyon@gmail.com",
+  "introduction": "I’m a DevOps and cybersecurity engineer. I automate deployments, secure infrastructure and build tools that make systems easier to operate."
+}

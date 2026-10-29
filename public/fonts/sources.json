@@ -1,0 +1,14 @@
+{
+  "ibm-plex-sans-latin.woff2": {
+    "source": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap",
+    "license": "ibm-plex-sans-OFL.txt",
+    "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+    "retrieved": "2026-10-28"
+  },
+  "jetbrains-mono-bold.woff2": {
+    "source": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Bold.woff2",
+    "license": "jetbrains-mono-OFL.txt",
+    "sha256": "08863c7964612257a90bd821e3127dc5ccb0b5046f881673a1ade5809eb21d0f",
+    "retrieved": "2026-10-28"
+  }
+}
