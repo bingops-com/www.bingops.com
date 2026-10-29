@@ -73,11 +73,6 @@ export default function CareerSection() {
                           ? "Current"
                           : "Previous experience"}
                       </p>
-                      {experience.contract && (
-                        <span className="contract-badge">
-                          {experience.contract}
-                        </span>
-                      )}
                     </div>
                     <h3>{experience.company}</h3>
                     {experience.role && (

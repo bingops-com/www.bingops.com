@@ -101,7 +101,6 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .experience-content h3 { font-size: 1.9rem; }
 .entry-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .entry-type { color: var(--career-muted); font-size: .75rem; margin-bottom: 10px !important; }
-.contract-badge { padding: 3px 10px; border: 1px solid #51866c; border-radius: 12px; font-size: .75rem; color: var(--career-green); background: #173c2b; }
 .entry-role { margin-top: 9px !important; font-size: 1rem; font-weight: 600; color: var(--career-blue); }
 .entry-company, .entry-period, .entry-description { color: var(--career-muted); font-size: .8rem; margin-top: 10px !important; }
 .client-assignment { display: flex; align-items: center; gap: 16px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--career-line); }
