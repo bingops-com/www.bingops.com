@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 const skills = [
   { name: 'Terraform', tone: 'terraform' },
   { name: 'Kubernetes', tone: 'kubernetes' },
-  { name: 'Communication', tone: 'softskill' },
+  { name: 'Ansible', tone: 'ansible' },
+  { name: 'Cloud', tone: 'cloud' },
+  { name: 'Audits', tone: 'audits' },
   { name: 'Argo CD', tone: 'argocd' },
   { name: 'Agile', tone: 'softskill' },
   { name: 'Go', tone: 'go' },
@@ -38,7 +40,7 @@ export default function TerminalRole() {
 
   return (
     <div className="hero-role terminal-role" role="group" aria-label="DevOps skills">
-      <span className="sr-only">Terraform, Kubernetes, Communication, Argo CD, Agile, Go, Teamwork and Python.</span>
+      <span className="sr-only">Terraform, Kubernetes, Ansible, Cloud, Audits, Argo CD, Agile, Go, Teamwork and Python.</span>
       <span className="terminal-role-line" aria-hidden="true"><span className={`terminal-tech technology-${skill.tone}`}>{visible}</span><span className="typing-caret" /></span>
     </div>
   );

@@ -287,13 +287,20 @@ test("the inline heading types coloured tools and soft skills", async ({ page })
   const terraformColour = await technology.evaluate((el) => getComputedStyle(el).color);
   await expect(technology).toHaveText("Kubernetes", { timeout: 10000 });
   const kubernetesColour = await technology.evaluate((el) => getComputedStyle(el).color);
+  if (page.viewportSize().width <= 620) {
+    const word = await terminal.locator(".typing-caret").boundingBox();
+    const photo = await page.locator(".portrait-frame").boundingBox();
+    expect(word.x + word.width).toBeLessThan(photo.x);
+  }
+  await expect(terminal.locator(".sr-only")).toContainText("Ansible, Cloud, Audits");
+  await expect(terminal).not.toContainText("Communication");
   expect(terraformColour).not.toBe(kubernetesColour);
-  await expect(technology).toHaveText("Communication", { timeout: 10000 });
+  await expect(technology).toHaveText("Ansible", { timeout: 10000 });
   await expect(terminal.getByRole("button")).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(terminal.locator(".terminal-role-line")).toHaveText("Communication");
+  await expect(terminal.locator(".terminal-role-line")).toHaveText("Ansible");
   await page.waitForTimeout(200);
-  await expect(terminal.locator(".terminal-role-line")).toHaveText("Communication");
+  await expect(terminal.locator(".terminal-role-line")).toHaveText("Ansible");
   expect(await terminal.locator(".typing-caret").evaluate((el) => getComputedStyle(el).animationName)).toBe("none");
 });
 
@@ -310,17 +317,23 @@ test("Portal wireframe animates in view and respects reduced motion", async ({ p
 });
 
 
-test("the portrait is visible beside the name on mobile", async ({ page }) => {
+test("the mobile portrait spans the name and short dynamic skills", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
-  const portrait = await page.locator(".hero-portrait").boundingBox();
-  const name = await page.getByRole("heading", { level: 1 }).boundingBox();
-  expect(portrait.y).toBeLessThan(name.y + name.height);
-  expect(portrait.x).toBeGreaterThan(name.x + name.width - 1);
-  expect(portrait.width).toBeLessThanOrEqual(120);
-  expect(portrait.y + portrait.height).toBeLessThan(400);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    const portrait = await page.locator(".portrait-frame").boundingBox();
+    const name = await page.getByRole("heading", { level: 1 }).boundingBox();
+    const role = await page.locator(".terminal-role").boundingBox();
+    const caret = await page.locator(".typing-caret").boundingBox();
+    expect(Math.abs(portrait.y - name.y)).toBeLessThan(1);
+    expect(Math.abs(portrait.y + portrait.height - role.y - role.height)).toBeLessThan(1);
+    expect(role.x + role.width).toBeLessThan(portrait.x);
+    expect(caret.x + caret.width).toBeLessThan(portrait.x);
+    expect(portrait.width).toBeLessThanOrEqual(120);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
 });
 
 
