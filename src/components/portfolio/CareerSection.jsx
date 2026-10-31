@@ -1,13 +1,14 @@
+import { useLanguage } from "../../LanguageContext";
 import { useRef } from "react";
-import profile from "../../portfolio.json";
 import BrandLogo from "./BrandLogo";
 import ExperienceContributions from "./ExperienceContributions";
 import useScrollReveal from "../../hooks/useScrollReveal";
 
 export default function CareerSection() {
+  const { t, profile, language } = useLanguage();
   const timelineRef = useRef(null);
 
-  useScrollReveal(timelineRef, ".career-period");
+  useScrollReveal(timelineRef, ".career-period", language);
 
   return (
     <section
@@ -18,21 +19,20 @@ export default function CareerSection() {
       <div className="page-width">
         <div className="section-heading">
           <div>
-            <p className="section-context">Career &amp; education</p>
+            <p className="section-context">{t("Career & education")}</p>
             <h2 id="experience-title">
-              My professional
+              {t("My professional")}
               <br />
-              background.
+              {t("background.")}
             </h2>
           </div>
         </div>
         <p className="career-summary">
-          DevOps at Radio France, systems administration at namR, and now a
-          permanent position at SII on assignment at Thales.
+          {t("DevOps at Radio France, systems administration at namR, and now a permanent position at SII on assignment at Thales.")}
         </p>
         <div className="career-columns" aria-hidden="true">
-          <span>Professional experience</span>
-          <span>Education alongside each role</span>
+          <span>{t('Professional experience')}</span>
+          <span>{t('Education alongside each role')}</span>
         </div>
         <div className="experience-layout" ref={timelineRef}>
           {profile.experiences.map((experience) => {
@@ -46,8 +46,8 @@ export default function CareerSection() {
                 role="group"
                 aria-label={
                   education
-                    ? `${experience.period}: education and work-study at ${experience.company}`
-                    : "Current employment"
+                    ? `${experience.period}: ${t("education and work-study at")} ${experience.company}`
+                    : t("Current employment")
                 }
               >
                 {experience.period && (
@@ -68,9 +68,9 @@ export default function CareerSection() {
                   <div className="experience-content">
                     <div className="entry-heading">
                       <p className="entry-type">
-                        {experience.contract
+                        {t(experience.contract
                           ? "Current"
-                          : "Previous experience"}
+                          : "Previous experience")}
                       </p>
                     </div>
                     <h3>{experience.company}</h3>
@@ -92,7 +92,7 @@ export default function CareerSection() {
                       <div className="client-assignment">
                         <BrandLogo name={experience.client} />
                         <div>
-                          <p className="assignment-label">Client assignment</p>
+                          <p className="assignment-label">{t('Client assignment')}</p>
                           <p className="assignment-name">{experience.client}</p>
                         </div>
                       </div>
@@ -117,11 +117,11 @@ export default function CareerSection() {
                     <BrandLogo name={education.school} />
                     <div>
                       <p className="entry-type">
-                        Education · {education.qualification}
+                        {t("Education")} · {education.qualification}
                       </p>
                       <h3
                         lang={
-                          education.qualification === "Bachelor" ? "fr" : "en"
+                          education.qualification === "Bachelor" ? "fr" : language
                         }
                       >
                         {education.title}
@@ -129,7 +129,7 @@ export default function CareerSection() {
                       <p>{education.school}</p>
                       <p className="education-location">{education.location}</p>
                       <p className="education-work-study">
-                        Work-study at {experience.company}
+                        {t("Work-study at")} {experience.company}
                       </p>
                     </div>
                   </article>

@@ -1,3 +1,4 @@
+import { useLanguage } from "../../LanguageContext";
 import TechnologyTag from "./TechnologyTag";
 
 export default function ExperienceContributions({
@@ -5,11 +6,12 @@ export default function ExperienceContributions({
   highlights,
   technologies,
 }) {
+  const { t } = useLanguage();
   return (
     <div className="experience-contributions">
       <ul
         className="experience-highlights"
-        aria-label={`Responsibilities at ${company}`}
+        aria-label={`${t("Responsibilities at")} ${company}`}
       >
         {highlights.map((highlight) => (
           <li key={highlight}>{highlight}</li>

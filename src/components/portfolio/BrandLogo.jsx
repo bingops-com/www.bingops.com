@@ -1,3 +1,5 @@
+import { useLanguage } from "../../LanguageContext";
+
 const logos = {
   SII: { src: '/brands/sii.png', className: 'sii', width: 109, height: 73 },
   Thales: { src: '/brands/thales.svg', className: 'thales', width: 484, height: 57 },
@@ -6,11 +8,12 @@ const logos = {
 };
 
 export default function BrandLogo({ name, className = '' }) {
+  const { language } = useLanguage();
   const logo = logos[name];
   if (!logo) return <span className={`brand-logo brand-logo-wordmark ${className}`}>{name}</span>;
   return (
     <span className={`brand-logo brand-logo-${logo.className} ${className}`}>
-      <img src={logo.src} alt={`${name} logo`} width={logo.width} height={logo.height} />
+      <img src={logo.src} alt={language === "fr" ? `Logo ${name}` : `${name} logo`} width={logo.width} height={logo.height} />
     </span>
   );
 }

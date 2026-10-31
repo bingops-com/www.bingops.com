@@ -1,3 +1,4 @@
+import { useLanguage } from "../../LanguageContext";
 import { useEffect, useState } from 'react';
 
 const skills = [
@@ -14,9 +15,10 @@ const skills = [
 ];
 
 export default function TerminalRole() {
+  const { t } = useLanguage();
   const [frame, setFrame] = useState({ index: 0, count: 0, phase: 'typing' });
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const skill = skills[frame.index];
+  const skill = { ...skills[frame.index], name: t(skills[frame.index].name) };
   const visible = reducedMotion ? skill.name : skill.name.slice(0, frame.count);
 
   useEffect(() => {
@@ -39,8 +41,8 @@ export default function TerminalRole() {
   }, [frame, reducedMotion, skill.name.length]);
 
   return (
-    <div className="hero-role terminal-role" role="group" aria-label="DevOps skills">
-      <span className="sr-only">Terraform, Kubernetes, Ansible, Cloud, Audits, Argo CD, Agile, Go, Teamwork and Python.</span>
+    <div className="hero-role terminal-role" role="group" aria-label={t('DevOps skills')}>
+      <span className="sr-only">{t("Terraform, Kubernetes, Ansible, Cloud, Audits, Argo CD, Agile, Go, Teamwork and Python.")}</span>
       <span className="terminal-role-line" aria-hidden="true"><span className={`terminal-tech technology-${skill.tone}`}>{visible}</span><span className="typing-caret" /></span>
     </div>
   );

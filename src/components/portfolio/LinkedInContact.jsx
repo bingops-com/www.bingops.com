@@ -1,16 +1,16 @@
+import { useLanguage } from "../../LanguageContext";
 import { FiArrowUpRight, FiLinkedin } from "react-icons/fi";
-import profile from "../../portfolio.json";
-
-const linkedInContactURL = profile.linkedinMessage || profile.linkedin;
 
 export default function LinkedInContact() {
+  const { t, profile } = useLanguage();
+  const linkedInContactURL = profile.linkedinMessage || profile.linkedin;
   return (
     <a
       className="contact-network-link"
       href={linkedInContactURL}
       target="_blank"
       rel="noreferrer"
-      aria-label="Message me on LinkedIn"
+      aria-label={t('Message me on LinkedIn')}
     >
       <span className="contact-network-icon">
         <FiLinkedin aria-hidden="true" />
