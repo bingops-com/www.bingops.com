@@ -1,6 +1,6 @@
 # BingOps portfolio
 
-Corentin Guyon’s English-language portfolio, built with React and Vite for
+Corentin Guyon’s English/French portfolio, built with React and Vite for
 [www.bingops.com](https://www.bingops.com/).
 
 ## Development
@@ -21,8 +21,9 @@ Other servers can be opened through the dashboard’s port field.
 
 ## Visual direction
 
-The portfolio leads with Corentin’s name, portrait, DevOps/cybersecurity focus and
-professional background. The hero links to experience first; personal projects
+The portfolio leads with Corentin’s name, portrait, DevOps role and
+professional background. Cybersecurity is presented as training and a strong
+interest, rather than a cybersecurity engineering role. The hero links to experience first; personal projects
 follow the career section. On mobile the portrait spans the name and dynamic skill rows, while the skill
 stays in the left column. Short names include Ansible, Cloud and Audits;
 Communication is removed. The longest word is Kubernetes, checked alongside the
@@ -64,6 +65,18 @@ assets and provenance are recorded in `public/brands/sources.json`. namR uses a
 text wordmark. SII is the employer, Thales the client, and IPSSI the school. The
 career entry presents Thales as a distinct client assignment under the SII employment.
 
+The opening view uses the available viewport height after the measured header;
+the specialties strip sits at its bottom and the career section starts on the
+next screen. The introduction is vertically balanced with the name and animated
+skill grouped together, and the description, main actions and social links kept
+close. Mobile uses two action columns and larger, readable introduction copy.
+The title and portrait scale with the desktop
+viewport height to use the available space. Internal sections use
+their natural content height with compact fluid padding, keeping the reading
+flow continuous. Long timelines, projects, zoomed text and short landscape
+screens grow naturally so every item remains readable.
+Anchor navigation aligns each section with the top of the viewport.
+
 ## Content
 
 - `src/portfolio.json`: profile, experience, education, skills and links. Each
@@ -88,8 +101,14 @@ Upgrade Dental is excluded. Corentin confirmed his SII start date as February
 2026; the timeline displays “Feb 2026 – Today”. The exact SII job title remains
 unspecified. The CV’s older job-search introduction is superseded by his current
 employment. The professional email comes from the same supplied CV.
-Linked blog posts and the actual Portal interface may be in French; portfolio
-copy and controls are English apart from the official Bachelor programme title.
+The EN/FR button in the header switches all portfolio copy and controls without
+reloading the page, including project details and accessibility labels. English
+is the default regardless of browser language. An explicit language choice is
+saved locally; switching also works when browser storage is unavailable.
+`src/locales/fr.js` contains the French translations; English content remains
+in the original data files and components. The document language, title and
+description follow the selected language. Linked articles and the recorded
+Portal interface retain their original language.
 
 Project details explain the problem, engineering choices and delivered functionality
 using the linked repositories and rebuild documentation; no performance figures
@@ -107,7 +126,7 @@ Scroll-triggered reveals keep upcoming periods, project previews, skills, articl
 and the contact content visually hidden until they enter the viewport. Keyboard
 focus also reveals content; reduced motion and unavailable IntersectionObserver
 show everything immediately. Reveals run once, anticipate entry by 64 px and last
-400 ms. Project previews fade without moving their interactive controls. The shared
+800 ms. Project previews fade without moving their interactive controls. The shared
 hook handles newly filtered cards. Mobile profile/footer links have at least 44 px
 touch targets.
 

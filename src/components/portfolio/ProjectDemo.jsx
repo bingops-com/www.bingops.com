@@ -1,7 +1,9 @@
+import { useLanguage } from "../../LanguageContext";
 import { useEffect, useId, useRef, useState } from 'react';
 import { FiPause, FiPlay } from 'react-icons/fi';
 
 export default function ProjectDemo({ project, expanded = false }) {
+  const { t } = useLanguage();
   const videoRef = useRef(null);
   const captionId = useId();
   const [inView, setInView] = useState(false);
@@ -72,12 +74,12 @@ export default function ProjectDemo({ project, expanded = false }) {
   return (
     <figure className="project-demo">
       {failed ? <img className="demo-poster" src={project.imageURL} alt={project.imageAlt} width="1280" height="900" /> : (
-        <video ref={videoRef} className="project-demo-video" src={loaded ? project.videoURL : undefined} poster={project.imageURL} muted loop playsInline controls={expanded} preload="none" width="1280" height="900" aria-label="Portal navigation demo" aria-describedby={captionId} onPlay={handlePlay} onPause={handlePause} onError={() => setFailed(true)} />
+        <video ref={videoRef} className="project-demo-video" src={loaded ? project.videoURL : undefined} poster={project.imageURL} muted loop playsInline controls={expanded} preload="none" width="1280" height="900" aria-label={t('Portal navigation demo')} aria-describedby={captionId} onPlay={handlePlay} onPause={handlePause} onError={() => setFailed(true)} />
       )}
       <div className="demo-controls">
-        {!failed && <button className="text-link demo-toggle" type="button" onClick={togglePlayback} aria-label={playing ? 'Pause Portal demo' : 'Play Portal demo'}>{playing ? <FiPause aria-hidden="true" /> : <FiPlay aria-hidden="true" />}{playing ? 'Pause demo' : 'Play demo'}</button>}
+        {!failed && <button className="text-link demo-toggle" type="button" onClick={togglePlayback} aria-label={t(playing ? 'Pause Portal demo' : 'Play Portal demo')}>{playing ? <FiPause aria-hidden="true" /> : <FiPlay aria-hidden="true" />}{t(playing ? 'Pause demo' : 'Play demo')}</button>}
       </div>
-      <figcaption id={captionId}>{failed ? 'Video unavailable. A still preview is shown.' : 'Recorded navigation · Original French interface'}</figcaption>
+      <figcaption id={captionId}>{t(failed ? 'Video unavailable. A still preview is shown.' : 'Recorded navigation · Original French interface')}</figcaption>
     </figure>
   );
 }
