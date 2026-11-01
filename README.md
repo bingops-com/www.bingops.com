@@ -24,8 +24,10 @@ Other servers can be opened through the dashboard’s port field.
 The portfolio leads with Corentin’s name, portrait, DevOps role and
 professional background. Cybersecurity is presented as training and a strong
 interest, rather than a cybersecurity engineering role. The hero links to experience first; personal projects
-follow the career section. On mobile the portrait spans the name and dynamic skill rows, while the skill
-stays in the left column. Short names include Ansible, Cloud and Audits;
+follow the career section. On mobile the portrait aligns beside the name and
+dynamic skill block, while the skill stays in the left column. The description,
+actions and social links sit in the lower part of the opening view, with 24 px
+between the social links and the specialties strip. Short names include Ansible, Cloud and Audits;
 Communication is removed. The longest word is Kubernetes, checked alongside the
 photo at widths down to 320 px. The portrait is the original 400 × 400 photograph
 provided by Corentin, stored locally at `public/profile/corentin-guyon.jpg`.
@@ -51,7 +53,7 @@ outside the viewport and becomes a static overview when reduced motion is reques
 video controls and fullscreen support. No video is mounted on the main page.
 
 A large inline skills line types only names: Terraform, Kubernetes, Ansible, Cloud, Audits,
-Argo CD, Agile, Go, Teamwork and Python. The line uses JetBrains Mono Bold,
+GitOps, Agile, Go, Teamwork and Python. The line uses JetBrains Mono Bold,
 with dark purple for Terraform and blue for Kubernetes and Python. There is no
 terminal box, prompt or typing control. Reduced motion shows a complete static
 skill. The portrait has a simple frame and responds subtly on hover.

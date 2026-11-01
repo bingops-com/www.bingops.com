@@ -309,7 +309,7 @@ test("Portal wireframe animates in view and respects reduced motion", async ({ p
 });
 
 
-test("the mobile portrait spans the name and short dynamic skills", async ({ page }) => {
+test("the mobile portrait stays aligned beside the name and short dynamic skills", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
@@ -319,8 +319,9 @@ test("the mobile portrait spans the name and short dynamic skills", async ({ pag
     const name = await page.getByRole("heading", { level: 1 }).boundingBox();
     const role = await page.locator(".terminal-role").boundingBox();
     const caret = await page.locator(".typing-caret").boundingBox();
-    expect(Math.abs(portrait.y - name.y)).toBeLessThan(1);
-    expect(Math.abs(portrait.y + portrait.height - role.y - role.height)).toBeLessThan(1);
+    const identityCenter = (name.y + role.y + role.height) / 2;
+    expect(Math.abs(portrait.y + portrait.height / 2 - identityCenter)).toBeLessThan(1);
+    expect(portrait.height).toBeLessThanOrEqual(160);
     expect(role.x + role.width).toBeLessThan(portrait.x);
     expect(caret.x + caret.width).toBeLessThan(portrait.x);
     expect(portrait.width).toBeLessThanOrEqual(120);

@@ -173,12 +173,13 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .skill-group { border-left: 1px solid var(--line); padding-left: 23px; }
 .skill-group:first-child { border-left: 0; padding-left: 0; }
 .skill-group > svg { color: var(--accent); width: 27px; height: 27px; margin-bottom: 25px; }
-.skill-group h3 { font-size: 1.35rem; min-height: 2.4em; }
-.skill-group > p { color: var(--muted); font-size: .85rem; margin-top: 17px; }
+.skill-group h3 { font-size: 1.35rem; }
+.skill-group > p { color: var(--muted); font-size: .85rem; margin-top: 10px; }
 .skill-group .tag-list { display: block; }
 .skill-group .tag-list li { background: transparent; padding: 0; font-size: .8rem; margin-top: 6px; }
 .article-grid { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
 .article-card { display: block; border-bottom: 1px solid var(--line); }
+.article-card:last-child { border-bottom: 0; }
 .article-content { display: grid; grid-template-columns: 130px minmax(0, 1fr) 110px; gap: 9px 30px; padding-block: 27px; align-items: start; }
 .article-topic { grid-column: 1; grid-row: 1 / 3; color: var(--accent); font-size: .75rem; }
 .article-content h3 { grid-column: 2; font-size: 1.6rem; }
@@ -401,22 +402,23 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 .hero-employment strong { font: 500 1.2rem/1.3 'IBM Plex Sans', sans-serif; }
 .hero-employment dd > span { color: var(--muted); font-size: .75rem; }
 @media (max-width: 620px) {
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr) 116px; grid-template-rows: auto auto auto; align-items: start; align-content: center; gap: 22px 18px; padding-block: 40px 24px; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) 116px; grid-template-rows: minmax(min-content, 1fr) auto; align-items: start; align-content: stretch; gap: 24px 18px; padding-block: 40px 24px; }
   .hero-copy { display: contents; animation: none; }
-  .hero-heading { display: contents; }
-  .hero-copy h1 { grid-column: 1; grid-row: 1; align-self: center; font-size: clamp(2.25rem, 12vw, 3.5rem); }
+  .hero-heading { grid-column: 1; grid-row: 1; align-self: center; }
+  .hero-copy h1 { font-size: clamp(2.5rem, 14vw, 4rem); }
   .hero-portrait { grid-column: 2; grid-row: 1; max-width: 116px; justify-self: end; }
   .hero-portrait .portrait-frame { padding: 5px; box-shadow: none; }
   .hero-portrait figcaption { margin-top: 8px; font-size: .7rem; }
   .hero-portrait figcaption > span:first-child { display: none; }
   .hero-portrait figcaption > span:last-child { align-items: flex-start; gap: 4px; }
-  .hero-copy .terminal-role { grid-column: 1 / -1; grid-row: 2; margin-top: 0 !important; }
-  .hero-details { grid-column: 1 / -1; grid-row: 3; margin-top: 2px; }
+  .hero-heading .terminal-role { min-width: 0; white-space: nowrap; font-size: clamp(1.8rem, 8.3vw, 2.3rem); }
+  .hero-details { grid-column: 1 / -1; grid-row: 2; align-self: end; margin-top: 0; }
   .hero-details .hero-description { font-size: clamp(.88rem, 4.3vw, 1.05rem); line-height: 1.75; }
   .hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 12px; }
   .hero-actions .button { min-height: 46px; padding: 10px 8px; font-size: .78rem; gap: 7px; }
   .hero-actions .text-link { min-height: 46px; font-size: .78rem; line-height: 1.4; gap: 6px; }
-  .hero-socials { margin-top: 32px; }
+  .hero-contact { margin-top: 32px; }
+  .hero-socials { margin-top: 48px; }
   .hero-employment { width: 100%; gap: 25px; }
   .project-security { grid-template-columns: 1fr; }
   .project-security .project-visual, .project-security .project-card-copy { grid-column: auto; grid-row: auto; }
@@ -550,11 +552,11 @@ body { margin: 0; background: var(--page); color: var(--ink); }
 
 .technology-ansible { color: var(--rose); }
 .technology-cloud { color: var(--blue); }
+.technology-gitops { color: var(--teal); }
 .technology-audits { color: var(--teal); }
 @media (max-width: 620px) {
-  .hero-copy .terminal-role { grid-column: 1; grid-row: 2; min-width: 0; white-space: nowrap; }
-  .hero-portrait { grid-column: 2; grid-row: 1 / 3; align-self: stretch; display: flex; margin: 0; }
-  .hero-portrait .portrait-frame { flex: 1; width: 100%; min-height: 0; }
+  .hero-portrait { grid-column: 2; grid-row: 1; align-self: center; display: flex; margin: 0; }
+  .hero-portrait .portrait-frame { width: 100%; aspect-ratio: 4 / 5; }
   .hero-portrait .portrait-frame img { position: absolute; inset: 5px; width: calc(100% - 10px); height: calc(100% - 10px); aspect-ratio: auto; object-fit: cover; }
   .hero-portrait figcaption { display: none; }
 }
