@@ -7,7 +7,7 @@ const skills = [
   { name: 'Ansible', tone: 'ansible' },
   { name: 'Cloud', tone: 'cloud' },
   { name: 'Audits', tone: 'audits' },
-  { name: 'Argo CD', tone: 'argocd' },
+  { name: 'GitOps', tone: 'gitops' },
   { name: 'Agile', tone: 'softskill' },
   { name: 'Go', tone: 'go' },
   { name: 'Teamwork', tone: 'softskill' },
@@ -42,7 +42,7 @@ export default function TerminalRole() {
 
   return (
     <div className="hero-role terminal-role" role="group" aria-label={t('DevOps skills')}>
-      <span className="sr-only">{t("Terraform, Kubernetes, Ansible, Cloud, Audits, Argo CD, Agile, Go, Teamwork and Python.")}</span>
+      <span className="sr-only">{t("Terraform, Kubernetes, Ansible, Cloud, Audits, GitOps, Agile, Go, Teamwork and Python.")}</span>
       <span className="terminal-role-line" aria-hidden="true"><span className={`terminal-tech technology-${skill.tone}`}>{visible}</span><span className="typing-caret" /></span>
     </div>
   );

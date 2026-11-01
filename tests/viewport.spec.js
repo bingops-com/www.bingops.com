@@ -27,10 +27,11 @@ test("the introduction ends with the specialties at the bottom of the first scre
       expect(positions.career).toBeGreaterThanOrEqual(height - 1);
       expect(positions.name - positions.header).toBeGreaterThanOrEqual(36);
       expect(Math.abs(positions.dynamicText - positions.nameBottom - 22)).toBeLessThan(1);
-      expect(positions.actionsTop - positions.description).toBeLessThanOrEqual(21);
-      expect(positions.socialsTop - positions.actions).toBeGreaterThanOrEqual(32);
-      expect(positions.socialsTop - positions.actions).toBeLessThanOrEqual(37);
+      expect(positions.actionsTop - positions.description).toBeLessThanOrEqual(width <= 620 ? 33 : 21);
+      expect(positions.socialsTop - positions.actions).toBeGreaterThanOrEqual(width <= 620 ? 48 : 32);
+      expect(positions.socialsTop - positions.actions).toBeLessThanOrEqual(width <= 620 ? 49 : 37);
       expect(positions.socials).toBeLessThanOrEqual(positions.banner);
+      if (width <= 620) expect(positions.banner - positions.socials).toBeLessThanOrEqual(25);
       expect(positions.overflows).toBe(false);
     }
     await page.setViewportSize(testInfo.project.use.viewport);

@@ -23,7 +23,7 @@ export default {
   "Infrastructure. Development. Security.": "Infrastructure. Développement. Sécurité.",
   "DevOps skills": "Compétences DevOps",
   "Teamwork": "Entraide",
-  "Terraform, Kubernetes, Ansible, Cloud, Audits, Argo CD, Agile, Go, Teamwork and Python.": "Terraform, Kubernetes, Ansible, Cloud, Audits, Argo CD, Agile, Go, entraide et Python.",
+  "Terraform, Kubernetes, Ansible, Cloud, Audits, GitOps, Agile, Go, Teamwork and Python.": "Terraform, Kubernetes, Ansible, Cloud, Audits, GitOps, Agile, Go, entraide et Python.",
   "Career & education": "Parcours & formation",
   "My professional": "Mon parcours",
   "background.": "professionnel.",
